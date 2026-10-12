@@ -1,21 +1,17 @@
-
-const baseUrl = process.env.NEXT_PUBLIC_API_URL;
-
-export const serverMutation = async (path , data , method = "POST") => {
+import { serverFetch } from "../core/server";
 
 
-    const res = await fetch(`${baseUrl}${path}` , {
-        method , 
-        headers :{
-            "Content-Type" : "Application/json"
-        },
-        body : JSON.stringify(data)
-    })
-    return res.json();
+export const getAllClasses = async() => {
+     const AllClasses = await serverFetch('/api/all-classes')
+     return AllClasses;
 }
 
-export const serverFetch = async (path) => {
-    const res = await fetch(`${baseUrl}${path}`);
-    return res.json();
+export const getFeaturedClasses = async() =>{
+     const featuredClass = await serverFetch("/api/featured-classes")
+     return featuredClass;
 }
-
+export const getClassById = async(_id) => {
+     const classById = await serverFetch(`/api/class/${_id}`)
+     console.log(classById)
+     return classById;
+}

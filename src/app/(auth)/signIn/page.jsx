@@ -25,7 +25,6 @@ const SignInPage = () => {
 
         const signInData = Object.fromEntries(formData.entries())
 
-        console.log(signInData);
 
         const { data, error } = await authClient.signIn.email({
 

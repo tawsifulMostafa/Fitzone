@@ -4,7 +4,6 @@ import NavDetail from "./NavDetail/NavDetail";
 const Navbar = async () => {
     const session = await sessionCheck();
     const user = session?.user
-    console.log(user);
  
     return (
         <NavDetail user = {user}/>

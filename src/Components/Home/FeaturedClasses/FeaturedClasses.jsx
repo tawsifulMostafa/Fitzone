@@ -1,13 +1,12 @@
 
-import { serverFetch } from "@/lib/api/classes";
+import { getFeaturedClasses } from "@/lib/api/classes";
 import { Button, Card } from "@heroui/react";
 import { ArrowRight, Clock, Dumbbell } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
 const FeaturedClasses = async () => {
-    const classes = await serverFetch("/api/featured-classes");
-
+ const classes = await getFeaturedClasses()
     return (
         <section className="relative overflow-hidden bg-gradient-to-b from-white via-purple-50/50 to-white px-5 py-20 md:px-10 lg:px-16">
 
