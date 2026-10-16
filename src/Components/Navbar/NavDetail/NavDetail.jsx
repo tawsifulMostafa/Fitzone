@@ -36,7 +36,7 @@ const NavDetail = ({ user }) => {
                     All Classes </NavLink>
                 <NavLink className="transition hover:text-purple-600" href="/community-forum" >
                     Community Forum </NavLink>
-                <NavLink className="transition hover:text-purple-600" href="/dashboard" >
+                <NavLink className="transition hover:text-purple-600" href= {`/dashboard/${user.role}`} >
                     Dashboard
                 </NavLink>
             </div>
