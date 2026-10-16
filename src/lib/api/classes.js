@@ -12,6 +12,5 @@ export const getFeaturedClasses = async() =>{
 }
 export const getClassById = async(_id) => {
      const classById = await serverFetch(`/api/class/${_id}`)
-     console.log(classById)
      return classById;
 }

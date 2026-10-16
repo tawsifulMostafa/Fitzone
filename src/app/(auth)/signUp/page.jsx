@@ -19,6 +19,7 @@ import { useState } from "react";
 import { toast } from "sonner";
 
 const SignUpPage = () => {
+
     const handleGoogleSignIn = async () => {
         const data = await authClient.signIn.social({
             provider: "google"
@@ -66,8 +67,7 @@ const SignUpPage = () => {
 
                 imageUrl = result.data.display_url;
             }
-
-
+ 
             const { data, error } = await authClient.signUp.email({
                 name: formData.get("name"),
                 email: formData.get("email"),
@@ -79,8 +79,7 @@ const SignUpPage = () => {
             } else {
                 toast.success("sign up successful")
                 route.push("/")
-                route.refresh()
-
+                route.refresh() 
             }
 
         } catch (error) {

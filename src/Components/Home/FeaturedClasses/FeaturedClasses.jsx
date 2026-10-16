@@ -84,7 +84,7 @@ const FeaturedClasses = async () => {
                                     </p>
 
                                     <h3 className="mt-1 text-2xl font-extrabold text-white">
-                                        {cs.name}
+                                        {cs.className}
                                     </h3>
                                 </div>
 

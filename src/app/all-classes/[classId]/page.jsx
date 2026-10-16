@@ -4,12 +4,17 @@ import Image from "next/image";
 import Link from "next/link";
 import ClassDetailsActions from "../ClassDetailsActions";
 import { getUserToken } from "@/lib/core/session";
+import { getUserPaymentStatus } from "@/lib/api/payment";
+import { getFavorite } from "@/lib/api/favorite";
 
 const ClassDetailsPage = async ({ params }) => {
+
     const { classId } = await params;
-const classDetail = await getClassById(classId)
-console.log(classDetail);
-const token = await getUserToken();
+    const isFavorite = await getFavorite(classId)
+    const classDetail = await getClassById(classId)
+    const token = await getUserToken();
+    const payment = await getUserPaymentStatus(classId)
+
     if (!classDetail) {
         return (
             <div className="flex min-h-[60vh] flex-col items-center justify-center">
@@ -277,8 +282,10 @@ const token = await getUserToken();
                             </div>
 
                             <ClassDetailsActions
+                                payment={payment}
                                 classId={classId}
-                                token = {token}
+                                isFavorite =  {isFavorite}
+
                             />
 
                             <p className="mt-4 text-center text-xs leading-5 text-gray-400">
