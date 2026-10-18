@@ -8,3 +8,5 @@ export const getUserBookings = async() => {
     const bookings = await serverProtectedFetch("/api/member/bookings")
     return bookings
 }
+
+ 

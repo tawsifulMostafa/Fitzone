@@ -12,8 +12,10 @@ import {
 import { Send, Dumbbell, Award, FileText } from "lucide-react";
 import { toast } from "sonner";
 import { applyAsTrainer } from "@/lib/action/apply";
+import { useRouter } from "next/navigation";
 
 const ApplyAsTrainerForm = () => {
+    const router = useRouter()
     const [experience, setExperience] = useState("");
     const [specialty, setSpecialty] = useState("");
     const [loading, setLoading] = useState(false)
@@ -33,12 +35,14 @@ const ApplyAsTrainerForm = () => {
 
         const apply = await applyAsTrainer(applicationData);
         if (apply.insertedId) {
+            router.refresh()
             toast.success("Application submitted successfully", {
                 style: {
                     background: "#052e16",
                     color: "#4ade80",
                     border: "1px solid #166534",
                 },
+            
             });
         } else {
             toast.error("You have already applied", {

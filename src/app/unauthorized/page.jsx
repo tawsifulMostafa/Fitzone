@@ -25,22 +25,26 @@ const UnAuthorizedPage = () => {
                 </p>
 
                 <div className="mt-8 flex flex-wrap justify-center gap-3">
+                    <Link href={"/"}>
                     <Button
-                        as={Link}
+                         
                         href="/"
                         variant="bordered"
                         startContent={<ArrowLeft size={17} />}
                     >
                         Back to Home
                     </Button>
+                    </Link>
 
+                   <Link  href="/all-classes">
                     <Button
-                        as={Link}
-                        href="/all-classes"
+                   
+                       
                         className="bg-purple-600 font-semibold text-white"
                     >
                         explore classes
                     </Button>
+                   </Link>
                 </div>
 
                 <p className="mt-10 text-xs text-gray-400">

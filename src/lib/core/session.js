@@ -25,7 +25,7 @@ export const requireRole = async (role) => {
     const session = await sessionCheck()
     const user = session?.user
     if (!user) {
-        redirect('/auth/signin')
+        redirect('/unauthorized')
     }
     if (user?.role !== role) {
         redirect('/unauthorized')
