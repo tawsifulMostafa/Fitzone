@@ -124,7 +124,7 @@ const DashboardSidebar = ({ userRole, isOpen = true, onClose }) => {
 
                 <div className="border-t border-white/10 p-4">
                     <Link
-                        href="/dashboard/settings"
+                        href="#"
                         onClick={onClose}
                         className="flex items-center gap-3 rounded-xl px-3 py-3 text-sm text-gray-400 transition hover:bg-white/5 hover:text-white"
                     >

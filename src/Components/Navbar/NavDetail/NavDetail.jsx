@@ -6,13 +6,13 @@ import Image from "next/image";
 import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
-import { useRouter} from "next/navigation";
+import { useRouter } from "next/navigation";
 import NavLink from "../Navlink/Navlink";
 const NavDetail = ({ user }) => {
     const router = useRouter()
     const handleSignOut = async () => {
-       await signOut() ;
-       router.refresh()
+        await signOut();
+        router.refresh()
 
     }
     const [isOpen, setIsOpen] = useState(false);
@@ -36,9 +36,11 @@ const NavDetail = ({ user }) => {
                     All Classes </NavLink>
                 <NavLink className="transition hover:text-purple-600" href="/community-forum" >
                     Community Forum </NavLink>
-                <NavLink className="transition hover:text-purple-600" href= {`/dashboard/${user.role}`} >
-                    Dashboard
-                </NavLink>
+                {
+                    user ? <NavLink className="transition hover:text-purple-600" href={`/dashboard/${user?.role}`} >
+                        Dashboard
+                    </NavLink> : null
+                }
             </div>
             {/* Desktop User */}
             <div className="hidden lg:block">
@@ -55,7 +57,7 @@ const NavDetail = ({ user }) => {
                         {/* Avatar */}
 
                         <div className="h-10 w-10 overflow-hidden rounded-full border-2 border-purple-500">
-                            <Image width={200} height={200} src={user?.image  ? user.image : null} alt={user?.name} className="h-full w-full object-cover" />
+                            <Image width={200} height={200} src={user?.image ? user.image : null} alt={user?.name} className="h-full w-full object-cover" />
                         </div>
                         {/* Name */}
 

@@ -16,7 +16,7 @@ export default function RootLayout({ children }) {
             children
           }
         </main>
-        <Toaster/>
+        <Toaster position="top-right"/>
       </body>
     </html>
   );

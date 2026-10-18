@@ -8,8 +8,7 @@ export const postFavorite = async (classId) => {
 
 export const deleteFavorite = async (classId) => {
     return await serverMutation(
-        `/api/remove/favorite/${classId}`,
-        {},
+        `/api/remove/favorite/${classId}`, {classId},
         "DELETE"
     );
 };
