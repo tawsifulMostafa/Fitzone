@@ -1,6 +1,6 @@
 const CommunityForum = () => {
     return (
-        <div>
+        <div className="min-h-screen">
 CommunityForum page
         </div>
     ) 

@@ -1,22 +1,18 @@
-
-import DashboardSidebar from "@/Components/Dashboard/DashboardSidebar";
-import { getUser } from "@/lib/core/session";
+import { redirect } from "next/navigation";
+import DashboardLayoutClient from "./DashboardLayoutClient";
+import { sessionCheck } from "@/lib/core/session";
 
 const DashboardLayout = async ({ children }) => {
-    const user = await getUser();
+    const session = await sessionCheck();
 
-    if (!user) {
-        return <div className="p-6 text-red-500">User not found</div>;
+    if (!session) {
+        redirect("/signIn");
     }
-    return (
-        <div className="flex min-h-screen bg-gray-50">
-            <DashboardSidebar userRole={user.role} />
 
-            <main className="min-w-0 flex-1 p-6">
-                {children}
-            </main>
-        </div>
+    return (
+        <DashboardLayoutClient userRole={session.user.role}>
+            {children}
+        </DashboardLayoutClient>
     );
 };
-
 export default DashboardLayout;

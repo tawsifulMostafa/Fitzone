@@ -147,7 +147,9 @@ const SignInPage = () => {
                             className="h-11 flex-1 rounded-xl bg-purple-600 font-medium text-white shadow-md shadow-purple-200 hover:bg-purple-700"
                         >
                             <Check size={18} />
-                            Sign In
+                           {
+                            loading ? "signing in..." : " Sign In"
+                           }
                         </Button>
 
                         <Button

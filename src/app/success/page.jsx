@@ -1,7 +1,10 @@
 import Link from "next/link";
 import { CheckCircle2, ArrowRight, Home, LayoutDashboard } from "lucide-react";
+import { getUser } from "@/lib/core/session";
 
 const SuccessPage = async () => {
+    const user = await getUser()
+    const role = user?.role
     return (
         <main className="relative flex min-h-[85vh] items-center justify-center overflow-hidden bg-[#09090f] px-4 py-16">
             {/* Background Effects */}
@@ -57,7 +60,7 @@ const SuccessPage = async () => {
                 {/* Actions */}
                 <div className="mt-8 grid gap-3 sm:grid-cols-2">
                     <Link
-                        href="/dashboard"
+                        href={`/dashboard/${role}`}
                         className="group flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-purple-700 to-purple-500 px-5 py-3.5 text-sm font-semibold text-white shadow-lg shadow-purple-900/20 transition hover:from-purple-600 hover:to-purple-400"
                     >
                         <LayoutDashboard size={18} />

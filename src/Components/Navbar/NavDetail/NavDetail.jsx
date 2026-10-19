@@ -88,7 +88,7 @@ const NavDetail = ({ user }) => {
                     <Link href="/" onClick={() => setIsOpen(false)} className="transition hover:text-purple-600" > Home </Link>
                     <Link href="/all-classes" onClick={() => setIsOpen(false)} className="transition hover:text-purple-600" > All Classes </Link>
                     <Link href="/community-forum" onClick={() => setIsOpen(false)} className="transition hover:text-purple-600" > Community Forum </Link>
-                    <Link href="/dashboard" onClick={() => setIsOpen(false)} className="transition hover:text-purple-600" > Dashboard </Link>
+                    <Link href={`/dashboard/${user.role}`} onClick={() => setIsOpen(false)} className="transition hover:text-purple-600" > Dashboard </Link>
                     {/* Mobile User */}
 
                     <div className="mt-2 border-t border-purple-200 pt-4">

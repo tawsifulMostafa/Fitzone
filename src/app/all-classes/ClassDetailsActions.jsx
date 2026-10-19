@@ -12,6 +12,7 @@ Trash,
 } from "lucide-react";
 import { deleteFavorite, postFavorite } from "@/lib/action/favorite";
 import { useRouter } from "next/navigation";
+import { toast } from "sonner";
 
 const ClassDetailsActions = ({ payment, classId, isFavorite }) => {
 const [loading, setLoading] = useState(false);
@@ -39,8 +40,17 @@ const handleFavorite = async () => {
     try {
         setFavoriteLoading(true);
 
-        await postFavorite(classId);
+      const favorite= await postFavorite(classId);
+        if(favorite.insertedId){
+            toast.success("Added To favorites" , {
+                style : {
+                    color : "green"
+                }
+            })
         router.refresh();
+
+        }
+
     } catch (error) {
         console.error("Failed to add favorite:", error);
     } finally {
@@ -52,8 +62,15 @@ const removeFavorite = async () => {
     try {
         setFavoriteLoading(true);
 
-        await deleteFavorite(classId);
+      const remove =   await deleteFavorite(classId);
+      if(remove.deletedCount){
+        toast.success("Removed From favorites", {
+            style : {
+                color: "red"
+            }
+        })
         router.refresh();
+      }
     } catch (error) {
         console.error("Failed to remove favorite:", error);
     } finally {
@@ -142,8 +159,8 @@ return (
                     className="h-12 w-full rounded-xl border border-pink-400/20 bg-pink-500/[0.04] font-medium text-gray-300 transition-all duration-300 hover:border-pink-400/50 hover:bg-pink-500/10 hover:text-pink-300 [&_svg]:transition-transform [&_svg]:duration-300 hover:[&_svg]:scale-110"
                 >
                     <Heart size={18} />
-                    Add to Favorites
-                </Button>
+                 { favoriteLoading ? "adding..." :"Add to Favorites"
+}                </Button>
             ) : (
                 <Button
                     onPress={removeFavorite}
@@ -152,7 +169,7 @@ return (
                     className="h-12 w-full rounded-xl border border-red-400/20 bg-red-500/[0.08] font-medium text-red-300 transition-all duration-300 hover:border-red-400/40 hover:bg-red-500/15 hover:text-red-200 [&_svg]:transition-transform [&_svg]:duration-300 hover:[&_svg]:scale-110"
                 >
                     <Trash size={18} />
-                    Remove from Favorites
+                   {favoriteLoading ? "Removing..." : " Remove from Favorites"} 
                 </Button>
             )}
 

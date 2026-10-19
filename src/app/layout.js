@@ -1,6 +1,7 @@
 import Navbar from "@/Components/Navbar/Navbar";
 import "./globals.css";
 import { Toaster } from "sonner";
+import Footer from "@/Components/Footer/Footer";
 
 
 export default function RootLayout({ children }) {
@@ -8,7 +9,7 @@ export default function RootLayout({ children }) {
     <html
       lang="en"
     >
-      <body>
+      <body className="min-full-screen flex flex-col">
         <Navbar></Navbar> 
 
         <main>
@@ -17,6 +18,7 @@ export default function RootLayout({ children }) {
           }
         </main>
         <Toaster position="top-right"/>
+        <Footer/>
       </body>
     </html>
   );

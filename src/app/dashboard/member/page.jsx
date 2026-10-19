@@ -1,8 +1,8 @@
-
 import Link from "next/link";
 import { getAllClasses } from "@/lib/api/classes";
 import { favoriteCollection } from "@/lib/api/favorite";
 import { getUserBookings } from "@/lib/api/payment";
+import { getApplication } from "@/lib/api/application";
 import {
     CalendarCheck,
     Heart,
@@ -11,15 +11,24 @@ import {
     Compass,
     MessageSquare,
     Bookmark,
+    Clock,
+    CheckCircle2,
+    XCircle,
+    FileText,
 } from "lucide-react";
 
 const UserDashBoard = async () => {
-    const [userBookings, userTotalFavorites, totalClasses] =
-        await Promise.all([
-            getUserBookings(),
-            favoriteCollection(),
-            getAllClasses(),
-        ]);
+    const [
+        userBookings,
+        userTotalFavorites,
+        totalClasses,
+        application,
+    ] = await Promise.all([
+        getUserBookings(),
+        favoriteCollection(),
+        getAllClasses(),
+        getApplication(),
+    ]);
 
     const bookingsCount = Array.isArray(userBookings)
         ? userBookings.length
@@ -32,6 +41,37 @@ const UserDashBoard = async () => {
     const classesCount = Array.isArray(totalClasses)
         ? totalClasses.length
         : 0;
+
+    const applicationStatus = application?.status;
+
+    const applicationDetails = {
+        pending: {
+            title: "Application Under Review",
+            description:
+                "Your trainer application has been submitted and is waiting for admin review.",
+            icon: Clock,
+            color: "bg-amber-100 text-amber-700 dark:bg-amber-500/10 dark:text-amber-400",
+            badge: "bg-amber-100 text-amber-700 dark:bg-amber-500/10 dark:text-amber-400",
+        },
+        approved: {
+            title: "Application Approved!",
+            description:
+                "Congratulations! Your application has been approved. You can now access your trainer dashboard.",
+            icon: CheckCircle2,
+            color: "bg-green-100 text-green-700 dark:bg-green-500/10 dark:text-green-400",
+            badge: "bg-green-100 text-green-700 dark:bg-green-500/10 dark:text-green-400",
+        },
+        rejected: {
+            title: "Application Rejected",
+            description:
+                "Unfortunately, your application was rejected. Please contact the FitZone team for more information.",
+            icon: XCircle,
+            color: "bg-red-100 text-red-700 dark:bg-red-500/10 dark:text-red-400",
+            badge: "bg-red-100 text-red-700 dark:bg-red-500/10 dark:text-red-400",
+        },
+    };
+
+    const currentApplication = applicationDetails[applicationStatus];
 
     const stats = [
         {
@@ -67,13 +107,13 @@ const UserDashBoard = async () => {
         {
             title: "My Bookings",
             description: "View your booked classes.",
-            href: "/dashboard/my-bookings",
+            href: "/dashboard/member/my-bookings",
             icon: CalendarCheck,
         },
         {
             title: "My Favorites",
             description: "Revisit your saved classes.",
-            href: "/dashboard/favorites",
+            href: "/dashboard/member/favorites",
             icon: Bookmark,
         },
         {
@@ -85,7 +125,8 @@ const UserDashBoard = async () => {
     ];
 
     return (
-        <div className="space-y-8">
+        <div className="space-y-8 m-3">
+
             {/* Welcome Header */}
             <section className="relative overflow-hidden rounded-2xl bg-gradient-to-r from-purple-700 to-purple-950 p-6 text-white sm:p-8">
                 <div className="relative z-10 max-w-xl">
@@ -123,6 +164,7 @@ const UserDashBoard = async () => {
                     <h2 className="text-xl font-bold text-foreground">
                         Overview
                     </h2>
+
                     <p className="mt-1 text-sm text-default-500">
                         A quick look at your FitZone activity.
                     </p>
@@ -149,7 +191,7 @@ const UserDashBoard = async () => {
                                     </div>
 
                                     <div
-                                        className={`flex h-12 w-12 items-center justify-center rounded-xl ${stat.color}`}
+                                        className={`flex h - 12 w - 12 items - center justify - center rounded - xl ${ stat.color } `}
                                     >
                                         <Icon size={23} />
                                     </div>
@@ -164,12 +206,80 @@ const UserDashBoard = async () => {
                 </div>
             </section>
 
+            {/* Trainer Application */}
+            <section className="rounded-2xl border border-default-200 bg-background p-5 sm:p-6">
+                <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
+
+                    <div className="flex items-start gap-4">
+                        <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-purple-100 text-purple-600 dark:bg-purple-500/10 dark:text-purple-400">
+                            <FileText size={24} />
+                        </div>
+
+                        <div className="min-w-0">
+                            <h2 className="font-bold text-foreground">
+                                Trainer Application
+                            </h2>
+
+                            <p className="mt-1 text-sm leading-6 text-default-500">
+                                {currentApplication
+                                    ? currentApplication.description
+                                    : "Share your fitness expertise and become a part of the FitZone trainer team."}
+                            </p>
+
+                            {currentApplication && (
+                                <span
+                                    className={`mt - 3 inline - flex items - center gap - 1.5 rounded - full px - 3 py - 1 text - xs font - semibold capitalize ${ currentApplication.badge } `}
+                                >
+                                    <currentApplication.icon size={14} />
+                                    {applicationStatus}
+                                </span>
+                            )}
+                        </div>
+                    </div>
+
+                    {!applicationStatus && (
+                        <Link
+                            href="/dashboard/member/apply-as-trainer"
+                            className="inline-flex shrink-0 items-center justify-center gap-2 rounded-xl bg-purple-600 px-5 py-3 text-sm font-semibold text-white transition hover:bg-purple-700"
+                        >
+                            Apply as Trainer
+                            <ArrowUpRight size={17} />
+                        </Link>
+                    )}
+
+                    {applicationStatus === "approved" && (
+                        <Link
+                            href="/dashboard/trainer"
+                            className="inline-flex shrink-0 items-center justify-center gap-2 rounded-xl bg-purple-600 px-5 py-3 text-sm font-semibold text-white transition hover:bg-purple-700"
+                        >
+                            Trainer Dashboard
+                            <ArrowUpRight size={17} />
+                        </Link>
+                    )}
+
+                    {applicationStatus === "pending" && (
+                        <div className="flex shrink-0 items-center gap-2 rounded-xl border border-amber-200 px-4 py-3 text-sm font-medium text-amber-700 dark:border-amber-500/20 dark:text-amber-400">
+                            <Clock size={17} />
+                            Awaiting Review
+                        </div>
+                    )}
+
+                    {applicationStatus === "rejected" && (
+                        <div className="flex shrink-0 items-center gap-2 rounded-xl border border-red-200 px-4 py-3 text-sm font-medium text-red-700 dark:border-red-500/20 dark:text-red-400">
+                            <XCircle size={17} />
+                            Not Approved
+                        </div>
+                    )}
+                </div>
+            </section>
+
             {/* Quick Actions */}
             <section>
                 <div className="mb-5">
                     <h2 className="text-xl font-bold text-foreground">
                         Quick Actions
                     </h2>
+
                     <p className="mt-1 text-sm text-default-500">
                         Everything you need, just one click away.
                     </p>

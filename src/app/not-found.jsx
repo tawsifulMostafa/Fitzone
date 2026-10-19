@@ -29,7 +29,7 @@ const NotFoundPage = () => {
 
                 <p className="mx-auto mt-4 max-w-md text-sm leading-7 text-default-500 sm:text-base">
                     Looks like this page has gone missing. The page you are
-                    looking for doesn't exist or may have been moved.
+                    looking for doesn&apos;t exist or may have been moved.
                 </p>
 
                 <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
