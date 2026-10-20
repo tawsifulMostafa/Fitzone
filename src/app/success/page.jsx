@@ -61,7 +61,7 @@ const SuccessPage = async () => {
                 <div className="mt-8 grid gap-3 sm:grid-cols-2">
                     <Link
                         href={`/dashboard/${role}`}
-                        className="group flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-purple-700 to-purple-500 px-5 py-3.5 text-sm font-semibold text-white shadow-lg shadow-purple-900/20 transition hover:from-purple-600 hover:to-purple-400"
+                        className="group flex items-center justify-center gap-2 rounded-xl bg-linear-to-r from-purple-700 to-purple-500 px-5 py-3.5 text-sm font-semibold text-white shadow-lg shadow-purple-900/20 transition hover:from-purple-600 hover:to-purple-400"
                     >
                         <LayoutDashboard size={18} />
                         Go to Dashboard

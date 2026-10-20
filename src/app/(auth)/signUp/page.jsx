@@ -1,5 +1,6 @@
 'use client'
 
+import { imageUpload } from "@/lib/action/image";
 import { authClient } from "@/lib/auth-client";
 import {
     Button,
@@ -29,61 +30,41 @@ const SignUpPage = () => {
     const [preview, setPreview] = useState("");
     const [loading, setLoading] = useState(false);
 
+
+
     const onSubmit = async (e) => {
         e.preventDefault();
         setLoading(true);
 
         try {
-
             const formData = new FormData(e.currentTarget);
             const image = formData.get("image");
+
             if (!image || image.size === 0) {
-                toast.error("please select a picture")
+                toast.error("Please select a picture");
                 return;
-
             }
 
+            const imageUrl = await imageUpload(image);
 
-            let imageUrl = "";
-
-            if (image && image.size > 0) {
-                const imageData = new FormData();
-                imageData.append("image", image);
-
-
-                const res = await fetch(
-                    `https://api.imgbb.com/1/upload?key=${process.env.NEXT_PUBLIC_IMGBB_API_KEY}`,
-                    {
-                        method: "POST",
-                        body: imageData,
-                    }
-                );
-
-                const result = await res.json();
-
-                if (!result.success) {
-                    throw new Error("Image upload failed");
-                }
-
-                imageUrl = result.data.display_url;
-            }
- 
             const { data, error } = await authClient.signUp.email({
                 name: formData.get("name"),
                 email: formData.get("email"),
                 password: formData.get("password"),
                 image: imageUrl,
-            })
+            });
+
             if (error) {
                 throw new Error(error.message);
-            } else {
-                toast.success("sign up successful")
-                route.push("/")
-                route.refresh() 
             }
+
+            toast.success("Sign up successful");
+            route.push("/");
+            route.refresh();
 
         } catch (error) {
             console.error(error);
+            toast.error(error.message || "Something went wrong");
         } finally {
             setLoading(false);
         }
@@ -230,39 +211,39 @@ const SignUpPage = () => {
 
                         <Fieldset.Actions className="mt-6 grid">
 
-                           <div className="flex gap-3 py-4">
- <Button
-                                type="submit"
-                                isDisabled={loading}
-                                className="w-full bg-purple-600 text-white shadow-lg shadow-purple-200 hover:bg-purple-700"
-                            >
-                                {loading ? (
-                                    <>
-                                        <Loader2
-                                            size={18}
-                                            className="animate-spin"
-                                        />
-                                        Creating account...
-                                    </>
-                                ) : (
-                                    <>
-                                        <UserPlus size={18} />
-                                        Create account
-                                    </>
-                                )}
-                            </Button>
+                            <div className="flex gap-3 py-4">
+                                <Button
+                                    type="submit"
+                                    isDisabled={loading}
+                                    className="w-full bg-purple-600 text-white shadow-lg shadow-purple-200 hover:bg-purple-700"
+                                >
+                                    {loading ? (
+                                        <>
+                                            <Loader2
+                                                size={18}
+                                                className="animate-spin"
+                                            />
+                                            Creating account...
+                                        </>
+                                    ) : (
+                                        <>
+                                            <UserPlus size={18} />
+                                            Create account
+                                        </>
+                                    )}
+                                </Button>
 
-                            <Button
-                                type="reset"
-                                variant="tertiary"
-                                className="w-full"
-                                onPress={() => setPreview("")}
-                            >
-                                Cancel
-                            </Button>
-                    
+                                <Button
+                                    type="reset"
+                                    variant="tertiary"
+                                    className="w-full"
+                                    onPress={() => setPreview("")}
+                                >
+                                    Cancel
+                                </Button>
 
-                           </div>
+
+                            </div>
                             {/* google login */}
                             <div>
                                 <Button onPress={handleGoogleSignIn} className="w-full" variant="tertiary">

@@ -30,8 +30,8 @@ const dashboardMenus = {
         { label: "Overview", href: "/dashboard/trainer", icon: LayoutDashboard },
         { label: "My Classes", href: "/dashboard/trainer/classes", icon: Dumbbell },
         { label: "Create Class", href: "/dashboard/trainer/create-class", icon: PlusCircle },
-        { label: "Bookings", href: "/dashboard/trainer/bookings", icon: CalendarCheck },
-        { label: "My Forum Posts", href: "/dashboard/trainer/forum", icon: FileText },
+        { label: "Add Forum", href: "/dashboard/trainer/add-forum", icon: CalendarCheck },
+        { label: "My Forum Posts", href: "/dashboard/trainer/my-post", icon: FileText },
     ],
     member: [
         { label: "Overview", href: "/dashboard/member", icon: LayoutDashboard },

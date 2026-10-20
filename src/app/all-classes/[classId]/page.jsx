@@ -2,7 +2,7 @@ import { getClassById } from "@/lib/api/classes";
 import { ArrowLeft, Clock, Dumbbell, Users, CalendarDays } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import ClassDetailsActions from "../ClassDetailsActions";
+import ClassDetailsActions from "../../../Components/Dashboard/Classes/ClassDetailsActions";
 import { getUserToken } from "@/lib/core/session";
 import { getUserPaymentStatus } from "@/lib/api/payment";
 import { getFavorite } from "@/lib/api/favorite";
