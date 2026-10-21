@@ -4,8 +4,7 @@
 import { Input, Label, TextArea } from "@heroui/react";
 import { useState } from "react";
 import {
-    Dumbbell,
-    ImagePlus,
+    Dumbbell, 
     CalendarDays,
     Clock,
     Upload,
@@ -50,7 +49,6 @@ const TrainerCreateClasses = () => {
             classData.price = Number(classData.price);
             classData.duration = Number(classData.duration);
             classData.image = imageUrl;
-
             const data = await postClass(classData);
             if(data.insertedId){
                 toast.success("Class added successfully", {

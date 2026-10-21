@@ -36,7 +36,7 @@ const FavoriteCard = ({ favorite }) => {
             <div className="relative h-36 w-32 shrink-0 sm:w-40">
                 <Image
                     src={cls.image}
-                    alt={cls.className}
+                    alt={cls.name}
                     fill
                     sizes="160px"
                     className="object-cover transition duration-300 group-hover:scale-105"

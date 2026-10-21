@@ -1,4 +1,4 @@
-import { serverFetch } from "../core/server";
+import { serverFetch, serverProtectedFetch } from "../core/server";
 
 
 export const getAllClasses = async() => {
@@ -11,6 +11,10 @@ export const getFeaturedClasses = async() =>{
      return featuredClass;
 }
 export const getClassById = async(_id) => {
-     const classById = await serverFetch(`/api/class/${_id}`)
+     const classById = await serverProtectedFetch(`/api/class/${_id}`)
      return classById;
+}
+export const trainersClass = async() => {
+     const cls = await serverProtectedFetch("/api/my/class")
+     return cls;
 }

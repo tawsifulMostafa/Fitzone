@@ -8,6 +8,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 const AllClassesClient = ({ allClasses = [] }) => {
+    console.log(allClasses);
     const [search, setSearch] = useState("");
     const [category, setCategory] = useState("all");
 
@@ -19,7 +20,7 @@ const AllClassesClient = ({ allClasses = [] }) => {
         const searchText = search.toLowerCase();
 
         const matchesSearch =
-            cs.className?.toLowerCase().includes(searchText) ||
+            cs.name?.toLowerCase().includes(searchText) ||
             cs.trainerName?.toLowerCase().includes(searchText);
 
         const matchesCategory =
@@ -128,13 +129,13 @@ const AllClassesClient = ({ allClasses = [] }) => {
                                 <div className="relative h-60 w-full overflow-hidden bg-purple-100">
                                     <Image
                                         src={cs.image}
-                                        alt={cs.className}
+                                        alt={cs.name}
                                         fill
                                         sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                                         className="object-cover transition-transform duration-700 group-hover:scale-110"
                                     />
 
-                                    <div className="absolute inset-0 bg-gradient-to-t from-gray-950/70 via-transparent to-gray-950/10" />
+                                    <div className="absolute inset-0 bg-linear-to-t from-gray-950/70 via-transparent to-gray-950/10" />
 
                                     <div className="absolute bottom-4 left-4 right-4">
                                         <p className="text-xs font-semibold uppercase tracking-[0.2em] text-purple-200">
@@ -142,7 +143,7 @@ const AllClassesClient = ({ allClasses = [] }) => {
                                         </p>
 
                                         <h3 className="mt-1 text-2xl font-extrabold text-white">
-                                            {cs.className}
+                                            {cs.name}
                                         </h3>
                                     </div>
                                 </div>

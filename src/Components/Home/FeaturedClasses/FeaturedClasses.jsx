@@ -66,7 +66,7 @@ const FeaturedClasses = async () => {
 
                                 <Image
                                     src={cs.image}
-                                    alt={cs.className}
+                                    alt={cs.name}
                                     fill
                                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                                     className="object-cover transition-transform duration-700 group-hover:scale-110"
@@ -84,7 +84,7 @@ const FeaturedClasses = async () => {
                                     </p>
 
                                     <h3 className="mt-1 text-2xl font-extrabold text-white">
-                                        {cs.className}
+                                        {cs.name}
                                     </h3>
                                 </div>
 
