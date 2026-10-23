@@ -124,7 +124,7 @@ const ClassDetailsPage = async ({ params }) => {
                                 className="object-cover"
                             />
 
-                            <div className="absolute inset-0 bg-gradient-to-t from-gray-950/80 via-transparent to-transparent" />
+                            <div className="absolute inset-0 bg-linear-to from-gray-950/80 via-transparent to-transparent" />
 
                             <div className="absolute bottom-6 left-6">
                                 <p className="text-sm font-semibold uppercase tracking-widest text-purple-300">
@@ -311,8 +311,7 @@ const ClassDetailsPage = async ({ params }) => {
                                 <div>
                                     <p className="font-bold text-gray-900">
                                         {trainerName || "Assigned Trainer"}
-                                    </p>
-
+                                    </p> 
                                     <p className="mt-1 text-sm text-gray-500">
                                         {category} Instructor
                                     </p>

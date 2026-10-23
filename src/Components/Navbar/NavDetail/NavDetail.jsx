@@ -9,13 +9,23 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import NavLink from "../Navlink/Navlink";
 const NavDetail = ({ user }) => {
+    const [loading, setLoading] = useState(false)
+    const [isOpen, setIsOpen] = useState(false);
     const router = useRouter()
     const handleSignOut = async () => {
+      try{
+          setLoading(true)
         await signOut();
         router.refresh()
 
+      }catch(err){
+        console.log(err)
+      }finally{
+        setLoading(false)
+      }
+
     }
-    const [isOpen, setIsOpen] = useState(false);
+
     return (<nav className="border-b border-purple-100 bg-white shadow-sm">
         <div className="flex items-center justify-between px-5 py-4 md:px-8">
             {/* Logo */}
@@ -70,7 +80,7 @@ const NavDetail = ({ user }) => {
                         {/* Sign Out */}
 
                         <Button onClick={handleSignOut} className="bg-purple-600 text-white hover:bg-purple-700" >
-                            Sign Out </Button>
+                           {loading ? "Signing out...." : "Sign Out"} </Button>
                     </div>)}
             </div>
 
@@ -106,7 +116,7 @@ const NavDetail = ({ user }) => {
                                             <p className="font-semibold text-purple-700"> {user?.name} </p>
                                         </div>
                                     </div>
-                                    <Button onPress={handleSignOut} className="bg-purple-600 text-white" > Sign Out </Button>
+                                    <Button onPress={handleSignOut} className="bg-purple-600 text-white" >  {loading ? "Signing out...." : "Sign Out"}  </Button>
                                 </div>)}
                     </div>
                 </div>

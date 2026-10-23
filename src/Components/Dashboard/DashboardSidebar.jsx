@@ -20,11 +20,11 @@ import {
 const dashboardMenus = {
     admin: [
         { label: "Overview", href: "/dashboard/admin", icon: LayoutDashboard },
-        { label: "Manage Users", href: "/dashboard/admin/users", icon: Users },
+        { label: "Manage Users", href: "/dashboard/admin/manage-users", icon: Users },
         { label: "Manage Classes", href: "/dashboard/admin/classes", icon: Dumbbell },
         { label: "Trainer Applications", href: "/dashboard/admin/applications", icon: UserCheck },
         { label: "Payments", href: "/dashboard/admin/payments", icon: CreditCard },
-        { label: "Forum", href: "/dashboard/admin/forum", icon: FileText },
+        { label: "Add Forum", href: "/dashboard/admin/add-forum", icon: FileText },
     ],
     trainer: [
         { label: "Overview", href: "/dashboard/trainer", icon: LayoutDashboard },

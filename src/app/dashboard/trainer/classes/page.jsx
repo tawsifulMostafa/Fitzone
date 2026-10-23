@@ -2,104 +2,123 @@
 import { trainersClass } from "@/lib/api/classes";
 import { getUser } from "@/lib/core/session";
 import { Button, Card } from "@heroui/react";
-import { ArrowRight, Clock } from "lucide-react";
+import { Trash, Pencil, BookOpen } from "lucide-react";
 import Image from "next/image";
-import Link from "next/link";
 
-const TrainerClassesPage = async() => {
-    const user =  await getUser()
-    const cls = await trainersClass()   
+const TrainerClassesPage = async () => {
+    const user = await getUser();
+    const cls = await trainersClass();
+
     return (
-        <div>
-             <div className="grid grid-cols-1 gap-7 sm:grid-cols-2 lg:grid-cols-3">
-                        {cls.map((cs) => (
+        <div className="min-h-screen space-y-6 p-4 md:p-8">
+            {/* Header */}
+            <div>
+                <h1 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                    My Classes
+                </h1>
+                <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">
+                    Manage your classes and track their approval status.
+                </p>
+            </div>
+
+            {/* Classes List */}
+            {cls.length === 0 ? (
+                <Card className="flex flex-col items-center justify-center gap-3 p-10 text-center">
+                    <BookOpen size={36} className="text-purple-400" />
+                    <h2 className="text-lg font-semibold">
+                        No classes found
+                    </h2>
+                    <p className="text-sm text-gray-500">
+                        Your classes will appear here once you create one.
+                    </p>
+                </Card>
+            ) : (
+                <div className="grid grid-cols-1 gap-4">
+                    {cls.map((cs) => {
+                        const isApproved =
+                            cs.status?.toLowerCase() === "approved";
+
+                        return (
                             <Card
                                 key={cs._id}
-                                shadow="none"
-                                className="group overflow-hidden rounded-2xl border border-purple-100 bg-white transition-all duration-300 hover:-translate-y-2 hover:border-purple-300 hover:shadow-xl hover:shadow-purple-900/10"
+                                className="border border-purple-100 bg-white p-4 shadow-sm transition-all duration-200 hover:border-purple-300 hover:shadow-md dark:border-gray-800 dark:bg-gray-900 md:p-5"
                             >
-                                {/* Image */}
-                                <div className="relative h-60 w-full overflow-hidden bg-purple-100">
-                                    <Image
-                                        src={cs.image}
-                                        alt={cs.name}
-                                        fill
-                                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                                        className="object-cover transition-transform duration-700 group-hover:scale-110"
-                                    />
-
-                                    <div className="absolute inset-0 bg-gradient-to-t from-gray-950/70 via-transparent to-gray-950/10" />
-
-                                    <div className="absolute bottom-4 left-4 right-4">
-                                        <p className="text-xs font-semibold uppercase tracking-[0.2em] text-purple-200">
-                                            Total Booking: {cs.bookingCount}
-                                        </p>
-
-                                        <h3 className="mt-1 text-2xl font-extrabold text-white">
-                                            {cs.className}
-                                        </h3>
-                                    </div>
-                                </div>
-
-                                {/* Card Content */}
-                                <div className="flex flex-1 flex-col p-5 sm:p-6">
-                                    <p className="line-clamp-2 min-h-12 text-sm leading-6 text-gray-600">
-                                        {cs.description}
-                                    </p>
-
-                                    <div className="my-5 h-px bg-gray-100" />
-
-                                    <div className="flex items-center justify-between gap-3">
-                                        <div className="flex items-center gap-2.5">
-                                            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-purple-100 text-purple-700">
-                                                <Clock size={19} />
-                                            </div>
-
-                                            <div>
-                                                <p className="text-xs text-gray-500">
-                                                    Training rate
-                                                </p>
-
-                                                <p className="text-lg font-extrabold text-gray-950">
-                                                    ${cs.price}
-                                                    <span className="ml-1 text-xs font-medium text-gray-500">
-                                                        / hour
-                                                    </span>
-                                                </p>
-                                            </div>
+                                <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+                                    {/* Class Info */}
+                                    <div className="flex min-w-0 items-center gap-4">
+                                        <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-xl bg-purple-50 dark:bg-purple-950">
+                                            <Image
+                                                alt={cs.name}
+                                                fill
+                                                sizes="64px"
+                                                src={cs.image}
+                                                className="object-cover"
+                                            />
                                         </div>
 
-                                        <span className="rounded-lg bg-purple-50 px-3 py-2 text-xs font-bold text-purple-700">
-                                            {cs.category || "PRO TRAINING"}
-                                        </span>
+                                        <div className="min-w-0">
+                                            <h2 className="truncate text-base font-semibold text-gray-900 dark:text-white">
+                                                {cs.name}
+                                            </h2>
+                                            <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">
+                                                {cs.category}
+                                            </p>
+
+                                            {/* Status Badge */}
+                                            <span
+                                                className={`mt-2 inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-medium ${
+                                                    isApproved
+                                                        ? "bg-emerald-50 text-emerald-700 ring-1 ring-inset ring-emerald-200 dark:bg-emerald-950 dark:text-emerald-300 dark:ring-emerald-800"
+                                                        : "bg-amber-50 text-amber-700 ring-1 ring-inset ring-amber-200 dark:bg-amber-950 dark:text-amber-300 dark:ring-amber-800"
+                                                }`}
+                                            >
+                                                <span
+                                                    className={`h-1.5 w-1.5 rounded-full ${
+                                                        isApproved
+                                                            ? "bg-emerald-500"
+                                                            : "bg-amber-500"
+                                                    }`}
+                                                />
+                                                {isApproved
+                                                    ? "Approved"
+                                                    : "Pending"}
+                                            </span>
+                                        </div>
                                     </div>
 
-                                    <Link
-                                        href={`/all-classes/${cs._id}`}
-                                        className="mt-6 block"
-                                    >
+                                    {/* Actions */}
+                                    <div className="flex shrink-0 gap-2">
                                         <Button
-                                            color="primary"
-                                            className="h-12 w-full rounded-xl bg-purple-700 font-bold text-white shadow-md shadow-purple-700/20 transition-all hover:bg-purple-800 hover:shadow-lg"
-                                            endContent={
-                                                <ArrowRight
-                                                    size={18}
-                                                    className="transition-transform group-hover:translate-x-1"
-                                                />
-                                            }
+                                            size="sm"
+                                            variant="flat"
+                                            className="bg-purple-50 font-medium text-purple-700 hover:bg-purple-100 dark:bg-purple-950 dark:text-purple-300"
                                         >
-                                            View Class Details
+                                            <Pencil size={15} />
+                                            Edit class
                                         </Button>
-                                    </Link>
+
+                                        <Button
+                                            size="sm"
+                                            variant="flat"
+                                            className="bg-red-50 font-medium text-red-600 hover:bg-red-100 dark:bg-red-950 dark:text-red-300"
+                                        >
+                                            <Trash size={15} />
+                                            Delete
+                                        </Button>
+                                    </div>
                                 </div>
                             </Card>
-                        ))}
-                    </div>
+                        );
+                    })}
+                </div>
+            )}
         </div>
     );
 };
 
 export default TrainerClassesPage;
+
+ 
 // bookingCount
 // : 
 // "100"
