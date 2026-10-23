@@ -26,7 +26,6 @@ const AddForum = ({ role }) => {
 
             postData.image = imageUrl;
 
-            console.log(postData);
 
             const forumPost = await postForum(postData);
             if (forumPost.insertedId) {
@@ -36,7 +35,6 @@ const AddForum = ({ role }) => {
                     }
                 })
             }
-            console.log(forumPost);
         } catch (error) {
             console.error(error);
             toast.error(error)

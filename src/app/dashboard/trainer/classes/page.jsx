@@ -1,4 +1,5 @@
  
+import EditClass from "@/Components/Dashboard/Classes/EditClass";
 import { trainersClass } from "@/lib/api/classes";
 import { getUser } from "@/lib/core/session";
 import { Button, Card } from "@heroui/react";
@@ -87,17 +88,11 @@ const TrainerClassesPage = async () => {
                                     </div>
 
                                     {/* Actions */}
-                                    <div className="flex shrink-0 gap-2">
-                                        <Button
-                                            size="sm"
-                                            variant="flat"
-                                            className="bg-purple-50 font-medium text-purple-700 hover:bg-purple-100 dark:bg-purple-950 dark:text-purple-300"
-                                        >
-                                            <Pencil size={15} />
-                                            Edit class
-                                        </Button>
-
-                                        <Button
+                                    <div className="flex shrink-0 gap-2"> 
+                                        
+                                        <EditClass cls = {cs}/>
+                                          
+                                         <Button
                                             size="sm"
                                             variant="flat"
                                             className="bg-red-50 font-medium text-red-600 hover:bg-red-100 dark:bg-red-950 dark:text-red-300"

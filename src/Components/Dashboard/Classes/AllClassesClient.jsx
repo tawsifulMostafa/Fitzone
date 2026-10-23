@@ -8,7 +8,6 @@ import Image from "next/image";
 import Link from "next/link";
 
 const AllClassesClient = ({ allClasses = [] }) => {
-    console.log(allClasses);
     const [search, setSearch] = useState("");
     const [category, setCategory] = useState("all");
 

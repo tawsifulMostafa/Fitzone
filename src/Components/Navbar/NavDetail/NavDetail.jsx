@@ -23,7 +23,6 @@ const NavDetail = ({ user }) => {
       }finally{
         setLoading(false)
       }
-
     }
 
     return (<nav className="border-b border-purple-100 bg-white shadow-sm">
