@@ -1,10 +1,9 @@
-
 "use client";
 
 import { Input, Label, TextArea } from "@heroui/react";
 import { useState } from "react";
 import {
-    Dumbbell, 
+    Dumbbell,
     CalendarDays,
     Clock,
     Upload,
@@ -16,8 +15,9 @@ import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 
 const TrainerCreateClasses = () => {
+    const today = new Date().toISOString().split("T")[0];
     const router = useRouter()
-    const [loading , setLoading] = useState(false)
+    const [loading, setLoading] = useState(false)
     const [preview, setPreview] = useState("");
     const [specialty, setSpecialty] = useState("");
     const [difficulty, setDifficulty] = useState("");
@@ -50,12 +50,12 @@ const TrainerCreateClasses = () => {
             classData.duration = Number(classData.duration);
             classData.image = imageUrl;
             const data = await postClass(classData);
-            if(data.insertedId){
+            if (data.insertedId) {
                 toast.success("Class added successfully", {
-                    style : {
-                        color : "green" , 
-                        background : "white"
-                    }    
+                    style: {
+                        color: "green",
+                        background: "white"
+                    }
                 })
                 setLoading(false)
                 router.push("/dashboard/trainer/classes")
@@ -295,6 +295,7 @@ const TrainerCreateClasses = () => {
                                             name="scheduleDate"
                                             type="date"
                                             variant="bordered"
+                                            min={today}
                                             required
                                         />
                                     </div>
@@ -389,7 +390,7 @@ const TrainerCreateClasses = () => {
                         >
                             <Dumbbell size={18} />
                             {
-                               loading ? "creating class..." : "Create Class"
+                                loading ? "creating class..." : "Create Class"
                             }
                         </button>
                     </div>

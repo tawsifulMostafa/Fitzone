@@ -311,7 +311,7 @@ const ClassDetailsPage = async ({ params }) => {
                                 <div>
                                     <p className="font-bold text-gray-900">
                                         {trainerName || "Assigned Trainer"}
-                                    </p> 
+                                    </p>
                                     <p className="mt-1 text-sm text-gray-500">
                                         {category} Instructor
                                     </p>
@@ -393,11 +393,11 @@ const ClassDetailsPage = async ({ params }) => {
                             <div className="my-6 border-t border-gray-100" />
 
                             <div>
-                                {status === "pending" ?  <EditClass/> : <ClassDetailsActions
+                                <ClassDetailsActions
                                     payment={payment}
                                     classId={classId}
                                     isFavorite={isFavorite}
-                                />}
+                                />
                             </div>
 
                             <p className="mt-4 text-center text-xs leading-5 text-gray-400">

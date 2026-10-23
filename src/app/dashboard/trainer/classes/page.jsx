@@ -1,15 +1,15 @@
  
+import DeleteClass from "@/Components/Dashboard/Classes/DeleteClass";
 import EditClass from "@/Components/Dashboard/Classes/EditClass";
 import { trainersClass } from "@/lib/api/classes";
-import { getUser } from "@/lib/core/session";
-import { Button, Card } from "@heroui/react";
-import { Trash, Pencil, BookOpen } from "lucide-react";
+import { Card } from "@heroui/react";
+import {  BookOpen } from "lucide-react";
 import Image from "next/image";
 
 const TrainerClassesPage = async () => {
-    const user = await getUser();
     const cls = await trainersClass();
-
+    console.log(cls);
+ 
     return (
         <div className="min-h-screen space-y-6 p-4 md:p-8">
             {/* Header */}
@@ -90,16 +90,8 @@ const TrainerClassesPage = async () => {
                                     {/* Actions */}
                                     <div className="flex shrink-0 gap-2"> 
                                         
-                                        <EditClass cls = {cs}/>
-                                          
-                                         <Button
-                                            size="sm"
-                                            variant="flat"
-                                            className="bg-red-50 font-medium text-red-600 hover:bg-red-100 dark:bg-red-950 dark:text-red-300"
-                                        >
-                                            <Trash size={15} />
-                                            Delete
-                                        </Button>
+                                        <EditClass cls = {cs}/>  
+                                        <DeleteClass cls = {cs}/>
                                     </div>
                                 </div>
                             </Card>
@@ -112,47 +104,3 @@ const TrainerClassesPage = async () => {
 };
 
 export default TrainerClassesPage;
-
- 
-// bookingCount
-// : 
-// "100"
-// category
-// : 
-// "Weights"
-// createdAt
-// : 
-// "2026-10-20T05:27:40.338Z"
-// description
-// : 
-// "A great strength training class to build your fitness."
-// difficultyLevel
-// : 
-// "Intermediate"
-// duration
-// : 
-// 60
-// image
-// : 
-// "https://i.ibb.co/9kncw1cF/785282155-1120217420651594-8739467332356426810-n.jpg"
-// name
-// : 
-// "Potato magic"
-// price
-// : 
-// 300
-// scheduleDate
-// : 
-// "2026-10-23"
-// scheduleTime
-// : 
-// "02:30"
-// status
-// : 
-// "approved"
-// trainerId
-// : 
-// "6ac5446a717b76c229f0ecad"
-// _id
-// : 
-// "6ad74a286bf3b79764276202"

@@ -13,3 +13,7 @@ export const editClass = async (id, classData) => {
 
     return updatedData;
 };
+export const deleteClass = async (id, classData) => {
+    const removeTarget = await serverMutation(`/api/class/delete/${id}`, classData , "DELETE")
+    return removeTarget;
+}

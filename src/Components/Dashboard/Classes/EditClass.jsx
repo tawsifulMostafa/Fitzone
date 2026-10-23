@@ -177,7 +177,7 @@ const EditClass = ({ cls }) => {
                                             name="name"
                                             defaultValue={cls.name}
                                             placeholder="Enter class name"
-                                            isRequired
+                                            required
                                             isDisabled={loading}
                                             classNames={inputClassNames}
                                         />
@@ -206,8 +206,8 @@ const EditClass = ({ cls }) => {
                                             name="category"
                                             defaultValue={cls.category}
                                             placeholder="e.g. Weights"
-                                            isRequired
-                                            isDisabled={loading}
+                                            required
+                                            disabled={loading}
                                             classNames={inputClassNames}
                                         />
                                     </div>
@@ -258,7 +258,7 @@ const EditClass = ({ cls }) => {
                                             type="url"
                                             defaultValue={cls.image}
                                             placeholder="https://..."
-                                            isRequired
+                                            required
                                             isDisabled={loading}
                                             classNames={inputClassNames}
                                         />
@@ -273,7 +273,7 @@ const EditClass = ({ cls }) => {
                                             type="number"
                                             min="0"
                                             defaultValue={cls.price}
-                                            isRequired
+                                            required
                                             isDisabled={loading}
                                             classNames={inputClassNames}
                                         />
@@ -288,7 +288,7 @@ const EditClass = ({ cls }) => {
                                             type="number"
                                             min="1"
                                             defaultValue={cls.duration}
-                                            isRequired
+                                            required
                                             isDisabled={loading}
                                             classNames={inputClassNames}
                                         />
@@ -302,7 +302,7 @@ const EditClass = ({ cls }) => {
                                             name="scheduleDate"
                                             type="date"
                                             defaultValue={cls.scheduleDate}
-                                            isRequired
+                                            required
                                             isDisabled={loading}
                                             classNames={inputClassNames}
                                         />
@@ -316,7 +316,7 @@ const EditClass = ({ cls }) => {
                                             name="scheduleTime"
                                             type="time"
                                             defaultValue={cls.scheduleTime}
-                                            isRequired
+                                            required
                                             isDisabled={loading}
                                             classNames={inputClassNames}
                                         />
