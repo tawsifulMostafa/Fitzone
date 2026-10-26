@@ -25,6 +25,7 @@ const handlePayment = async () => {
         setLoading(true);
 
         const result = await PostPayment(classId);
+        console.log( "result" ,result);
 
         if (result?.url) {
             window.location.href = result.url;

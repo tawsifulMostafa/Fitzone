@@ -16,14 +16,10 @@ import ClassDetailsActions from "../../../Components/Dashboard/Classes/ClassDeta
 import { getUserPaymentStatus } from "@/lib/api/payment";
 import { getFavorite } from "@/lib/api/favorite";
 import { getUser } from "@/lib/core/session";
-import { Button } from "@heroui/react";
-import EditClass from "@/Components/Dashboard/Classes/EditClass";
 
 const ClassDetailsPage = async ({ params }) => {
     const { classId } = await params;
     const user = await getUser()
-    const role = user?.role
-
     const [classDetail, isFavorite, payment] = await Promise.all([
         getClassById(classId),
         getFavorite(classId),
