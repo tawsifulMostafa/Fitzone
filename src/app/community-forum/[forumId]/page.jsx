@@ -1,7 +1,7 @@
+import CommentForum from "@/Components/Dashboard/Forum/CommentForum";
+import LikeDislike from "@/Components/Dashboard/Forum/LikeDislike";
 import { forumDetails } from "@/lib/api/forum";
-import { HandPointDown } from "@gravity-ui/icons";
 import { Button, Label, TextArea, TextField } from "@heroui/react";
-import { Heart } from "lucide-react";
 import Image from "next/image";
 
 const ForumDetailsPage = async ({ params }) => {
@@ -10,7 +10,6 @@ const ForumDetailsPage = async ({ params }) => {
     const poster = details?.poster;
 
     console.log(details);
-
     return (
         <div className="min-h-screen bg-gray-50 px-4 py-10 sm:px-6 lg:px-8">
             <div className="mx-auto max-w-5xl">
@@ -59,49 +58,16 @@ const ForumDetailsPage = async ({ params }) => {
                                     Posted by
                                 </p>
                                 <p className="font-semibold text-gray-900">
-                                    {poster.name}
+                                    {poster.name} <br /> <span className="border bg-purple-300 rounded-2xl">{poster.role}</span>
                                 </p>
                             </div>
                         </div>
                     </div>
                 </div>
-
-                <div className="mt-6 flex flex-wrap items-center gap-3">
-                    <Button className="bg-purple-600 px-5 text-white hover:bg-purple-700">
-                        <Heart size={18} />
-                        Like
-                    </Button>
-
-                    <Button className="border border-gray-300 bg-white px-5 text-gray-700 hover:bg-gray-100">
-                        <HandPointDown />
-                        Dislike
-                    </Button>
+                <div>
+                    <LikeDislike forumId={forumId} forum = {details}/>
                 </div>
-
-                <div className="mt-8 rounded-2xl border border-gray-200 bg-white p-5 shadow-sm sm:p-7">
-                    <h2 className="mb-5 text-xl font-semibold text-gray-900">
-                        Join the Discussion
-                    </h2>
-
-                    <TextField name="Comment" className="w-full">
-                        <Label className="mb-2 text-sm font-medium text-gray-700">
-                            Your Comment
-                        </Label>
-
-                        <TextArea
-                            placeholder="Write a comment and join the discussion..."
-                            variant="secondary"
-                            className="min-h-32 w-full"
-                        />
-                    </TextField>
-
-                    <div className="mt-4 flex justify-end">
-                        <Button className="bg-purple-600 px-6 text-white hover:bg-purple-700">
-                            Post Comment
-                        </Button>
-                    </div>
-                </div>
-
+                <CommentForum forumId ={forumId}/>
             </div>
         </div>
     );

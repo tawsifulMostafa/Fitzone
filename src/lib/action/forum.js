@@ -1,6 +1,14 @@
 import { serverMutation } from "../core/server"
 
-export const postForum = async(forumData) => {
-    const post = await serverMutation("/api/forum/post" , forumData)
+export const postForum = async (forumData) => {
+    const post = await serverMutation("/api/forum/post", forumData)
     return post;
 }
+
+//* like dislike
+export const LikeAndDislike = async (reaction, forumId) => {
+    return await serverMutation(
+        `/api/post/forum/reaction/${forumId}`,
+        { reaction }
+    );
+};

@@ -14,10 +14,8 @@ const SignInPage = () => {
         const data = await authClient.signIn.social({
             provider: "google"
         })
-    }
-
+    } 
     const handleSignIn = async (e) => {
-
         e.preventDefault()
         setLoading(true)
 
@@ -34,16 +32,12 @@ const SignInPage = () => {
             callbackURL: "/"
           })
 
-        if (error) {
-
-            toast.warning("Password Incorrect")
-
+        if (error) { 
+            toast.warning("Password Incorrect") 
         } else {
 
-            toast.success("login Successful")
-
-        }
-     
+            toast.success("login Successful") 
+        } 
     }
 
     return (

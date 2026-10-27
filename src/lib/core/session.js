@@ -10,14 +10,14 @@ export const sessionCheck = async () => {
     return session || null;
 }
 
-export const getUser =async() => {
+export const getUser = async () => {
     const session = await sessionCheck()
     const user = session?.user
-    return user || <div className="text-center">No user Found</div>;    
+    return user || <div className="text-center">No user Found</div>;
 }
-export const getUserToken = async() => {
-    const {session} = await sessionCheck()
-    const token  = session?.token
+export const getUserToken = async () => {
+    const { session } = await sessionCheck()
+    const token = session?.token
     return token;
 }
 
