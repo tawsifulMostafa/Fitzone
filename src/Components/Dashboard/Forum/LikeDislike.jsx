@@ -6,8 +6,7 @@ import { ThumbsUp } from "lucide-react";
 import { useRouter } from "next/navigation";
 
 const LikeDislike = ({ forumId, forum }) => {
-    const router = useRouter();
-
+    const router = useRouter(); 
     const handleReaction = async (reaction) => {
         await LikeAndDislike(reaction, forumId);
         router.refresh();

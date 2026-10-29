@@ -12,3 +12,8 @@ export const LikeAndDislike = async (reaction, forumId) => {
         { reaction }
     );
 };
+
+export const PostComment = async(newComment , forumId) => {
+    const comment = await serverMutation(`/api/post/forum/comment/${forumId}` , {newComment})
+    return comment;
+}

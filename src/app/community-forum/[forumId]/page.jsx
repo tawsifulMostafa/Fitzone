@@ -1,13 +1,14 @@
 import CommentForum from "@/Components/Dashboard/Forum/CommentForum";
 import LikeDislike from "@/Components/Dashboard/Forum/LikeDislike";
-import { forumDetails } from "@/lib/api/forum";
-import { Button, Label, TextArea, TextField } from "@heroui/react";
+import PublicComments from "@/Components/Dashboard/Forum/PublicComments";
+import { forumDetails, forumsComment } from "@/lib/api/forum";
 import Image from "next/image";
 
 const ForumDetailsPage = async ({ params }) => {
     const { forumId } = await params;
     const details = await forumDetails(forumId);
     const poster = details?.poster;
+    const comments = await forumsComment(forumId)
 
     console.log(details);
     return (
@@ -65,9 +66,10 @@ const ForumDetailsPage = async ({ params }) => {
                     </div>
                 </div>
                 <div>
-                    <LikeDislike forumId={forumId} forum = {details}/>
+                    <LikeDislike forumId={forumId} forum={details} />
                 </div>
-                <CommentForum forumId ={forumId}/>
+                <CommentForum forumId={forumId}/>
+                <PublicComments forumId = {forumId} comments= {comments}/>
             </div>
         </div>
     );
