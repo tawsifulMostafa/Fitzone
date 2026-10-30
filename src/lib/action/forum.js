@@ -22,3 +22,9 @@ export const editComment = async (updatedComment, commentId) => {
         { updatedComment }, "PATCH")
     return comment;
 }
+export const deleteComment = async (commentId) => {
+    const comment = await serverMutation(`/api/post/forum/comment/delete/${commentId}`,
+        {},
+        "DELETE")
+    return comment
+}
