@@ -22,7 +22,6 @@ const EditClass = ({ cls }) => {
         const formData = new FormData(form);
 
         const id = formData.get("id");
-
         const classData = {
             name: formData.get("name")?.toString().trim(),
             description: formData.get("description")?.toString().trim(),

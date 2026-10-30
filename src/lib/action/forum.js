@@ -13,7 +13,12 @@ export const LikeAndDislike = async (reaction, forumId) => {
     );
 };
 
-export const PostComment = async(newComment , forumId) => {
-    const comment = await serverMutation(`/api/post/forum/comment/${forumId}` , {newComment})
+export const PostComment = async (newComment, forumId) => {
+    const comment = await serverMutation(`/api/post/forum/comment/${forumId}`, { newComment })
+    return comment;
+}
+export const editComment = async (updatedComment, commentId) => {
+    const comment = await serverMutation(`/api/post/forum/comment/edit/${commentId}`,
+        { updatedComment }, "PATCH")
     return comment;
 }

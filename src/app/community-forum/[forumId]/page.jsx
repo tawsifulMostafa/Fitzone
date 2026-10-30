@@ -1,4 +1,4 @@
-import CommentForum from "@/Components/Dashboard/Forum/CommentForum";
+import CommentForum from "@/Components/Dashboard/Forum/postCommentForum";
 import LikeDislike from "@/Components/Dashboard/Forum/LikeDislike";
 import PublicComments from "@/Components/Dashboard/Forum/PublicComments";
 import { forumDetails, forumsComment } from "@/lib/api/forum";

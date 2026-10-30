@@ -1,9 +1,11 @@
 import Image from 'next/image';
 import React from 'react';
-import { MessageCircle, Reply } from 'lucide-react';
+import { MessageCircle } from 'lucide-react';
 import PublicCommentAction from './PublicCommentAction';
+import { getUser } from '@/lib/core/session';
 
-const PublicComments = ({ forumId, comments }) => {
+const PublicComments = async({ forumId, comments }) => {
+        const currentUser = await getUser()
     return (
         <div className="mt-8 rounded-2xl border border-gray-200 bg-white p-5 sm:p-7">
             <div className="mb-6 flex items-center gap-3 border-b border-gray-100 pb-5">
@@ -46,11 +48,10 @@ const PublicComments = ({ forumId, comments }) => {
                                         {comment.userName}
                                     </p>
 
-                                    <p className="mt-1 whitespace-pre-wrap break-words text-sm leading-6 text-gray-600">
+                                    <p className="mt-1 whitespace-pre-wrap wrap-break-word text-sm leading-6 text-gray-600">
                                         {comment.Comment}
                                     </p>
-
-                                  <PublicCommentAction/>
+                                    <PublicCommentAction comment = {comment} user = {currentUser}/>
                                 </div>
                             </div>
                         </div>
