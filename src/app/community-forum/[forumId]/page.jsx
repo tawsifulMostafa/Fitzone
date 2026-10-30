@@ -9,8 +9,6 @@ const ForumDetailsPage = async ({ params }) => {
     const details = await forumDetails(forumId);
     const poster = details?.poster;
     const comments = await forumsComment(forumId)
-
-    console.log(details);
     return (
         <div className="min-h-screen bg-gray-50 px-4 py-10 sm:px-6 lg:px-8">
             <div className="mx-auto max-w-5xl">
@@ -68,8 +66,8 @@ const ForumDetailsPage = async ({ params }) => {
                 <div>
                     <LikeDislike forumId={forumId} forum={details} />
                 </div>
-                <CommentForum forumId={forumId}/>
-                <PublicComments forumId = {forumId} comments= {comments}/>
+                <CommentForum forumId={forumId} />
+                <PublicComments forumId={forumId} comments={comments} />
             </div>
         </div>
     );

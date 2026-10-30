@@ -1,26 +1,28 @@
-"use client"
 
-import { deleteComment, editComment } from '@/lib/action/forum';
-import {
-    Button,
-    Modal,
-    TextField,
-    Label,
-    Input,
-    AlertDialog
-} from '@heroui/react';
-import { Reply, Pencil, Trash } from 'lucide-react';
-import { useState } from 'react';
-import { toast } from 'sonner';
-import { useRouter } from 'next/navigation';
+"use client";
+
+import { deleteComment, editComment, PostComment } from "@/lib/action/forum";
+import { Button } from "@heroui/react";
+import { Reply, Pencil, Trash, X, Send } from "lucide-react";
+import { useState } from "react";
+import { toast } from "sonner";
+import { useRouter } from "next/navigation";
+import { AnimatePresence, motion } from "framer-motion";
 
 const PublicCommentAction = ({ user, comment }) => {
-    const [isOpen, setIsOpen] = useState(false);
+    const [showReply, setShowReply] = useState(false);
+    const [showEdit, setShowEdit] = useState(false);
+
     const [updatedComment, setUpdatedComment] = useState(comment.Comment);
+    const [replyText, setReplyText] = useState("");
+
     const [loading, setLoading] = useState(false);
     const [deleting, setDeleting] = useState(false);
+    const [replyLoading, setReplyLoading] = useState(false);
 
     const router = useRouter();
+
+    const isOwner = user.id === comment.commentedBy;
 
     const handleDelete = async () => {
         try {
@@ -32,15 +34,17 @@ const PublicCommentAction = ({ user, comment }) => {
                 toast.success("Comment deleted successfully");
                 router.refresh();
             }
-        } catch (err) {
-            console.log(err);
+        } catch (error) {
+            console.log(error);
             toast.error("Failed to delete comment");
         } finally {
             setDeleting(false);
         }
     };
 
-    const handleEdit = async () => {
+    const handleEdit = async (e) => {
+        e.preventDefault();
+
         if (!updatedComment.trim()) {
             return toast.error("Comment cannot be empty");
         }
@@ -48,154 +52,199 @@ const PublicCommentAction = ({ user, comment }) => {
         try {
             setLoading(true);
 
-            const result = await editComment(updatedComment, comment._id);
+            const result = await editComment(
+                updatedComment.trim(),
+                comment._id
+            );
 
             if (result.message) {
-                setIsOpen(false);
+                setShowEdit(false);
                 toast.success("Comment updated successfully");
                 router.refresh();
             }
         } catch (error) {
+            console.log(error);
             toast.error("Something went wrong");
         } finally {
             setLoading(false);
         }
     };
 
-    const isOwner = user.id === comment.commentedBy;
+    const handleReply = async (e) => {
+        e.preventDefault();
+
+        if (!replyText.trim()) {
+            return toast.error("Reply cannot be empty");
+        }
+
+        try {
+            setReplyLoading(true);
+
+            const newComment = {
+                Comment: replyText.trim()
+            };
+
+            const result = await PostComment(
+                newComment,
+                comment.forumId,
+                comment._id
+            );
+
+            if (result.insertedId) {
+                setReplyText("");
+                setShowReply(false);
+
+                toast.success("Reply posted successfully");
+                router.refresh();
+            }
+        } catch (error) {
+            console.log(error);
+            toast.error("Failed to post reply");
+        } finally {
+            setReplyLoading(false);
+        }
+    };
 
     return (
-        <div className="mt-3 flex items-center gap-2">
+        <div className="mt-3">
+            <div className="flex flex-wrap items-center gap-2">
+                <Button
+                    variant="tertiary"
+                    size="sm"
+                    onPress={() => {
+                        setShowReply(!showReply);
+                        setShowEdit(false);
+                    }}
+                >
+                    <Reply size={15} />
+                    Reply
+                </Button>
 
-            {/* Reply */}
-            <Button
-                variant="tertiary"
-                size="sm"
-                className="text-gray-500 hover:text-purple-700"
-            >
-                <Reply size={15} />
-                Reply
-            </Button>
-
-            {isOwner && (
-                <>
-                    {/* Edit */}
-                    <Button
-                        variant="tertiary"
-                        size="sm"
-                        onPress={() => {
-                            setUpdatedComment(comment.Comment);
-                            setIsOpen(true);
-                        }}
-                        className="text-gray-500 hover:bg-purple-50 hover:text-purple-700"
-                    >
-                        <Pencil size={15} />
-                        Edit
-                    </Button>
-
-                    {/* Delete */}
-                    <AlertDialog>
+                {isOwner && (
+                    <>
                         <Button
                             variant="tertiary"
                             size="sm"
-                            className="text-gray-500 hover:bg-red-50 hover:text-red-600"
+                            onPress={() => {
+                                setUpdatedComment(comment.Comment);
+                                setShowEdit(!showEdit);
+                                setShowReply(false);
+                            }}
                         >
-                            <Trash size={15} />
-                            Delete
+                            <Pencil size={15} />
+                            Edit
                         </Button>
 
-                        <AlertDialog.Backdrop>
-                            <AlertDialog.Container>
-                                <AlertDialog.Dialog className="sm:max-w-100">
-                                    <AlertDialog.CloseTrigger />
+                        <Button
+                            variant="tertiary"
+                            size="sm"
+                            onPress={handleDelete}
+                            isDisabled={deleting}
+                        >
+                            <Trash size={15} />
+                            {deleting ? "Deleting..." : "Delete"}
+                        </Button>
+                    </>
+                )}
+            </div>
 
-                                    <AlertDialog.Header>
-                                        <AlertDialog.Icon status="danger" />
-                                        <AlertDialog.Heading>
-                                            Delete this comment?
-                                        </AlertDialog.Heading>
-                                    </AlertDialog.Header>
+            {/* Reply Form */}
+            <AnimatePresence>
+                {showReply && (
+                    <motion.form
+                        initial={{ opacity: 0, height: 0, y: -8 }}
+                        animate={{ opacity: 1, height: "auto", y: 0 }}
+                        exit={{ opacity: 0, height: 0, y: -8 }}
+                        transition={{ duration: 0.2 }}
+                        onSubmit={handleReply}
+                        className="mt-3 overflow-hidden"
+                    >
+                        <div className="rounded-xl border border-purple-100 bg-purple-50/50 p-3">
+                            <textarea
+                                value={replyText}
+                                onChange={(e) => setReplyText(e.target.value)}
+                                placeholder="Write your reply..."
+                                rows={3}
+                                className="w-full resize-none rounded-lg border border-gray-200 bg-white p-3 text-sm text-gray-700 outline-none transition focus:border-purple-400 focus:ring-2 focus:ring-purple-100"
+                            />
 
-                                    <AlertDialog.Body>
-                                        <p className="text-sm text-gray-500">
-                                            Are you sure you want to delete this comment?
-                                            This action cannot be undone.
-                                        </p>
-                                    </AlertDialog.Body>
+                            <div className="mt-2 flex items-center justify-end gap-2">
+                                <Button
+                                    type="button"
+                                    size="sm"
+                                    variant="tertiary"
+                                    onPress={() => {
+                                        setShowReply(false);
+                                        setReplyText("");
+                                    }}
+                                    isDisabled={replyLoading}
+                                >
+                                    <X size={14} />
+                                    Cancel
+                                </Button>
 
-                                    <AlertDialog.Footer>
-                                        <Button
-                                            slot="close"
-                                            variant="tertiary"
-                                            isDisabled={deleting}
-                                        >
-                                            Cancel
-                                        </Button>
+                                <Button
+                                    type="submit"
+                                    size="sm"
+                                    isDisabled={replyLoading}
+                                >
+                                    <Send size={14} />
+                                    {replyLoading ? "Sending..." : "Send Reply"}
+                                </Button>
+                            </div>
+                        </div>
+                    </motion.form>
+                )}
+            </AnimatePresence>
 
-                                        <Button
-                                            onPress={handleDelete}
-                                            variant="danger"
-                                            isDisabled={deleting}
-                                        >
-                                            {deleting ? "Deleting..." : "Delete Comment"}
-                                        </Button>
-                                    </AlertDialog.Footer>
-                                </AlertDialog.Dialog>
-                            </AlertDialog.Container>
-                        </AlertDialog.Backdrop>
-                    </AlertDialog>
+            {/* Edit Form */}
+            <AnimatePresence>
+                {showEdit && (
+                    <motion.form
+                        initial={{ opacity: 0, height: 0, y: -8 }}
+                        animate={{ opacity: 1, height: "auto", y: 0 }}
+                        exit={{ opacity: 0, height: 0, y: -8 }}
+                        transition={{ duration: 0.2 }}
+                        onSubmit={handleEdit}
+                        className="mt-3 overflow-hidden"
+                    >
+                        <div className="rounded-xl border border-purple-100 bg-purple-50/50 p-3">
+                            <textarea
+                                value={updatedComment}
+                                onChange={(e) => setUpdatedComment(e.target.value)}
+                                placeholder="Edit your comment..."
+                                rows={3}
+                                className="w-full resize-none rounded-lg border border-gray-200 bg-white p-3 text-sm text-gray-700 outline-none transition focus:border-purple-400 focus:ring-2 focus:ring-purple-100"
+                            />
 
-                    {/* Edit Modal */}
-                    <Modal isOpen={isOpen} onOpenChange={setIsOpen}>
-                        <Modal.Backdrop>
-                            <Modal.Container>
-                                <Modal.Dialog>
-                                    <Modal.CloseTrigger />
+                            <div className="mt-2 flex items-center justify-end gap-2">
+                                <Button
+                                    type="button"
+                                    size="sm"
+                                    variant="tertiary"
+                                    onPress={() => {
+                                        setShowEdit(false);
+                                        setUpdatedComment(comment.Comment);
+                                    }}
+                                    isDisabled={loading}
+                                >
+                                    <X size={14} />
+                                    Cancel
+                                </Button>
 
-                                    <Modal.Header>
-                                        <Modal.Heading>
-                                            Edit Comment
-                                        </Modal.Heading>
-                                    </Modal.Header>
-
-                                    <Modal.Body>
-                                        <TextField className="w-full">
-                                            <Label className="mb-2">
-                                                Your Comment
-                                            </Label>
-
-                                            <Input
-                                                value={updatedComment}
-                                                onChange={(value) =>
-                                                    setUpdatedComment(value.target.value)
-                                                }
-                                                placeholder="Edit your comment..."
-                                            />
-                                        </TextField>
-                                    </Modal.Body>
-
-                                    <Modal.Footer>
-                                        <Button
-                                            variant="tertiary"
-                                            onPress={() => setIsOpen(false)}
-                                        >
-                                            Cancel
-                                        </Button>
-
-                                        <Button
-                                            onPress={handleEdit}
-                                            isDisabled={loading}
-                                            className="bg-purple-600 text-white hover:bg-purple-700"
-                                        >
-                                            {loading ? "Updating..." : "Save Changes"}
-                                        </Button>
-                                    </Modal.Footer>
-                                </Modal.Dialog>
-                            </Modal.Container>
-                        </Modal.Backdrop>
-                    </Modal>
-                </>
-            )}
+                                <Button
+                                    type="submit"
+                                    size="sm"
+                                    isDisabled={loading}
+                                >
+                                    <Send size={14} />
+                                    {loading ? "Saving..." : "Save Changes"}
+                                </Button>
+                            </div>
+                        </div>
+                    </motion.form>
+                )}
+            </AnimatePresence>
         </div>
     );
 };
