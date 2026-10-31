@@ -12,3 +12,7 @@ export const forumsComment = async (forumId) => {
     const comments = await serverProtectedFetch(`/api/post/forum/comment/${forumId}`)
     return comments;
 }
+export const postersForum = async() => {
+    const forum = await serverProtectedFetch("/api/forum/post")
+    return forum;
+}

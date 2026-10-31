@@ -1,7 +1,8 @@
+
 "use client";
 
 import { Input, Label, TextArea } from "@heroui/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
     Dumbbell,
     CalendarDays,
@@ -15,12 +16,19 @@ import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 
 const TrainerCreateClasses = () => {
-    const today = new Date().toISOString().split("T")[0];
-    const router = useRouter()
-    const [loading, setLoading] = useState(false)
+    const router = useRouter();
+
+    const [loading, setLoading] = useState(false);
     const [preview, setPreview] = useState("");
-    const [specialty, setSpecialty] = useState("");
-    const [difficulty, setDifficulty] = useState("");
+
+    const today = (() => {
+        const date = new Date();
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, "0");
+        const day = String(date.getDate()).padStart(2, "0");
+
+        return `${year}-${month}-${day}`;
+    })();
 
     const difficultyLevels = [
         "Beginner",
@@ -28,12 +36,21 @@ const TrainerCreateClasses = () => {
         "Advanced",
     ];
 
+    // Cleanup image preview URL
+    useEffect(() => {
+        return () => {
+            if (preview) {
+                URL.revokeObjectURL(preview);
+            }
+        };
+    }, [preview]);
 
-    const handleISubmit = async (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
         try {
-            setLoading(true)
+            setLoading(true);
+
             const formData = new FormData(e.currentTarget);
             const classData = Object.fromEntries(formData.entries());
 
@@ -44,36 +61,71 @@ const TrainerCreateClasses = () => {
                 return;
             }
 
+            if (!image.type.startsWith("image/")) {
+                toast.error("Please select a valid image");
+                return;
+            }
+
+            if (image.size > 5 * 1024 * 1024) {
+                toast.error("Image size must be less than 5MB");
+                return;
+            }
+
+            // Upload image
             const imageUrl = await imageUpload(image);
 
+            if (!imageUrl) {
+                throw new Error("Image upload failed");
+            }
+
+            // Convert numeric fields
             classData.price = Number(classData.price);
             classData.duration = Number(classData.duration);
             classData.image = imageUrl;
+
             const data = await postClass(classData);
-            if (data.insertedId) {
-                toast.success("Class added successfully", {
-                    style: {
-                        color: "green",
-                        background: "white"
-                    }
-                })
-                setLoading(false)
-                router.push("/dashboard/trainer/classes")
+
+            if (!data?.insertedId) {
+                throw new Error("Failed to create class");
             }
+
+            toast.success("Class created successfully");
+
+            router.push("/dashboard/trainer/classes");
+            router.refresh();
 
         } catch (error) {
             console.error(error);
             toast.error(error.message || "Failed to create class");
+
+        } finally {
+            setLoading(false);
         }
     };
-
 
     const handleImageChange = (e) => {
         const file = e.target.files[0];
 
-        if (file) {
-            setPreview(URL.createObjectURL(file));
+        if (!file) return;
+
+        if (!file.type.startsWith("image/")) {
+            toast.error("Please select a valid image");
+            e.target.value = "";
+            return;
         }
+
+        if (file.size > 5 * 1024 * 1024) {
+            toast.error("Image size must be less than 5MB");
+            e.target.value = "";
+            return;
+        }
+
+        setPreview(URL.createObjectURL(file));
+    };
+
+    const removeImage = () => {
+        setPreview("");
+        document.getElementById("image").value = "";
     };
 
     return (
@@ -83,7 +135,6 @@ const TrainerCreateClasses = () => {
                 {/* Header */}
                 <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
                     <div>
-
                         <h1 className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
                             Create New Class
                         </h1>
@@ -100,7 +151,7 @@ const TrainerCreateClasses = () => {
                     </div>
                 </div>
 
-                <form className="space-y-6" onSubmit={handleISubmit}>
+                <form onSubmit={handleSubmit} className="space-y-6">
 
                     <div className="grid grid-cols-1 items-start gap-6 lg:grid-cols-5">
 
@@ -109,6 +160,7 @@ const TrainerCreateClasses = () => {
 
                             {/* Basic Information */}
                             <section className="rounded-2xl border border-default-200 bg-background p-5 shadow-sm sm:p-6">
+
                                 <div className="mb-6 flex items-start gap-3">
                                     <div className="rounded-xl bg-purple-100 p-2.5 text-purple-700">
                                         <Layers3 size={21} />
@@ -118,6 +170,7 @@ const TrainerCreateClasses = () => {
                                         <h2 className="font-semibold text-foreground">
                                             Basic Information
                                         </h2>
+
                                         <p className="mt-1 text-sm text-default-500">
                                             Give your fitness class a name and category.
                                         </p>
@@ -125,14 +178,19 @@ const TrainerCreateClasses = () => {
                                 </div>
 
                                 <div className="space-y-5">
-                                    <Label>Class Name</Label>
-                                    <Input
-                                        name="name"
-                                        placeholder="e.g. Power Yoga"
-                                        variant="bordered"
-                                        required
-                                    />
+
+                                    <div className="space-y-2">
+                                        <Label>Class Name</Label>
+                                        <Input
+                                            name="name"
+                                            placeholder="e.g. Power Yoga"
+                                            variant="bordered"
+                                            required
+                                        />
+                                    </div>
+
                                     <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
+
                                         <div className="space-y-2">
                                             <label
                                                 htmlFor="specialty"
@@ -144,12 +202,9 @@ const TrainerCreateClasses = () => {
                                             <select
                                                 id="specialty"
                                                 name="category"
-                                                value={specialty}
-                                                onChange={(e) =>
-                                                    setSpecialty(e.target.value)
-                                                }
                                                 required
-                                                className="h-12 w-full rounded-xl border border-default-300 bg-background px-3 text-sm text-foreground outline-none focus:border-purple-600"
+                                                defaultValue=""
+                                                className="h-12 w-full rounded-xl border border-default-300 bg-background px-3 text-sm text-foreground outline-none transition focus:border-purple-600"
                                             >
                                                 <option value="" disabled>
                                                     Select category
@@ -175,12 +230,9 @@ const TrainerCreateClasses = () => {
                                             <select
                                                 id="difficulty"
                                                 name="difficultyLevel"
-                                                value={difficulty}
-                                                onChange={(e) =>
-                                                    setDifficulty(e.target.value)
-                                                }
                                                 required
-                                                className="h-12 w-full rounded-xl border border-default-300 bg-background px-3 text-sm text-foreground outline-none focus:border-purple-600"
+                                                defaultValue=""
+                                                className="h-12 w-full rounded-xl border border-default-300 bg-background px-3 text-sm text-foreground outline-none transition focus:border-purple-600"
                                             >
                                                 <option value="" disabled>
                                                     Select level
@@ -198,19 +250,22 @@ const TrainerCreateClasses = () => {
                                     <TextArea
                                         name="description"
                                         label="Class Description"
-                                        placeholder="Description......"
+                                        placeholder="Describe your class, training methods and benefits..."
                                         variant="bordered"
                                         required
                                     />
+
                                 </div>
                             </section>
 
                             {/* Cover Image */}
                             <section className="rounded-2xl border border-default-200 bg-background p-5 shadow-sm sm:p-6">
+
                                 <div className="mb-5">
                                     <h2 className="font-semibold text-foreground">
                                         Class Cover Image
                                     </h2>
+
                                     <p className="mt-1 text-sm text-default-500">
                                         Upload an image to represent your class.
                                     </p>
@@ -237,7 +292,7 @@ const TrainerCreateClasses = () => {
                                             </p>
 
                                             <p className="mt-2 text-xs text-default-500">
-                                                PNG, JPG or WEBP
+                                                PNG, JPG or WEBP · Max 5MB
                                             </p>
                                         </>
                                     )}
@@ -247,7 +302,7 @@ const TrainerCreateClasses = () => {
                                     id="image"
                                     name="image"
                                     type="file"
-                                    accept="image/*"
+                                    accept="image/png,image/jpeg,image/webp"
                                     onChange={handleImageChange}
                                     required
                                     className="hidden"
@@ -256,15 +311,13 @@ const TrainerCreateClasses = () => {
                                 {preview && (
                                     <button
                                         type="button"
-                                        onClick={() => {
-                                            setPreview("");
-                                            document.getElementById("image").value = "";
-                                        }}
-                                        className="mt-3 text-sm font-medium text-danger"
+                                        onClick={removeImage}
+                                        className="mt-3 text-sm font-medium text-danger hover:underline"
                                     >
                                         Remove image
                                     </button>
                                 )}
+
                             </section>
                         </div>
 
@@ -273,6 +326,7 @@ const TrainerCreateClasses = () => {
 
                             {/* Schedule */}
                             <section className="rounded-2xl border border-default-200 bg-background p-5 shadow-sm sm:p-6">
+
                                 <div className="mb-6 flex items-start gap-3">
                                     <div className="rounded-xl bg-purple-100 p-2.5 text-purple-700">
                                         <CalendarDays size={21} />
@@ -282,6 +336,7 @@ const TrainerCreateClasses = () => {
                                         <h2 className="font-semibold text-foreground">
                                             Class Schedule
                                         </h2>
+
                                         <p className="mt-1 text-sm text-default-500">
                                             When will your class take place?
                                         </p>
@@ -289,7 +344,8 @@ const TrainerCreateClasses = () => {
                                 </div>
 
                                 <div className="space-y-5">
-                                    <div className="grid">
+
+                                    <div className="grid gap-2">
                                         <Label>Date</Label>
                                         <Input
                                             name="scheduleDate"
@@ -299,10 +355,9 @@ const TrainerCreateClasses = () => {
                                             required
                                         />
                                     </div>
-                                    <div className="grid">
-                                        <Label>
-                                            Time
-                                        </Label>
+
+                                    <div className="grid gap-2">
+                                        <Label>Time</Label>
                                         <Input
                                             name="scheduleTime"
                                             type="time"
@@ -311,8 +366,8 @@ const TrainerCreateClasses = () => {
                                         />
                                     </div>
 
-                                    <div className="grid">
-                                        <Label>Duration</Label>
+                                    <div className="grid gap-2">
+                                        <Label>Duration (Minutes)</Label>
                                         <Input
                                             name="duration"
                                             type="number"
@@ -322,15 +377,18 @@ const TrainerCreateClasses = () => {
                                             required
                                         />
                                     </div>
+
                                 </div>
                             </section>
 
                             {/* Pricing */}
                             <section className="rounded-2xl border border-default-200 bg-background p-5 shadow-sm sm:p-6">
+
                                 <div className="mb-5">
                                     <h2 className="font-semibold text-foreground">
                                         Class Pricing
                                     </h2>
+
                                     <p className="mt-1 text-sm text-default-500">
                                         Set the booking price for members.
                                     </p>
@@ -339,7 +397,7 @@ const TrainerCreateClasses = () => {
                                 <Input
                                     name="price"
                                     type="number"
-                                    label="Price per Booking"
+                                    label="Price per Booking (BDT)"
                                     placeholder="1000"
                                     min={0}
                                     variant="bordered"
@@ -350,6 +408,7 @@ const TrainerCreateClasses = () => {
                                     <p className="text-sm font-medium text-purple-900">
                                         Pricing tip
                                     </p>
+
                                     <p className="mt-1 text-xs leading-5 text-purple-700">
                                         Choose a fair price based on class duration
                                         and training level.
@@ -359,6 +418,7 @@ const TrainerCreateClasses = () => {
 
                             {/* Submission Info */}
                             <div className="rounded-2xl border border-default-200 bg-background p-5">
+
                                 <div className="flex items-start gap-3">
                                     <div className="mt-0.5 rounded-full bg-amber-100 p-1.5 text-amber-700">
                                         <Clock size={16} />
@@ -368,6 +428,7 @@ const TrainerCreateClasses = () => {
                                         <p className="text-sm font-semibold text-foreground">
                                             Pending Approval
                                         </p>
+
                                         <p className="mt-1 text-xs leading-5 text-default-500">
                                             Your class will be reviewed by an admin
                                             before it becomes available to members.
@@ -375,24 +436,27 @@ const TrainerCreateClasses = () => {
                                     </div>
                                 </div>
                             </div>
+
                         </div>
                     </div>
 
                     {/* Footer Actions */}
                     <div className="flex flex-col-reverse gap-3 border-t border-default-200 pt-5 sm:flex-row sm:items-center sm:justify-between">
+
                         <p className="text-xs text-default-500">
-                            Fields marked required must be completed.
+                            All fields are required.
                         </p>
 
                         <button
                             type="submit"
-                            className="inline-flex items-center justify-center gap-2 rounded-xl bg-purple-600 px-7 py-3 font-semibold text-white shadow-sm transition hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2"
+                            disabled={loading}
+                            className="inline-flex items-center justify-center gap-2 rounded-xl bg-purple-600 px-7 py-3 font-semibold text-white shadow-sm transition hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-60"
                         >
                             <Dumbbell size={18} />
-                            {
-                                loading ? "creating class..." : "Create Class"
-                            }
+
+                            {loading ? "Creating Class..." : "Create Class"}
                         </button>
+
                     </div>
 
                 </form>

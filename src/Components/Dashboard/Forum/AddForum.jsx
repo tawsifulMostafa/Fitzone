@@ -39,9 +39,9 @@ const AddForum = ({ role }) => {
             console.error(error);
             toast.error(error)
         } finally {
-            router.push(`/dashboard/${role}/my-post` )
+            router.push(`/dashboard/${role}/my-post`)
             setLoading(false);
-            
+
         }
     };
     const handleImageChange = (e) => {
@@ -150,10 +150,9 @@ const AddForum = ({ role }) => {
                     </Description>
                     <FieldError />
                 </TextField>
-                <Button type="submit" className={"w-full m-4 p-4 bg-purple-400 hover:bg-purple-700" }>{loading ? "Posting..." : "Post"}</Button>
+                <Button type="submit" className={"w-full m-4 p-4 bg-purple-400 hover:bg-purple-700"}>{loading ? "Posting..." : "Post"}</Button>
             </Form>
         </div>
     );
 };
-
 export default AddForum;

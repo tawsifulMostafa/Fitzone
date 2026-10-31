@@ -30,3 +30,6 @@ export const deleteComment = async (commentId) => {
         "DELETE")
     return comment
 }
+export const deleteForum = async (forumId) => {
+    return await serverMutation(`/api/post/forum/${forumId}`, {}, "DELETE") 
+}
