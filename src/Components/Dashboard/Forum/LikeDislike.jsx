@@ -4,11 +4,15 @@ import { HandPointDown } from "@gravity-ui/icons";
 import { Button } from "@heroui/react";
 import { ThumbsUp } from "lucide-react";
 import { useRouter } from "next/navigation";
+import { toast } from "sonner";
 
 const LikeDislike = ({ forumId, forum }) => {
     const router = useRouter(); 
     const handleReaction = async (reaction) => {
-        await LikeAndDislike(reaction, forumId);
+      const result =  await LikeAndDislike(reaction, forumId);
+      if(result.message){
+        toast.error(result.message)
+      }
         router.refresh();
     };
 

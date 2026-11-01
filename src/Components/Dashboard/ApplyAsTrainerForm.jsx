@@ -45,7 +45,7 @@ const ApplyAsTrainerForm = () => {
             
             });
         } else {
-            toast.error("You have already applied", {
+            toast.error(apply.message, {
                 style: {
                     background: "#450a0a",
                     color: "#f87171",

@@ -34,10 +34,14 @@ const CommentForum = ({ forumId }) => {
                 form.reset();
                 toast.success("Comment posted successfully");
                 router.refresh();
+            } else {
+                toast.error(comment.message , {style : {
+                    color : "white" , background : "red"
+                }}); 
             }
 
-        } catch {
-            toast.error("Something went wrong");
+        } catch (err) {
+            console.log(err)
         } finally {
             setLoading(false);
         }
