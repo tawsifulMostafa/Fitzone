@@ -8,7 +8,6 @@ import Image from "next/image";
 
 const TrainerClassesPage = async () => {
     const cls = await trainersClass();
-    console.log(cls);
  
     return (
         <div className="min-h-screen space-y-6 p-4 md:p-8">

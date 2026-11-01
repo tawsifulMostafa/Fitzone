@@ -17,7 +17,10 @@ export const auth = betterAuth({
       role: {
         type: "string",
         defaultValue: "member"
-      }
+      } , status : {
+        type : "string" , 
+        defaultValue : "unblock"
+      } , 
     }
   },
   emailAndPassword: {

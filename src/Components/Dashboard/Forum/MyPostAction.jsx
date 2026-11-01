@@ -28,7 +28,6 @@ const MyPostAction = ({ forumId }) => {
             setLoading(false)
         }
     }
-
     return (
         <div>
             <AlertDialog>
