@@ -18,3 +18,7 @@ export const trainersClass = async() => {
      const cls = await serverProtectedFetch("/api/my/class")
      return cls;
 }
+export const pendingClasses = async() => {
+      const classes =  await serverProtectedFetch("/api/pending/classes")
+      return classes
+}
