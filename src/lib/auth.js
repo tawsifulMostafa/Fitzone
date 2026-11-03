@@ -19,7 +19,7 @@ export const auth = betterAuth({
         defaultValue: "member"
       } , status : {
         type : "string" , 
-        defaultValue : "unblock"
+        defaultValue : "active"
       } , 
     }
   },

@@ -1,3 +1,4 @@
+
 import Link from "next/link";
 import { getAllClasses } from "@/lib/api/classes";
 import { favoriteCollection } from "@/lib/api/favorite";
@@ -15,6 +16,7 @@ import {
     CheckCircle2,
     XCircle,
     FileText,
+    MessageSquareText,
 } from "lucide-react";
 
 const UserDashBoard = async () => {
@@ -46,27 +48,21 @@ const UserDashBoard = async () => {
 
     const applicationDetails = {
         pending: {
-            title: "Application Under Review",
             description:
                 "Your trainer application has been submitted and is waiting for admin review.",
             icon: Clock,
-            color: "bg-amber-100 text-amber-700 dark:bg-amber-500/10 dark:text-amber-400",
             badge: "bg-amber-100 text-amber-700 dark:bg-amber-500/10 dark:text-amber-400",
         },
         approved: {
-            title: "Application Approved!",
             description:
                 "Congratulations! Your application has been approved. You can now access your trainer dashboard.",
             icon: CheckCircle2,
-            color: "bg-green-100 text-green-700 dark:bg-green-500/10 dark:text-green-400",
             badge: "bg-green-100 text-green-700 dark:bg-green-500/10 dark:text-green-400",
         },
         rejected: {
-            title: "Application Rejected",
             description:
-                "Unfortunately, your application was rejected. Please contact the FitZone team for more information.",
+                "Unfortunately, your application was rejected. Please review the feedback from the Admin below.",
             icon: XCircle,
-            color: "bg-red-100 text-red-700 dark:bg-red-500/10 dark:text-red-400",
             badge: "bg-red-100 text-red-700 dark:bg-red-500/10 dark:text-red-400",
         },
     };
@@ -190,9 +186,7 @@ const UserDashBoard = async () => {
                                         </h3>
                                     </div>
 
-                                    <div
-                                        className={`flex h - 12 w - 12 items - center justify - center rounded - xl ${ stat.color } `}
-                                    >
+                                    <div className={`flex h-12 w-12 items-center justify-center rounded-xl ${stat.color}`}>
                                         <Icon size={23} />
                                     </div>
                                 </div>
@@ -228,7 +222,7 @@ const UserDashBoard = async () => {
 
                             {currentApplication && (
                                 <span
-                                    className={`mt - 3 inline - flex items - center gap - 1.5 rounded - full px - 3 py - 1 text - xs font - semibold capitalize ${ currentApplication.badge } `}
+                                    className={`mt-3 inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-semibold capitalize ${currentApplication.badge}`}
                                 >
                                     <currentApplication.icon size={14} />
                                     {applicationStatus}
@@ -271,6 +265,22 @@ const UserDashBoard = async () => {
                         </div>
                     )}
                 </div>
+
+                {/* Admin Feedback */}
+                {applicationStatus === "rejected" && application?.adminFeedback && (
+                    <div className="mt-6 rounded-xl border border-red-200 bg-red-50/70 p-4 dark:border-red-500/20 dark:bg-red-500/5">
+                        <div className="flex items-center gap-2 text-red-700 dark:text-red-400">
+                            <MessageSquareText size={18} />
+                            <h3 className="font-semibold text-sm">
+                                Admin Feedback
+                            </h3>
+                        </div>
+
+                        <p className="mt-3 text-sm leading-6 text-gray-700 dark:text-gray-300 whitespace-pre-wrap">
+                            {application.adminFeedback}
+                        </p>
+                    </div>
+                )}
             </section>
 
             {/* Quick Actions */}

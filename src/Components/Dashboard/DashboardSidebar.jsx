@@ -23,8 +23,9 @@ const dashboardMenus = {
         { label: "Manage Users", href: "/dashboard/admin/manage-users", icon: Users },
         { label: "Manage Classes", href: "/dashboard/admin/classes", icon: Dumbbell },
         { label: "Trainer Applications", href: "/dashboard/admin/applications", icon: UserCheck },
-        { label: "my post", href: "/dashboard/admin/my-post", icon: CreditCard },
+        { label: "My post", href: "/dashboard/admin/my-post", icon: CreditCard },
         { label: "Add Forum", href: "/dashboard/admin/add-forum", icon: FileText },
+        { label: "Manage Trainers", href: "/dashboard/admin/manage-trainer", icon: Users }
     ],
     trainer: [
         { label: "Overview", href: "/dashboard/trainer", icon: LayoutDashboard },
@@ -105,19 +106,17 @@ const DashboardSidebar = ({ userRole, isOpen = false, onClose }) => {
                                 key={href}
                                 href={href}
                                 onClick={onClose}
-                                className={`group flex min-w-0 items-center gap-3 rounded-xl px-3 py-3 text-sm font-medium transition-colors ${
-                                    isActive
+                                className={`group flex min-w-0 items-center gap-3 rounded-xl px-3 py-3 text-sm font-medium transition-colors ${isActive
                                         ? "bg-purple-600 text-white shadow-lg shadow-purple-950/30"
                                         : "text-gray-400 hover:bg-white/5 hover:text-white"
-                                }`}
+                                    }`}
                             >
                                 <Icon
                                     size={19}
-                                    className={`shrink-0 ${
-                                        isActive
+                                    className={`shrink-0 ${isActive
                                             ? "text-white"
                                             : "text-gray-500 group-hover:text-purple-400"
-                                    }`}
+                                        }`}
                                 />
 
                                 <span className="min-w-0 flex-1 break-words">

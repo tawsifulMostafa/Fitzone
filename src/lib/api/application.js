@@ -8,3 +8,4 @@ export const getApplication = async() => {
 export const getAllApplications = async() => {
     return await serverProtectedFetch("/api/applications")
 }
+

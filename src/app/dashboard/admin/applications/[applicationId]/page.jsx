@@ -9,10 +9,8 @@ import {
     Mail,
     BriefcaseBusiness,
     Dumbbell,
-    UserRound,
     FileText
 } from "lucide-react";
-import { Button, TextArea, Label } from "@heroui/react";
 import { getUser } from "@/lib/core/session";
 import AdminReview from "@/Components/Dashboard/Application/AdminReview";
 
@@ -156,7 +154,7 @@ const ApplicationsDetails = async ({ params }) => {
             </div>
 
             {/* Admin Review */}
-            <AdminReview />
+            <AdminReview application={application} />
         </div>
     );
 };

@@ -11,7 +11,7 @@ import {
 } from "@heroui/react";
 import { Send, Dumbbell, Award, FileText } from "lucide-react";
 import { toast } from "sonner";
-import { applyAsTrainer } from "@/lib/action/apply";
+import { applyAsTrainer } from "@/lib/action/application";
 import { useRouter } from "next/navigation";
 
 const ApplyAsTrainerForm = () => {
