@@ -15,16 +15,15 @@ import Link from "next/link";
 import ClassDetailsActions from "../../../Components/Dashboard/Classes/ClassDetailsActions";
 import { getUserPaymentStatus } from "@/lib/api/payment";
 import { getFavorite } from "@/lib/api/favorite";
-import { getUser } from "@/lib/core/session";
 
 const ClassDetailsPage = async ({ params }) => {
     const { classId } = await params;
-    const user = await getUser()
     const [classDetail, isFavorite, payment] = await Promise.all([
         getClassById(classId),
         getFavorite(classId),
         getUserPaymentStatus(classId),
     ]);
+
 
     if (!classDetail) {
         return (

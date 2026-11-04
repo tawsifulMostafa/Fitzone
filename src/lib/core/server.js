@@ -39,5 +39,6 @@ export const serverProtectedFetch = async (path) => {
 
     console.log(res.status, res.url);
     console.log(res.headers.get("content-type"));
+    return res.json()
 }
 
