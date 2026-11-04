@@ -15,6 +15,7 @@ import {
     PlusCircle,
     X,
     Settings,
+    DollarSign,
 } from "lucide-react";
 
 const dashboardMenus = {
@@ -25,7 +26,8 @@ const dashboardMenus = {
         { label: "Trainer Applications", href: "/dashboard/admin/applications", icon: UserCheck },
         { label: "My post", href: "/dashboard/admin/my-post", icon: CreditCard },
         { label: "Add Forum", href: "/dashboard/admin/add-forum", icon: FileText },
-        { label: "Manage Trainers", href: "/dashboard/admin/manage-trainer", icon: Users }
+        { label: "Manage Trainers", href: "/dashboard/admin/manage-trainer", icon: Users },
+        { label: "Transactions Page", href: "/dashboard/admin/payments", icon: DollarSign }
     ],
     trainer: [
         { label: "Overview", href: "/dashboard/trainer", icon: LayoutDashboard },
@@ -107,15 +109,15 @@ const DashboardSidebar = ({ userRole, isOpen = false, onClose }) => {
                                 href={href}
                                 onClick={onClose}
                                 className={`group flex min-w-0 items-center gap-3 rounded-xl px-3 py-3 text-sm font-medium transition-colors ${isActive
-                                        ? "bg-purple-600 text-white shadow-lg shadow-purple-950/30"
-                                        : "text-gray-400 hover:bg-white/5 hover:text-white"
+                                    ? "bg-purple-600 text-white shadow-lg shadow-purple-950/30"
+                                    : "text-gray-400 hover:bg-white/5 hover:text-white"
                                     }`}
                             >
                                 <Icon
                                     size={19}
                                     className={`shrink-0 ${isActive
-                                            ? "text-white"
-                                            : "text-gray-500 group-hover:text-purple-400"
+                                        ? "text-white"
+                                        : "text-gray-500 group-hover:text-purple-400"
                                         }`}
                                 />
 

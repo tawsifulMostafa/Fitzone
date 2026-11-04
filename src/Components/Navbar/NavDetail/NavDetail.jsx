@@ -13,16 +13,16 @@ const NavDetail = ({ user }) => {
     const [isOpen, setIsOpen] = useState(false);
     const router = useRouter()
     const handleSignOut = async () => {
-      try{
-          setLoading(true)
-        await signOut();
-        router.refresh()
+        try {
+            setLoading(true)
+            await signOut();
+            router.refresh()
 
-      }catch(err){
-        console.log(err)
-      }finally{
-        setLoading(false)
-      }
+        } catch (err) {
+            console.log(err)
+        } finally {
+            setLoading(false)
+        }
     }
 
     return (<nav className="border-b border-purple-100 bg-white shadow-sm">
@@ -79,7 +79,7 @@ const NavDetail = ({ user }) => {
                         {/* Sign Out */}
 
                         <Button onClick={handleSignOut} className="bg-purple-600 text-white hover:bg-purple-700" >
-                           {loading ? "Signing out...." : "Sign Out"} </Button>
+                            {loading ? "Signing out...." : "Sign Out"} </Button>
                     </div>)}
             </div>
 
@@ -97,7 +97,9 @@ const NavDetail = ({ user }) => {
                     <Link href="/" onClick={() => setIsOpen(false)} className="transition hover:text-purple-600" > Home </Link>
                     <Link href="/all-classes" onClick={() => setIsOpen(false)} className="transition hover:text-purple-600" > All Classes </Link>
                     <Link href="/community-forum" onClick={() => setIsOpen(false)} className="transition hover:text-purple-600" > Community Forum </Link>
-                    <Link href={`/dashboard/${user.role}`} onClick={() => setIsOpen(false)} className="transition hover:text-purple-600" > Dashboard </Link>
+                    {
+                        user && <Link href={`/dashboard/${user.role}`} onClick={() => setIsOpen(false)} className="transition hover:text-purple-600" > Dashboard </Link>
+                    }
                     {/* Mobile User */}
 
                     <div className="mt-2 border-t border-purple-200 pt-4">
