@@ -50,8 +50,13 @@ const AdminClassManagement = async () => {
                                     ৳{cls.price}
                                 </p>
                             </div>
+                            <div className='justify-end flex'>
+                                <span className={cls.status === "approved" ? "text-green-500" : "text-red-500"}>
+                                    {cls.status}
+                                </span>
+                            </div>
 
-                            <ClassManagementAction cls = {cls}/>
+                            <ClassManagementAction cls={cls} />
                         </div>
                     </div>
                 ))

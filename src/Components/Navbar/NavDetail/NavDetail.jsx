@@ -91,17 +91,17 @@ const NavDetail = ({ user }) => {
                     <Menu size={25} />} </Button>
         </div>
         {/* Mobile Menu */}
+        {/* rounded border for all navlinks */}
         {
             isOpen && (<div className="border-t border-purple-100 bg-purple-50 px-5 py-5 lg:hidden">
-                <div className="flex flex-col gap-4 font-medium text-gray-700">
-                    <Link href="/" onClick={() => setIsOpen(false)} className="transition hover:text-purple-600" > Home </Link>
-                    <Link href="/all-classes" onClick={() => setIsOpen(false)} className="transition hover:text-purple-600" > All Classes </Link>
-                    <Link href="/community-forum" onClick={() => setIsOpen(false)} className="transition hover:text-purple-600" > Community Forum </Link>
+                <div className="grid grid-cols-2 gap-4 font-medium text-gray-700">
+                    <NavLink href="/" onClick={() => setIsOpen(false)} className="transition hover:text-purple-600" > Home </NavLink>
+                    <NavLink href="/all-classes" onClick={() => setIsOpen(false)} className="transition hover:text-purple-600" > All Classes </NavLink>
+                    <NavLink href="/community-forum" onClick={() => setIsOpen(false)} className="transition hover:text-purple-600" > Community Forum </NavLink>
                     {
-                        user && <Link href={`/dashboard/${user.role}`} onClick={() => setIsOpen(false)} className="transition hover:text-purple-600" > Dashboard </Link>
+                        user && <NavLink href={`/dashboard/${user.role}`} onClick={() => setIsOpen(false)} className="transition hover:text-purple-600 " > Dashboard </NavLink>
                     }
                     {/* Mobile User */}
-
                     <div className="mt-2 border-t border-purple-200 pt-4">
                         {
                             !user ? (<div className="flex gap-3">

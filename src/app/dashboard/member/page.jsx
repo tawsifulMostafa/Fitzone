@@ -241,7 +241,7 @@ const UserDashBoard = async () => {
                         </Link>
                     )}
 
-                    {applicationStatus === "approved" && (
+                    {/* {applicationStatus === "approved" && (
                         <Link
                             href="/dashboard/trainer"
                             className="inline-flex shrink-0 items-center justify-center gap-2 rounded-xl bg-purple-600 px-5 py-3 text-sm font-semibold text-white transition hover:bg-purple-700"
@@ -249,7 +249,7 @@ const UserDashBoard = async () => {
                             Trainer Dashboard
                             <ArrowUpRight size={17} />
                         </Link>
-                    )}
+                    )} */}
 
                     {applicationStatus === "pending" && (
                         <div className="flex shrink-0 items-center gap-2 rounded-xl border border-amber-200 px-4 py-3 text-sm font-medium text-amber-700 dark:border-amber-500/20 dark:text-amber-400">

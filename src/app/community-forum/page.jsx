@@ -76,7 +76,7 @@ const CommunityForum = async () => {
 
                                     <Link href={`/community-forum/${post._id}`}>
                                         <Button className={"text-purple-400 hover:text-purple-900 border m-4 mx-auto"} variant="secondary">
-                                            View Details
+                                           Read More
                                         </Button>
                                     </Link>
                                 </div>
