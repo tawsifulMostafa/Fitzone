@@ -39,7 +39,6 @@ const SignInPage = () => {
             toast.success("login Successful") 
         } 
     }
-
     return (
 
         <div className="flex min-h-screen items-center justify-center bg-purple-50 px-4">

@@ -23,7 +23,7 @@ const ClassDetailsPage = async ({ params }) => {
         getFavorite(classId),
         getUserPaymentStatus(classId),
     ]);
- 
+
     if (!classDetail) {
         return (
             <div className="flex min-h-[60vh] flex-col items-center justify-center px-5">
@@ -61,6 +61,7 @@ const ClassDetailsPage = async ({ params }) => {
         bookingCount,
         status,
     } = classDetail;
+
 
     return (
         <main className="min-h-screen bg-gray-50">

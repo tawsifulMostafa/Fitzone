@@ -233,7 +233,7 @@ const UserDashBoard = async () => {
 
                     {!applicationStatus && (
                         <Link
-                            href="/dashboard/member/apply-as-trainer"
+                            href="/dashboard/member/apply-trainer"
                             className="inline-flex shrink-0 items-center justify-center gap-2 rounded-xl bg-purple-600 px-5 py-3 text-sm font-semibold text-white transition hover:bg-purple-700"
                         >
                             Apply as Trainer
