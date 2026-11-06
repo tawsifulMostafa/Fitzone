@@ -28,9 +28,9 @@ const UserStatusManagement = ({ user }) => {
         }
     }
 
-    const makeAdmin = async () => {
+    const makeAdmin = async (newRole) => {
         try {
-            const role = await userRole(user._id, user.role)
+            const role = await userRole(user._id, newRole)
 
             if (role.modifiedCount === 1) {
                 toast.success("User role updated to admin successfully")
@@ -154,7 +154,7 @@ const UserStatusManagement = ({ user }) => {
                                     </Button>
 
                                     <Button
-                                        onPress={makeAdmin}
+                                        onPress={() => makeAdmin("admin")}
                                         className="bg-purple-600 text-white"
                                     >
                                         Upgrade to Admin

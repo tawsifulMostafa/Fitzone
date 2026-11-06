@@ -2,42 +2,47 @@
 
 import { authClient } from "@/lib/auth-client";
 
-import { Button, Description, FieldError, Form, Input, Label, TextField, toast } from "@heroui/react";
+import { Button, Description, FieldError, Form, Input, Label, TextField } from "@heroui/react";
 import { Icon } from "@iconify/react";
 import { Check } from "lucide-react";
 import { useState } from "react";
+import { toast } from "sonner";
 
 
 const SignInPage = () => {
-    const [loading , setLoading] = useState(false)
+    const [googleLoading, setGoogleLoading] = useState(false)
+    const [loading, setLoading] = useState(false)
     const handleGoogleSignIn = async () => {
-        const data = await authClient.signIn.social({
-            provider: "google"
-        })
-    } 
+        try {
+            setGoogleLoading(true)
+            const data = await authClient.signIn.social({
+                provider: "google"
+            })
+        } catch (err) {
+            console.error(err)
+            setGoogleLoading(false)
+        } finally {
+            setGoogleLoading(false)
+        }
+    }
     const handleSignIn = async (e) => {
         e.preventDefault()
         setLoading(true)
-
         const formData = new FormData(e.currentTarget)
-
         const signInData = Object.fromEntries(formData.entries())
-
-
         const { data, error } = await authClient.signIn.email({
-
             email: signInData.email,
             password: signInData.password,
             rememberMe: true,
             callbackURL: "/"
-          })
+        })
 
-        if (error) { 
-            toast.warning("Password Incorrect") 
+        if (error) {
+            toast.warning("Password Incorrect")
+            setLoading(false)
         } else {
-
-            toast.success("login Successful") 
-        } 
+            toast.success("login Successful")
+        }
     }
     return (
 
@@ -140,9 +145,9 @@ const SignInPage = () => {
                             className="h-11 flex-1 rounded-xl bg-purple-600 font-medium text-white shadow-md shadow-purple-200 hover:bg-purple-700"
                         >
                             <Check size={18} />
-                           {
-                            loading ? "signing in..." : " Sign In"
-                           }
+                            {
+                                loading ? "signing in..." : " Sign In"
+                            }
                         </Button>
 
                         <Button
@@ -158,7 +163,9 @@ const SignInPage = () => {
                     <div>
                         <Button onClick={handleGoogleSignIn} className="w-full" variant="tertiary">
                             <Icon icon="devicon:google" />
-                            Sign in with Google
+                         {
+                            googleLoading ? "Signing in..." : "Sign in with Google"
+                         }
                         </Button>
                     </div>
 
