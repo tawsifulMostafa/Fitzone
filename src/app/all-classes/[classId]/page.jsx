@@ -18,6 +18,7 @@ import { getFavorite } from "@/lib/api/favorite";
 
 const ClassDetailsPage = async ({ params }) => {
     const { classId } = await params;
+
     const [classDetail, isFavorite, payment] = await Promise.all([
         getClassById(classId),
         getFavorite(classId),
@@ -53,7 +54,7 @@ const ClassDetailsPage = async ({ params }) => {
         difficultyLevel,
         description,
         image,
-        scheduleDate,
+        sessionDays,
         scheduleTime,
         duration,
         price,
@@ -61,7 +62,6 @@ const ClassDetailsPage = async ({ params }) => {
         bookingCount,
         status,
     } = classDetail;
-
 
     return (
         <main className="min-h-screen bg-gray-50">
@@ -119,7 +119,7 @@ const ClassDetailsPage = async ({ params }) => {
                                 className="object-cover"
                             />
 
-                            <div className="absolute inset-0 bg-linear-to from-gray-950/80 via-transparent to-transparent" />
+                            <div className="absolute inset-0 bg-linear-to-b from-gray-950/80 via-transparent to-transparent" />
 
                             <div className="absolute bottom-6 left-6">
                                 <p className="text-sm font-semibold uppercase tracking-widest text-purple-300">
@@ -199,18 +199,14 @@ const ClassDetailsPage = async ({ params }) => {
                                 </div>
 
                                 <div className="rounded-xl bg-gray-50 p-4">
-                                    <CheckCircle2
-                                        size={20}
-                                        className="text-purple-700"
-                                    />
+                                    <CheckCircle2 size={20} className="text-purple-700" />
 
                                     <p className="mt-3 text-sm text-gray-500">
                                         Class Status
                                     </p>
 
-                                    <p className="text-red-300">
-                                        <span className="mt-1 font-bold capitalize text-gray-900">{status} </span>
-
+                                    <p className="mt-1 font-bold capitalize text-gray-900">
+                                        {status}
                                     </p>
                                 </div>
                             </div>
@@ -235,20 +231,33 @@ const ClassDetailsPage = async ({ params }) => {
                             </div>
 
                             <div className="mt-6 space-y-4">
-                                <div className="flex items-start gap-4 rounded-xl border border-gray-100 p-5">
-                                    <CalendarDays
-                                        size={22}
-                                        className="mt-1 shrink-0 text-purple-700"
-                                    />
+                                <div className="rounded-xl border border-gray-100 p-5">
+                                    <div className="flex items-center gap-3">
+                                        <CalendarDays
+                                            size={22}
+                                            className="shrink-0 text-purple-700"
+                                        />
 
-                                    <div>
-                                        <p className="text-sm text-gray-500">
-                                            Scheduled Date
+                                        <p className="font-semibold text-gray-900">
+                                            Weekly Session Days
                                         </p>
+                                    </div>
 
-                                        <p className="mt-1 font-bold text-gray-900">
-                                            {scheduleDate}
-                                        </p>
+                                    <div className="mt-4 flex flex-wrap gap-2">
+                                        {sessionDays?.length > 0 ? (
+                                            sessionDays.map((day) => (
+                                                <span
+                                                    key={day}
+                                                    className="rounded-lg bg-purple-50 px-3 py-2 text-sm font-semibold text-purple-700"
+                                                >
+                                                    {day}
+                                                </span>
+                                            ))
+                                        ) : (
+                                            <p className="text-sm text-gray-500">
+                                                No session days scheduled.
+                                            </p>
+                                        )}
                                     </div>
                                 </div>
 
@@ -277,7 +286,7 @@ const ClassDetailsPage = async ({ params }) => {
 
                                     <div>
                                         <p className="text-sm text-gray-500">
-                                            Total Duration
+                                            Session Duration
                                         </p>
 
                                         <p className="mt-1 font-bold text-gray-900">
@@ -307,6 +316,7 @@ const ClassDetailsPage = async ({ params }) => {
                                     <p className="font-bold text-gray-900">
                                         {trainerName || "Assigned Trainer"}
                                     </p>
+
                                     <p className="mt-1 text-sm text-gray-500">
                                         {category} Instructor
                                     </p>
@@ -324,17 +334,17 @@ const ClassDetailsPage = async ({ params }) => {
 
                             <div className="mt-4 flex items-baseline gap-2">
                                 <span className="text-4xl font-extrabold text-gray-950">
-                                    ৳{price}
+                                    ৳{Number(price).toLocaleString("en-BD")}
                                 </span>
 
                                 <span className="text-sm text-gray-500">
-                                    / session
+                                    / month
                                 </span>
                             </div>
 
                             <p className="mt-3 text-sm leading-6 text-gray-500">
-                                Join this training session and work toward your
-                                fitness goals with structured guidance.
+                                Get access to recurring weekly sessions and
+                                improve your fitness with structured guidance.
                             </p>
 
                             <div className="my-6 border-t border-gray-100" />
@@ -373,14 +383,25 @@ const ClassDetailsPage = async ({ params }) => {
                                     </span>
                                 </div>
 
-                                <div className="flex items-center justify-between gap-3 text-sm">
+                                <div className="flex items-start justify-between gap-3 text-sm">
                                     <span className="flex items-center gap-2 text-gray-500">
                                         <CalendarDays size={18} />
-                                        Date
+                                        Days
                                     </span>
 
-                                    <span className="text-right font-semibold text-gray-900">
-                                        {scheduleDate || "Not scheduled"}
+                                    <span className="max-w-[60%] text-right font-semibold text-gray-900">
+                                        {sessionDays?.join(", ") || "Not scheduled"}
+                                    </span>
+                                </div>
+
+                                <div className="flex items-center justify-between gap-3 text-sm">
+                                    <span className="flex items-center gap-2 text-gray-500">
+                                        <CalendarClock size={18} />
+                                        Time
+                                    </span>
+
+                                    <span className="font-semibold text-gray-900">
+                                        {scheduleTime}
                                     </span>
                                 </div>
                             </div>
@@ -396,8 +417,8 @@ const ClassDetailsPage = async ({ params }) => {
                             </div>
 
                             <p className="mt-4 text-center text-xs leading-5 text-gray-400">
-                                Your booking is confirmed after successful
-                                payment.
+                                Your enrollment is confirmed after successful
+                                monthly payment.
                             </p>
                         </div>
                     </aside>

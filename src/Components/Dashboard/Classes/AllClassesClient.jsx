@@ -170,7 +170,7 @@ const AllClassesClient = ({ allClasses = [] }) => {
                                                 <p className="text-lg font-extrabold text-gray-950">
                                                     ${cs.price}
                                                     <span className="ml-1 text-xs font-medium text-gray-500">
-                                                        / hour
+                                                        / Month
                                                     </span>
                                                 </p>
                                             </div>

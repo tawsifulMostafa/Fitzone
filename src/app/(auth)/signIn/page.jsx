@@ -1,13 +1,13 @@
 "use client"
 
 import { authClient } from "@/lib/auth-client";
+import { getUser } from "@/lib/core/session";
 
 import { Button, Description, FieldError, Form, Input, Label, TextField } from "@heroui/react";
 import { Icon } from "@iconify/react";
 import { Check } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
-
 
 const SignInPage = () => {
     const [googleLoading, setGoogleLoading] = useState(false)
@@ -27,9 +27,20 @@ const SignInPage = () => {
     }
     const handleSignIn = async (e) => {
         e.preventDefault()
+
+        const user = await getUser()
+
+        if (user) {
+            toast.error("You are already logged in")
+            setLoading(false)
+            return
+        }
         setLoading(true)
+
+
         const formData = new FormData(e.currentTarget)
         const signInData = Object.fromEntries(formData.entries())
+
         const { data, error } = await authClient.signIn.email({
             email: signInData.email,
             password: signInData.password,
@@ -41,7 +52,8 @@ const SignInPage = () => {
             toast.warning("Password Incorrect")
             setLoading(false)
         } else {
-            toast.success("login Successful")
+            toast.success("Login Successful")
+            setLoading(false)
         }
     }
     return (
@@ -163,9 +175,9 @@ const SignInPage = () => {
                     <div>
                         <Button onClick={handleGoogleSignIn} className="w-full" variant="tertiary">
                             <Icon icon="devicon:google" />
-                         {
-                            googleLoading ? "Signing in..." : "Sign in with Google"
-                         }
+                            {
+                                googleLoading ? "Signing in..." : "Sign in with Google"
+                            }
                         </Button>
                     </div>
 

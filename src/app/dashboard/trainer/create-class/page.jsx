@@ -9,6 +9,7 @@ import {
     Clock,
     Upload,
     Layers3,
+    Check
 } from "lucide-react";
 import { imageUpload } from "@/lib/action/image";
 import { postClass } from "@/lib/action/class";
@@ -20,21 +21,32 @@ const TrainerCreateClasses = () => {
 
     const [loading, setLoading] = useState(false);
     const [preview, setPreview] = useState("");
-
-    const today = (() => {
-        const date = new Date();
-        const year = date.getFullYear();
-        const month = String(date.getMonth() + 1).padStart(2, "0");
-        const day = String(date.getDate()).padStart(2, "0");
-
-        return `${year}-${month}-${day}`;
-    })();
+    const [selectedDays, setSelectedDays] = useState([]);
 
     const difficultyLevels = [
         "Beginner",
         "Intermediate",
         "Advanced",
     ];
+
+    const weekDays = [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+        "Sunday",
+    ];
+
+    // Handle session day selection
+    const handleDayChange = (day) => {
+        setSelectedDays((prev) =>
+            prev.includes(day)
+                ? prev.filter((item) => item !== day)
+                : [...prev, day]
+        );
+    };
 
     // Cleanup image preview URL
     useEffect(() => {
@@ -52,7 +64,17 @@ const TrainerCreateClasses = () => {
             setLoading(true);
 
             const formData = new FormData(e.currentTarget);
+
+            // Validate session days
+            if (selectedDays.length === 0) {
+                toast.error("Please select at least one session day");
+                return;
+            }
+
             const classData = Object.fromEntries(formData.entries());
+
+            // Get selected session days
+            classData.sessionDays = formData.getAll("sessionDays");
 
             const image = formData.get("image");
 
@@ -338,26 +360,66 @@ const TrainerCreateClasses = () => {
                                         </h2>
 
                                         <p className="mt-1 text-sm text-default-500">
-                                            When will your class take place?
+                                            Select the days when your sessions will take place.
                                         </p>
                                     </div>
                                 </div>
 
                                 <div className="space-y-5">
 
-                                    <div className="grid gap-2">
-                                        <Label>Date</Label>
-                                        <Input
-                                            name="scheduleDate"
-                                            type="date"
-                                            variant="bordered"
-                                            min={today}
-                                            required
-                                        />
+                                    {/* Session Days */}
+                                    <div className="space-y-3">
+                                        <div className="flex items-center justify-between">
+                                            <Label>Session Days</Label>
+
+                                            <span className="text-xs font-medium text-purple-600">
+                                                {selectedDays.length} Days Selected
+                                            </span>
+                                        </div>
+
+                                        <div className="grid grid-cols-2 gap-2 sm:grid-cols-2">
+                                            {weekDays.map((day) => {
+                                                const isSelected = selectedDays.includes(day);
+
+                                                return (
+                                                    <label
+                                                        key={day}
+                                                        className={`flex cursor-pointer items-center justify-between rounded-xl border px-3 py-3 text-sm font-medium transition-all ${
+                                                            isSelected
+                                                                ? "border-purple-500 bg-purple-50 text-purple-700 shadow-sm"
+                                                                : "border-default-200 bg-background text-default-600 hover:border-purple-300 hover:bg-default-50"
+                                                        }`}
+                                                    >
+                                                        <span>{day}</span>
+
+                                                        <span className={`flex size-5 items-center justify-center rounded-md border transition ${
+                                                            isSelected
+                                                                ? "border-purple-600 bg-purple-600 text-white"
+                                                                : "border-default-300 bg-background"
+                                                        }`}>
+                                                            {isSelected && <Check size={13} />}
+                                                        </span>
+
+                                                        <input
+                                                            type="checkbox"
+                                                            name="sessionDays"
+                                                            value={day}
+                                                            checked={isSelected}
+                                                            onChange={() => handleDayChange(day)}
+                                                            className="sr-only"
+                                                        />
+                                                    </label>
+                                                );
+                                            })}
+                                        </div>
+
+                                        <p className="text-xs text-default-500">
+                                            Select all days when members can attend this class.
+                                        </p>
                                     </div>
 
                                     <div className="grid gap-2">
-                                        <Label>Time</Label>
+                                        <Label>Session Time</Label>
                                         <Input
                                             name="scheduleTime"
                                             type="time"
@@ -390,28 +452,28 @@ const TrainerCreateClasses = () => {
                                     </h2>
 
                                     <p className="mt-1 text-sm text-default-500">
-                                        Set the booking price for members.
+                                        Set the monthly membership price for your class.
                                     </p>
                                 </div>
 
                                 <Input
                                     name="price"
                                     type="number"
-                                    label="Price per Booking (BDT)"
-                                    placeholder="1000"
-                                    min={0}
+                                    label="Monthly Price (BDT)"
+                                    placeholder="1500"
+                                    min={1}
                                     variant="bordered"
                                     required
                                 />
 
                                 <div className="mt-4 rounded-xl bg-purple-50 p-4">
                                     <p className="text-sm font-medium text-purple-900">
-                                        Pricing tip
+                                        Monthly Pricing
                                     </p>
 
                                     <p className="mt-1 text-xs leading-5 text-purple-700">
-                                        Choose a fair price based on class duration
-                                        and training level.
+                                        Members will pay once per month to attend
+                                        all scheduled sessions of this class.
                                     </p>
                                 </div>
                             </section>
