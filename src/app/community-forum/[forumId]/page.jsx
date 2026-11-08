@@ -3,9 +3,15 @@ import LikeDislike from "@/Components/Dashboard/Forum/LikeDislike";
 import PublicComments from "@/Components/Dashboard/Forum/PublicComments";
 import { forumDetails, forumsComment } from "@/lib/api/forum";
 import Image from "next/image";
+import { getUser } from "@/lib/core/session";
+import { redirect } from "next/navigation";
 
 const ForumDetailsPage = async ({ params }) => {
     const { forumId } = await params;
+    const user = await getUser()
+    if (!user) {
+        redirect(`signIn/callbackURl=/community-forum/${forumId}`)
+    }
     const details = await forumDetails(forumId);
     const poster = details?.poster;
     const comments = await forumsComment(forumId)

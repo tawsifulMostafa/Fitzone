@@ -142,11 +142,7 @@ const AllClassesClient = ({ allClasses = [], totalPages, currentPage }) => {
 
                                     <div className="absolute inset-0 bg-linear-to-t from-gray-950/70 via-transparent to-gray-950/10" />
 
-                                    <div className="absolute bottom-4 left-4 right-4">
-                                        <p className="text-xs font-semibold uppercase tracking-[0.2em] text-purple-200">
-                                            Total Booking: {cs.bookingCount}
-                                        </p>
-
+                                    <div className="absolute bottom-4 left-4 right-4">   
                                         <h3 className="mt-1 text-2xl font-extrabold text-white">
                                             {cs.name}
                                         </h3>
