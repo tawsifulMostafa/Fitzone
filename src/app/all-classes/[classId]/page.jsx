@@ -62,7 +62,7 @@ const ClassDetailsPage = async ({ params }) => {
         bookingCount,
         status,
     } = classDetail;
-
+    console.log(sessionDays);
     return (
         <main className="min-h-screen bg-gray-50">
             {/* Hero Section */}
@@ -334,7 +334,7 @@ const ClassDetailsPage = async ({ params }) => {
 
                             <div className="mt-4 flex items-baseline gap-2">
                                 <span className="text-4xl font-extrabold text-gray-950">
-                                    ৳{Number(price).toLocaleString("en-BD")}
+                                    ${price}
                                 </span>
 
                                 <span className="text-sm text-gray-500">

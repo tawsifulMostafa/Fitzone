@@ -94,19 +94,22 @@ const NavDetail = ({ user }) => {
         {/* rounded border for all navlinks */}
         {
             isOpen && (<div className="border-t border-purple-100 bg-purple-50 px-5 py-5 lg:hidden">
-                <div className="grid grid-cols-2 gap-4 font-medium text-gray-700">
-                    <NavLink href="/" onClick={() => setIsOpen(false)} className="transition hover:text-purple-600" > Home </NavLink>
-                    <NavLink href="/all-classes" onClick={() => setIsOpen(false)} className="transition hover:text-purple-600" > All Classes </NavLink>
-                    <NavLink href="/community-forum" onClick={() => setIsOpen(false)} className="transition hover:text-purple-600" > Community Forum </NavLink>
-                    {
-                        user && <NavLink href={`/dashboard/${user.role}`} onClick={() => setIsOpen(false)} className="transition hover:text-purple-600 " > Dashboard </NavLink>
-                    }
+                <div >
+                    <div className="grid grid-cols-2 gap-4 font-medium text-gray-700">
+                        <NavLink href="/" onClick={() => setIsOpen(false)} className="transition hover:text-purple-600 border border-gray-600 border-r" > Home </NavLink>
+                        <NavLink href="/all-classes" onClick={() => setIsOpen(false)} className="transition hover:text-purple-600" > All Classes </NavLink>
+                        <NavLink href="/community-forum" onClick={() => setIsOpen(false)} className="transition hover:text-purple-600" > Community Forum </NavLink>
+                        {
+                            user && <NavLink href={`/dashboard/${user.role}`} onClick={() => setIsOpen(false)} className="transition hover:text-purple-600 " > Dashboard </NavLink>
+                        }
+                    </div>
+
                     {/* Mobile User */}
                     <div className="mt-2 border-t border-purple-200 pt-4">
                         {
                             !user ? (<div className="flex gap-3">
-                                <Link href="/signIn" onClick={() => setIsOpen(false)} className="rounded-lg border border-purple-600 px-4 py-2 font-medium text-purple-600" > Sign In </Link>
-                                <Link href="/signUp" onClick={() => setIsOpen(false)} className="rounded-lg bg-purple-600 px-5 py-2 font-medium text-white" > Sign Up </Link>
+                                <Link href="/signIn" onClick={() => setIsOpen(false)} className="button rounded-lg border border-purple-600 px-4 py-2 font-medium text-purple-600" > Sign In </Link>
+                                <Link href="/signUp" onClick={() => setIsOpen(false)} className="button rounded-lg bg-purple-600 px-5 py-2 text-white" > Sign Up </Link>
                             </div>) :
                                 (<div className="flex items-center justify-between">
                                     <div className="flex items-center gap-3">
@@ -117,6 +120,7 @@ const NavDetail = ({ user }) => {
                                             <p className="font-semibold text-purple-700"> {user?.name} </p>
                                         </div>
                                     </div>
+
                                     <Button onPress={handleSignOut} className="bg-purple-600 text-white" >  {loading ? "Signing out...." : "Sign Out"}  </Button>
                                 </div>)}
                     </div>

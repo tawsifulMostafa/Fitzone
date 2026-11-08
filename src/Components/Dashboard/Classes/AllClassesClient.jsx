@@ -1,14 +1,15 @@
-
 "use client";
 
 import { useState } from "react";
-import { Button, Card } from "@heroui/react";
+import { Button, Card, Pagination } from "@heroui/react";
 import { ArrowRight, Clock, Search, SlidersHorizontal } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
-const AllClassesClient = ({ allClasses = [] }) => {
-    console.log(allClasses);
+const AllClassesClient = ({ allClasses = [], totalPages, currentPage }) => {
+    const router = useRouter();
+
     const [search, setSearch] = useState("");
     const [category, setCategory] = useState("all");
 
@@ -28,6 +29,10 @@ const AllClassesClient = ({ allClasses = [] }) => {
 
         return matchesSearch && matchesCategory;
     });
+
+    const handlePageChange = (page) => {
+        router.push(`/all-classes?page=${page}`);
+    };
 
     return (
         <section className="min-h-screen bg-gray-50 px-4 py-10 sm:px-6 lg:px-10">
@@ -226,6 +231,55 @@ const AllClassesClient = ({ allClasses = [] }) => {
                         >
                             Clear Filters
                         </Button>
+                    </div>
+                )}
+
+                {/* Pagination */}
+                {totalPages > 1 && (
+                    <div className="mt-12 flex mx-auto justify-center items-center">
+                        <Pagination>
+                            <Pagination.Content>
+                                <Pagination.Item>
+                                    <Pagination.Previous
+                                        isDisabled={currentPage <= 1}
+                                        onPress={() =>
+                                            handlePageChange(currentPage - 1)
+                                        }
+                                    >
+                                        <Pagination.PreviousIcon />
+                                        <span>Previous</span>
+                                    </Pagination.Previous>
+                                </Pagination.Item>
+
+                                {Array.from(
+                                    { length: totalPages },
+                                    (_, index) => index + 1
+                                ).map((page) => (
+                                    <Pagination.Item key={page}>
+                                        <Pagination.Link
+                                            isActive={currentPage === page}
+                                            onPress={() =>
+                                                handlePageChange(page)
+                                            }
+                                        >
+                                            {page}
+                                        </Pagination.Link>
+                                    </Pagination.Item>
+                                ))}
+
+                                <Pagination.Item>
+                                    <Pagination.Next
+                                        isDisabled={currentPage >= totalPages}
+                                        onPress={() =>
+                                            handlePageChange(currentPage + 1)
+                                        }
+                                    >
+                                        <span>Next</span>
+                                        <Pagination.NextIcon />
+                                    </Pagination.Next>
+                                </Pagination.Item>
+                            </Pagination.Content>
+                        </Pagination>
                     </div>
                 )}
             </div>

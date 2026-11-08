@@ -1,7 +1,7 @@
 "use client"
 
 import { authClient } from "@/lib/auth-client";
-import { getUser } from "@/lib/core/session";
+import { getUser, sessionCheck } from "@/lib/core/session";
 
 import { Button, Description, FieldError, Form, Input, Label, TextField } from "@heroui/react";
 import { Icon } from "@iconify/react";
@@ -27,29 +27,19 @@ const SignInPage = () => {
     }
     const handleSignIn = async (e) => {
         e.preventDefault()
-
-        const user = await getUser()
-
-        if (user) {
-            toast.error("You are already logged in")
-            setLoading(false)
-            return
-        }
-        setLoading(true)
-
-
         const formData = new FormData(e.currentTarget)
         const signInData = Object.fromEntries(formData.entries())
 
-        const { data, error } = await authClient.signIn.email({
+        const { error } = await authClient.signIn.email({
             email: signInData.email,
             password: signInData.password,
             rememberMe: true,
             callbackURL: "/"
         })
 
+
         if (error) {
-            toast.warning("Password Incorrect")
+            toast.warning("password incorrect")
             setLoading(false)
         } else {
             toast.success("Login Successful")

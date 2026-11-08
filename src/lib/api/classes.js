@@ -1,11 +1,10 @@
 import { serverFetch, serverProtectedFetch } from "../core/server";
 
 
-export const getAllClasses = async () => {
-     const AllClasses = await serverFetch('/api/all-classes')
+export const getAllClasses = async (page = 1) => {
+     const AllClasses = await serverFetch(`/api/all-classes?page=${page}`);
      return AllClasses;
-}
-
+};
 export const getFeaturedClasses = async () => {
      const featuredClass = await serverFetch("/api/featured-classes")
      return featuredClass;
