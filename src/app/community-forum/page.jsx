@@ -16,7 +16,7 @@ const CommunityForum = async () => {
                             FitZone Community
                         </p>
 
-                        <h1 className="text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl">
+                        <h1 className="text-3xl font-bold tracking-tight text-foreground dark:text-white sm:text-4xl">
                             Community Forum
                         </h1>
 
@@ -26,7 +26,7 @@ const CommunityForum = async () => {
                         </p>
                     </div>
 
-                    <div className="w-fit rounded-xl border border-gray-200 bg-white px-5 py-3 dark:border-gray-800 dark:bg-gray-900">
+                    <div className="w-fit rounded-xl border border-default bg-background px-5 py-3 dark:border-gray-800 dark:bg-gray-900">
                         <p className="text-xs text-gray-500">Community Posts</p>
                         <p className="text-2xl font-bold text-purple-600">
                             {forums.length}
@@ -40,7 +40,7 @@ const CommunityForum = async () => {
                         {forums.map((post) => (
                             <Card
                                 key={post._id}
-                                className="group overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl dark:border-gray-800 dark:bg-gray-900"
+                                className="group overflow-hidden rounded-2xl border border-default bg-background shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl dark:border-gray-800 dark:bg-gray-900"
                             >
                                 {/* Image */}
                                 <div className="relative h-52 w-full overflow-hidden bg-gray-100 dark:bg-gray-800">
@@ -65,7 +65,7 @@ const CommunityForum = async () => {
 
                                 {/* Content */}
                                 <div className="flex flex-1 flex-col p-5">
-                                    <h2 className="line-clamp-2 text-xl font-bold leading-7 text-gray-900 transition-colors group-hover:text-purple-600 dark:text-white">
+                                    <h2 className="line-clamp-2 text-xl font-bold leading-7 text-foreground transition-colors group-hover:text-purple-900 dark:text-white">
                                         {post.title}
                                     </h2>
 
@@ -76,7 +76,7 @@ const CommunityForum = async () => {
 
                                     <Link href={`/community-forum/${post._id}`}>
                                         <Button className={"text-purple-400 hover:text-purple-900 border m-4 mx-auto"} variant="secondary">
-                                           Read More
+                                            Read More
                                         </Button>
                                     </Link>
                                 </div>

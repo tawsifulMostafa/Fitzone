@@ -8,6 +8,7 @@ import { Menu, X } from "lucide-react";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import NavLink from "../Navlink/Navlink";
+import ThemeToggle from "@/Components/ThemeToggle";
 const NavDetail = ({ user }) => {
     const [loading, setLoading] = useState(false)
     const [isOpen, setIsOpen] = useState(false);
@@ -25,7 +26,7 @@ const NavDetail = ({ user }) => {
         }
     }
 
-    return (<nav className="border-b border-purple-100 bg-white shadow-sm">
+    return (<nav className="border-b border-purple-100 	bg-background shadow-sm">
         <div className="flex items-center justify-between px-5 py-4 md:px-8">
             {/* Logo */}
             <Link href="/">
@@ -77,7 +78,7 @@ const NavDetail = ({ user }) => {
                         </div>
 
                         {/* Sign Out */}
-
+                        <ThemeToggle />
                         <Button onClick={handleSignOut} className="bg-purple-600 text-white hover:bg-purple-700" >
                             {loading ? "Signing out...." : "Sign Out"} </Button>
                     </div>)}
@@ -120,6 +121,7 @@ const NavDetail = ({ user }) => {
                                             <p className="font-semibold text-purple-700"> {user?.name} </p>
                                         </div>
                                     </div>
+                                    <ThemeToggle />
 
                                     <Button onPress={handleSignOut} className="bg-purple-600 text-white" >  {loading ? "Signing out...." : "Sign Out"}  </Button>
                                 </div>)}

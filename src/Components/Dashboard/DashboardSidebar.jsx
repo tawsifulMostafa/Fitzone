@@ -75,7 +75,7 @@ const DashboardSidebar = ({ userRole, isOpen = false, onClose }) => {
                         type="button"
                         onClick={onClose}
                         aria-label="Close sidebar"
-                        className="rounded-lg p-2 text-gray-400 hover:bg-white/10 lg:hidden"
+                        className="rounded-lg p-2 text-gray-400 hover:bg-background/10 lg:hidden"
                     >
                         <X size={20} />
                     </button>
@@ -110,7 +110,7 @@ const DashboardSidebar = ({ userRole, isOpen = false, onClose }) => {
                                 onClick={onClose}
                                 className={`group flex min-w-0 items-center gap-3 rounded-xl px-3 py-3 text-sm font-medium transition-colors ${isActive
                                     ? "bg-purple-600 text-white shadow-lg shadow-purple-950/30"
-                                    : "text-gray-400 hover:bg-white/5 hover:text-white"
+                                    : "text-gray-400 hover:bg-background/5 hover:text-white"
                                     }`}
                             >
                                 <Icon
@@ -126,7 +126,7 @@ const DashboardSidebar = ({ userRole, isOpen = false, onClose }) => {
                                 </span>
 
                                 {isActive && (
-                                    <span className="ml-auto h-1.5 w-1.5 shrink-0 rounded-full bg-white" />
+                                    <span className="ml-auto h-1.5 w-1.5 shrink-0 rounded-full bg-background" />
                                 )}
                             </Link>
                         );
@@ -138,7 +138,7 @@ const DashboardSidebar = ({ userRole, isOpen = false, onClose }) => {
                     <Link
                         href="/"
                         onClick={onClose}
-                        className="flex items-center gap-3 rounded-xl px-3 py-3 text-sm text-gray-400 transition hover:bg-white/5 hover:text-white"
+                        className="flex items-center gap-3 rounded-xl px-3 py-3 text-sm text-gray-400 transition hover:bg-background/5 hover:text-white"
                     >
                         <Settings size={19} />
                         Settings

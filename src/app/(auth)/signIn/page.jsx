@@ -7,7 +7,7 @@ const SignInPage = async ({ searchParams }) => {
 
         <div className="flex min-h-screen items-center justify-center bg-purple-50 px-4">
 
-            <div className="w-full max-w-md rounded-2xl border border-purple-100 bg-white p-8 shadow-xl shadow-purple-100">
+            <div className="w-full max-w-md rounded-2xl border border-purple-100 bg-background p-8 shadow-xl shadow-purple-100">
 
                 <div className="mb-8 text-center">
 
@@ -28,7 +28,6 @@ const SignInPage = async ({ searchParams }) => {
                 </div>
 
                 <SignInForm callbackURL={callbackURL || "/"} />
-
             </div>
 
         </div>

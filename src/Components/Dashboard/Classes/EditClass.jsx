@@ -85,7 +85,7 @@ const EditClass = ({ cls }) => {
 
     const inputClassNames = {
         inputWrapper:
-            "border border-gray-200 bg-white shadow-none hover:border-purple-300 group-data-[focus=true]:border-purple-600 dark:border-gray-700 dark:bg-gray-800",
+            "border border-default bg-background shadow-none hover:border-purple-300 group-data-[focus=true]:border-purple-600 dark:border-gray-700 dark:bg-gray-800",
     };
 
     return (
@@ -113,7 +113,7 @@ const EditClass = ({ cls }) => {
                         role="dialog"
                         aria-modal="true"
                         aria-labelledby="edit-class-title"
-                        className="flex max-h-[92vh] w-full max-w-2xl flex-col overflow-hidden rounded-2xl border border-purple-100 bg-white shadow-2xl shadow-purple-950/20 dark:border-gray-800 dark:bg-gray-900"
+                        className="flex max-h-[92vh] w-full max-w-2xl flex-col overflow-hidden rounded-2xl border border-purple-100 bg-background shadow-2xl shadow-purple-950/20 dark:border-gray-800 dark:bg-gray-900"
                     >
                         {/* Header */}
                         <div className="flex items-center justify-between border-b border-gray-100 bg-purple-50/70 px-5 py-4 dark:border-gray-800 dark:bg-purple-950/30 sm:px-7">
@@ -125,7 +125,7 @@ const EditClass = ({ cls }) => {
                                 <div>
                                     <h2
                                         id="edit-class-title"
-                                        className="text-lg font-bold text-gray-900 dark:text-white sm:text-xl"
+                                        className="text-lg font-bold text-foreground dark:text-white sm:text-xl"
                                     >
                                         Edit Class
                                     </h2>
@@ -159,7 +159,7 @@ const EditClass = ({ cls }) => {
 
                             <div className="overflow-y-auto p-5 sm:p-7">
                                 <div className="mb-5">
-                                    <p className="text-sm font-semibold text-gray-900 dark:text-white">
+                                    <p className="text-sm font-semibold text-foreground dark:text-white">
                                         Class Details
                                     </p>
                                     <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">
@@ -193,7 +193,7 @@ const EditClass = ({ cls }) => {
                                             disabled={loading}
                                             rows={3}
                                             placeholder="Describe your class..."
-                                            className="w-full resize-y rounded-xl border border-gray-200 bg-white px-3.5 py-3 text-sm text-gray-900 outline-none transition placeholder:text-gray-400 focus:border-purple-600 focus:ring-2 focus:ring-purple-600/10 disabled:opacity-60 dark:border-gray-700 dark:bg-gray-800 dark:text-white"
+                                            className="w-full resize-y rounded-xl border border-default bg-background px-3.5 py-3 text-sm text-foreground outline-none transition placeholder:text-gray-400 focus:border-purple-600 focus:ring-2 focus:ring-purple-600/10 disabled:opacity-60 dark:border-gray-700 dark:bg-gray-800 dark:text-white"
                                         />
                                     </div>
 
@@ -231,7 +231,7 @@ const EditClass = ({ cls }) => {
                                             }
                                             required
                                             disabled={loading}
-                                            className="h-12 w-full rounded-xl border border-gray-200 bg-white px-3 text-sm text-gray-900 outline-none transition focus:border-purple-600 focus:ring-2 focus:ring-purple-600/10 disabled:opacity-60 dark:border-gray-700 dark:bg-gray-800 dark:text-white"
+                                            className="h-12 w-full rounded-xl border border-default bg-background px-3 text-sm text-foreground outline-none transition focus:border-purple-600 focus:ring-2 focus:ring-purple-600/10 disabled:opacity-60 dark:border-gray-700 dark:bg-gray-800 dark:text-white"
                                         >
                                             <option value="" disabled>
                                                 Select level

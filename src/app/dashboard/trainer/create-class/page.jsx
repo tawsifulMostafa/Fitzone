@@ -269,14 +269,16 @@ const TrainerCreateClasses = () => {
                                         </div>
                                     </div>
 
-                                    <TextArea
-                                        name="description"
-                                        label="Class Description"
-                                        placeholder="Describe your class, training methods and benefits..."
-                                        variant="bordered"
-                                        required
-                                    />
+                                    <div className="space-y-2 w-full">
+                                        <TextArea className="h-32 w-full resize-none rounded-xl border border-default bg-background px-3 py-2 text-sm text-foreground outline-none transition focus:border-purple-600 focus:ring-2 focus:ring-purple-600/10 disabled:opacity-60"
+                                            name="description"
+                                            label="Class Description"
+                                            placeholder="Describe your class, training methods and benefits..."
+                                            variant="bordered"
+                                            required
+                                        />
 
+                                    </div>
                                 </div>
                             </section>
 
@@ -384,19 +386,17 @@ const TrainerCreateClasses = () => {
                                                 return (
                                                     <label
                                                         key={day}
-                                                        className={`flex cursor-pointer items-center justify-between rounded-xl border px-3 py-3 text-sm font-medium transition-all ${
-                                                            isSelected
+                                                        className={`flex cursor-pointer items-center justify-between rounded-xl border px-3 py-3 text-sm font-medium transition-all ${isSelected
                                                                 ? "border-purple-500 bg-purple-50 text-purple-700 shadow-sm"
                                                                 : "border-default-200 bg-background text-default-600 hover:border-purple-300 hover:bg-default-50"
-                                                        }`}
+                                                            }`}
                                                     >
                                                         <span>{day}</span>
 
-                                                        <span className={`flex size-5 items-center justify-center rounded-md border transition ${
-                                                            isSelected
+                                                        <span className={`flex size-5 items-center justify-center rounded-md border transition ${isSelected
                                                                 ? "border-purple-600 bg-purple-600 text-white"
                                                                 : "border-default-300 bg-background"
-                                                        }`}>
+                                                            }`}>
                                                             {isSelected && <Check size={13} />}
                                                         </span>
 
@@ -466,7 +466,7 @@ const TrainerCreateClasses = () => {
                                     required
                                 />
 
-                                <div className="mt-4 rounded-xl bg-purple-50 p-4">
+                                <div className="mt-4 rounded-xl bg-default-50 p-4 border border-default-200">
                                     <p className="text-sm font-medium text-purple-900">
                                         Monthly Pricing
                                     </p>

@@ -21,7 +21,7 @@ const AdminClassManagement = async () => {
                 classes?.map((cls) => (
                     <div
                         key={cls._id}
-                        className="flex flex-col sm:flex-row gap-4 p-4 rounded-xl border border-gray-200 bg-white shadow-sm"
+                        className="flex flex-col sm:flex-row gap-4 p-4 rounded-xl border border-default bg-background shadow-sm"
                     >
                         <div className="relative w-full sm:w-40 h-36 shrink-0">
                             <Image

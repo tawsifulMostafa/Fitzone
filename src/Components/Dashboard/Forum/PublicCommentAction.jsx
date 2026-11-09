@@ -165,7 +165,7 @@ const PublicCommentAction = ({ user, comment }) => {
                                 onChange={(e) => setReplyText(e.target.value)}
                                 placeholder="Write your reply..."
                                 rows={3}
-                                className="w-full resize-none rounded-lg border border-gray-200 bg-white p-3 text-sm text-gray-700 outline-none transition focus:border-purple-400 focus:ring-2 focus:ring-purple-100"
+                                className="w-full resize-none rounded-lg border border-default bg-background p-3 text-sm text-gray-700 outline-none transition focus:border-purple-400 focus:ring-2 focus:ring-purple-100"
                             />
 
                             <div className="mt-2 flex items-center justify-end gap-2">
@@ -214,7 +214,7 @@ const PublicCommentAction = ({ user, comment }) => {
                                 onChange={(e) => setUpdatedComment(e.target.value)}
                                 placeholder="Edit your comment..."
                                 rows={3}
-                                className="w-full resize-none rounded-lg border border-gray-200 bg-white p-3 text-sm text-gray-700 outline-none transition focus:border-purple-400 focus:ring-2 focus:ring-purple-100"
+                                className="w-full resize-none rounded-lg border border-default bg-background p-3 text-sm text-gray-700 outline-none transition focus:border-purple-400 focus:ring-2 focus:ring-purple-100"
                             />
 
                             <div className="mt-2 flex items-center justify-end gap-2">

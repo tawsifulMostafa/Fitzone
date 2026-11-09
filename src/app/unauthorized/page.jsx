@@ -15,7 +15,7 @@ const UnAuthorizedPage = () => {
                     Access Denied
                 </p>
 
-                <h1 className="mt-3 text-4xl font-black tracking-tight text-gray-900">
+                <h1 className="mt-3 text-4xl font-black tracking-tight text-foreground">
                     403 — Unauthorized
                 </h1>
 
@@ -40,7 +40,7 @@ const UnAuthorizedPage = () => {
                     <Button
                    
                        
-                        className="bg-purple-600 font-semibold text-white"
+                        className="bg-purple-600 font-semibold text-foreground"
                     >
                         explore classes
                     </Button>

@@ -81,7 +81,7 @@ const SignUpPage = () => {
     return (
         <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-purple-50 via-white to-purple-100 p-6">
 
-            <Surface className="w-full max-w-xl rounded-3xl border border-purple-100 bg-white p-2 shadow-xl shadow-purple-200/40">
+            <Surface className="w-full max-w-xl rounded-3xl border border-purple-100 bg-background p-2 shadow-xl shadow-purple-200/40">
 
                 <Form onSubmit={onSubmit}>
                     <Fieldset className="w-full rounded-2xl p-6">

@@ -14,7 +14,7 @@ const ApplicationsReview = async () => {
         <div className="space-y-6">
             {/* Header */}
             <div>
-                <h1 className="text-2xl font-bold text-gray-900">
+                <h1 className="text-2xl font-bold text-foreground">
                     Trainer Applications
                 </h1>
                 <p className="text-sm text-gray-500 mt-1">
@@ -23,21 +23,21 @@ const ApplicationsReview = async () => {
             </div>
 
             {/* Summary */}
-            <div className="bg-white border border-gray-200 rounded-xl p-5 flex items-center gap-4">
+            <div className="bg-background border border-default rounded-xl p-5 flex items-center gap-4">
                 <div className="bg-purple-100 text-purple-600 p-3 rounded-lg">
                     <Users size={24} />
                 </div>
                 <div>
                     <p className="text-sm text-gray-500">Total Applications</p>
-                    <h2 className="text-2xl font-bold text-gray-900">
+                    <h2 className="text-2xl font-bold text-foreground">
                         {applications.length}
                     </h2>
                 </div>
             </div>
 
             {/* Application List */}
-            <div className="bg-white border border-gray-200 rounded-xl overflow-hidden">
-                <div className="px-5 py-4 border-b border-gray-200">
+            <div className="bg-background border border-default rounded-xl overflow-hidden">
+                <div className="px-5 py-4 border-b border-default">
                     <h2 className="font-semibold text-gray-800">
                         Pending Applications
                     </h2>
@@ -56,11 +56,11 @@ const ApplicationsReview = async () => {
                                         src={application.applicantImage}
                                         width={52}
                                         height={52}
-                                        className="w-13 h-13 rounded-full object-cover border border-gray-200"
+                                        className="w-13 h-13 rounded-full object-cover border border-default"
                                     />
 
                                     <div>
-                                        <h3 className="font-semibold text-gray-900">
+                                        <h3 className="font-semibold text-foreground">
                                             {application.applicantName}
                                         </h3>
                                         <p className="text-sm text-gray-500 mt-0.5">

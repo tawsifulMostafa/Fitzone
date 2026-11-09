@@ -15,7 +15,8 @@ const SignInForm = ({ callbackURL }) => {
         try {
             setGoogleLoading(true)
             const data = await authClient.signIn.social({
-                provider: "google"
+                provider: "google",
+                callbackURL: callbackURL,
             })
         } catch (err) {
             console.error(err)
@@ -26,6 +27,7 @@ const SignInForm = ({ callbackURL }) => {
     }
     const handleSignIn = async (e) => {
         e.preventDefault()
+        setLoading(true)
         const formData = new FormData(e.currentTarget)
         const signInData = Object.fromEntries(formData.entries())
 
@@ -70,7 +72,7 @@ const SignInForm = ({ callbackURL }) => {
 
                     <Input
                         placeholder="Enter Your Email"
-                        className="h-11 rounded-xl border-gray-200 focus:border-purple-500"
+                        className="h-11 rounded-xl border-default focus:border-purple-500"
                     />
 
                     <FieldError />
@@ -105,7 +107,7 @@ const SignInForm = ({ callbackURL }) => {
 
                     <Input
                         placeholder="Enter your password"
-                        className="h-11 rounded-xl border-gray-200 focus:border-purple-500"
+                        className="h-11 rounded-xl border-default focus:border-purple-500"
                     />
 
                     <Description className="text-xs text-gray-400">

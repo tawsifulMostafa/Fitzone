@@ -50,11 +50,11 @@ const CommentReplies = ({ replies, user }) => {
                                         src={reply.userImage}
                                         width={36}
                                         height={36}
-                                        className="h-9 w-9 rounded-full border border-gray-200 object-cover"
+                                        className="h-9 w-9 rounded-full border border-default object-cover"
                                     />
 
                                     <div className="min-w-0 flex-1">
-                                        <p className="font-semibold text-gray-900">
+                                        <p className="font-semibold text-foreground">
                                             {reply.userName}
                                         </p>
 

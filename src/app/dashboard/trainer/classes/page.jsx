@@ -13,7 +13,7 @@ const TrainerClassesPage = async () => {
         <div className="min-h-screen space-y-6 p-4 md:p-8">
             {/* Header */}
             <div>
-                <h1 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                <h1 className="text-2xl font-bold tracking-tight text-foreground dark:text-white">
                     My Classes
                 </h1>
                 <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">
@@ -41,7 +41,7 @@ const TrainerClassesPage = async () => {
                         return (
                             <Card
                                 key={cs._id}
-                                className="border border-purple-100 bg-white p-4 shadow-sm transition-all duration-200 hover:border-purple-300 hover:shadow-md dark:border-gray-800 dark:bg-gray-900 md:p-5"
+                                className="border border-purple-100 bg-background p-4 shadow-sm transition-all duration-200 hover:border-purple-300 hover:shadow-md dark:border-gray-800 dark:bg-gray-900 md:p-5"
                             >
                                 <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
                                     {/* Class Info */}
@@ -57,7 +57,7 @@ const TrainerClassesPage = async () => {
                                         </div>
 
                                         <div className="min-w-0">
-                                            <h2 className="truncate text-base font-semibold text-gray-900 dark:text-white">
+                                            <h2 className="truncate text-base font-semibold text-foreground dark:text-white">
                                                 {cs.name}
                                             </h2>
                                             <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">

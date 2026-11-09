@@ -23,7 +23,7 @@ const LikeDislike = ({ forumId, forum }) => {
                 className={`h-10 min-w-20 gap-2 rounded-full border px-5 font-medium transition-all ${
                     forum.userLiked
                         ? "border-pink-200 bg-pink-50 text-pink-600"
-                        : "border-gray-200 bg-white text-gray-600 hover:border-pink-200 hover:bg-pink-50 hover:text-pink-600"
+                        : "border-default bg-background text-gray-600 hover:border-pink-200 hover:bg-pink-50 hover:text-pink-600"
                 }`}
             >
                 <ThumbsUp size={18} />
@@ -35,7 +35,7 @@ const LikeDislike = ({ forumId, forum }) => {
                 className={`h-10 min-w-20 gap-2 rounded-full border px-5 font-medium transition-all ${
                     forum.userDisliked
                         ? "border-red-200 bg-red-50 text-red-600"
-                        : "border-gray-200 bg-white text-gray-600 hover:border-red-200 hover:bg-red-50 hover:text-red-600"
+                        : "border-default bg-background text-gray-600 hover:border-red-200 hover:bg-red-50 hover:text-red-600"
                 }`}
             >
                 <HandPointDown />

@@ -10,7 +10,7 @@ const ManageUsersPage = async () => {
         <div className="space-y-6">
 
             <div>
-                <h1 className="text-2xl font-bold text-gray-900 dark:text-white">
+                <h1 className="text-2xl font-bold text-foreground dark:text-white">
                     Manage Users
                 </h1>
                 <p className="mt-1 text-sm text-gray-500">
@@ -18,9 +18,9 @@ const ManageUsersPage = async () => {
                 </p>
             </div>
 
-            <div className="rounded-xl border border-gray-200 bg-white shadow-sm dark:border-gray-800 dark:bg-gray-900">
+            <div className="rounded-xl border border-default bg-background shadow-sm dark:border-gray-800 dark:bg-gray-900">
 
-                <div className="flex items-center justify-between border-b border-gray-200 px-5 py-4 dark:border-gray-800">
+                <div className="flex items-center justify-between border-b border-default px-5 py-4 dark:border-gray-800">
                     <div>
                         <h2 className="font-semibold text-gray-800 dark:text-white">
                             All Users
@@ -31,7 +31,7 @@ const ManageUsersPage = async () => {
                     </div>
                 </div>
 
-                <div className="hidden grid-cols-12 gap-4 border-b border-gray-200 bg-gray-50 px-5 py-3 text-xs font-semibold uppercase text-gray-500 dark:border-gray-800 dark:bg-gray-800/50 md:grid">
+                <div className="hidden grid-cols-12 gap-4 border-b border-default bg-gray-50 px-5 py-3 text-xs font-semibold uppercase text-gray-500 dark:border-gray-800 dark:bg-gray-800/50 md:grid">
                     <p className="col-span-4">User</p>
                     <p className="col-span-3">Email</p>
                     <p className="col-span-2">Role</p>
@@ -51,7 +51,7 @@ const ManageUsersPage = async () => {
                                     src={user.image}
                                     height={44}
                                     width={44}
-                                    className="h-11 w-11 rounded-full border border-gray-200 object-cover"
+                                    className="h-11 w-11 rounded-full border border-default object-cover"
                                 />
                                 <div className="min-w-0">
                                     <p className="truncate font-semibold text-gray-800 dark:text-white capitalize">

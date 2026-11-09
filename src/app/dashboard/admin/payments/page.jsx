@@ -9,7 +9,7 @@ const PaymentPageByAdmin = async () => {
     return (
         <div className="space-y-6">
             <div>
-                <h1 className="text-2xl font-bold text-gray-900 dark:text-white">
+                <h1 className="text-2xl font-bold text-foreground dark:text-background">
                     Payment History
                 </h1>
                 <p className="mt-1 text-sm text-gray-500">
@@ -17,7 +17,7 @@ const PaymentPageByAdmin = async () => {
                 </p>
             </div>
 
-            <div className="overflow-hidden rounded-xl border border-gray-200 bg-white dark:border-gray-800 dark:bg-gray-900">
+            <div className="overflow-hidden rounded-xl border border-default bg-background dark:border-gray-800 dark:bg-gray-900">
                 <Table>
                     <Table.ScrollContainer>
                         <Table.Content aria-label="Payment history">
@@ -51,7 +51,7 @@ const PaymentPageByAdmin = async () => {
 
                                         <Table.Cell>
                                             <span className="font-mono text-xs text-gray-500" title={payment.stripeSessionId}>
-                                                {payment.stripeSessionId?.slice(12  , 24)}
+                                                {payment.stripeSessionId?.slice(12, 24)}
                                             </span>
                                         </Table.Cell>
                                     </Table.Row>

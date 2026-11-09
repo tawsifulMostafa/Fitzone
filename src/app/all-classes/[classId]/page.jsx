@@ -36,7 +36,7 @@ const ClassDetailsPage = async ({ params }) => {
             <div className="flex min-h-[60vh] flex-col items-center justify-center px-5">
                 <Dumbbell size={48} className="text-purple-300" />
 
-                <h1 className="mt-5 text-3xl font-bold text-gray-900">
+                <h1 className="mt-5 text-3xl font-bold text-foreground">
                     Class Not Found
                 </h1>
 
@@ -70,7 +70,7 @@ const ClassDetailsPage = async ({ params }) => {
     } = classDetail;
     console.log(sessionDays);
     return (
-        <main className="min-h-screen bg-gray-50">
+        <main className="min-h-screen bg-gray-50 dark:bg-gray-900">
             {/* Hero Section */}
             <section className="bg-gray-950 px-5 py-10 text-white sm:py-14 lg:px-16">
                 <div className="mx-auto max-w-7xl">
@@ -146,9 +146,9 @@ const ClassDetailsPage = async ({ params }) => {
                 <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-3">
                     <div className="space-y-8 lg:col-span-2">
                         {/* About Class */}
-                        <section className="rounded-2xl border border-gray-200 bg-white p-6 sm:p-8">
+                        <section className="rounded-2xl border border-default 	bg-background p-6 sm:p-8">
                             <div className="flex items-center gap-3">
-                                <div className="flex size-12 items-center justify-center rounded-xl bg-purple-100 text-purple-700">
+                                <div className="flex size-12 items-center justify-center rounded-xl bg-purple-100 text-purple-700 dark:bg-default dark:text-purple-500">
                                     <Dumbbell size={23} />
                                 </div>
 
@@ -157,7 +157,7 @@ const ClassDetailsPage = async ({ params }) => {
                                         CLASS OVERVIEW
                                     </p>
 
-                                    <h2 className="mt-1 text-2xl font-bold text-gray-900">
+                                    <h2 className="mt-1 text-2xl font-bold text-foreground">
                                         About This Class
                                     </h2>
                                 </div>
@@ -168,50 +168,50 @@ const ClassDetailsPage = async ({ params }) => {
                             </p>
 
                             <div className="mt-6 grid gap-4 sm:grid-cols-2">
-                                <div className="rounded-xl bg-gray-50 p-4">
-                                    <Tag size={20} className="text-purple-700" />
+                                <div className="rounded-xl bg-gray-100 dark:bg-gray-800 p-4">
+                                    <Tag size={20} className="text-purple-700 " />
 
                                     <p className="mt-3 text-sm text-gray-500">
                                         Training Category
                                     </p>
 
-                                    <p className="mt-1 font-bold text-gray-900">
+                                    <p className="mt-1 font-bold text-foreground">
                                         {category}
                                     </p>
                                 </div>
 
-                                <div className="rounded-xl bg-gray-50 p-4">
-                                    <BarChart3 size={20} className="text-purple-700" />
+                                <div className="rounded-xl bg-gray-100 dark:bg-gray-800 p-4">
+                                    <BarChart3 size={20} className="text-purple-700 " />
 
                                     <p className="mt-3 text-sm text-gray-500">
                                         Difficulty Level
                                     </p>
 
-                                    <p className="mt-1 font-bold text-gray-900">
+                                    <p className="mt-1 font-bold text-foreground">
                                         {difficultyLevel}
                                     </p>
                                 </div>
 
-                                <div className="rounded-xl bg-gray-50 p-4">
-                                    <Clock size={20} className="text-purple-700" />
+                                <div className="rounded-xl bg-gray-100 dark:bg-gray-800 p-4">
+                                    <Clock size={20} className="text-purple-700 " />
 
                                     <p className="mt-3 text-sm text-gray-500">
                                         Session Duration
                                     </p>
 
-                                    <p className="mt-1 font-bold text-gray-900">
+                                    <p className="mt-1 font-bold text-foreground">
                                         {duration} minutes
                                     </p>
                                 </div>
 
-                                <div className="rounded-xl bg-gray-50 p-4">
-                                    <CheckCircle2 size={20} className="text-purple-700" />
+                                <div className="rounded-xl bg-gray-100 dark:bg-gray-800 p-4">
+                                    <CheckCircle2 size={20} className="text-purple-700 " />
 
                                     <p className="mt-3 text-sm text-gray-500">
                                         Class Status
                                     </p>
 
-                                    <p className="mt-1 font-bold capitalize text-gray-900">
+                                    <p className="mt-1 font-bold capitalize text-foreground">
                                         {status}
                                     </p>
                                 </div>
@@ -219,32 +219,32 @@ const ClassDetailsPage = async ({ params }) => {
                         </section>
 
                         {/* Schedule */}
-                        <section className="rounded-2xl border border-gray-200 bg-white p-6 sm:p-8">
+                        <section className="rounded-2xl border border-default bg-background p-6 sm:p-8">
                             <div className="flex items-center gap-3">
-                                <div className="flex size-12 items-center justify-center rounded-xl bg-purple-100 text-purple-700">
+                                <div className="flex size-12 items-center justify-center rounded-xl bg-purple-100 text-purple-700 dark:bg-default dark:text-purple-500">
                                     <CalendarDays size={23} />
                                 </div>
 
                                 <div>
-                                    <p className="text-sm font-semibold text-purple-700">
+                                    <p className="text-sm font-semibold text-purple-700 dark:text-purple-500">
                                         PLAN YOUR SESSION
                                     </p>
 
-                                    <h2 className="mt-1 text-2xl font-bold text-gray-900">
+                                    <h2 className="mt-1 text-2xl font-bold text-foreground">
                                         Class Schedule
                                     </h2>
                                 </div>
                             </div>
 
                             <div className="mt-6 space-y-4">
-                                <div className="rounded-xl border border-gray-100 p-5">
+                                <div className="rounded-xl border border-default p-5">
                                     <div className="flex items-center gap-3">
                                         <CalendarDays
                                             size={22}
                                             className="shrink-0 text-purple-700"
                                         />
 
-                                        <p className="font-semibold text-gray-900">
+                                        <p className="font-semibold text-foreground">
                                             Weekly Session Days
                                         </p>
                                     </div>
@@ -254,7 +254,7 @@ const ClassDetailsPage = async ({ params }) => {
                                             sessionDays.map((day) => (
                                                 <span
                                                     key={day}
-                                                    className="rounded-lg bg-purple-50 px-3 py-2 text-sm font-semibold text-purple-700"
+                                                    className="rounded-lg bg-purple-50 dark:bg-default px-3 py-2 text-sm font-semibold text-purple-700 dark:text-purple-500"
                                                 >
                                                     {day}
                                                 </span>
@@ -267,7 +267,7 @@ const ClassDetailsPage = async ({ params }) => {
                                     </div>
                                 </div>
 
-                                <div className="flex items-start gap-4 rounded-xl border border-gray-100 p-5">
+                                <div className="flex items-start gap-4 rounded-xl border border-default p-5">
                                     <CalendarClock
                                         size={22}
                                         className="mt-1 shrink-0 text-purple-700"
@@ -278,13 +278,13 @@ const ClassDetailsPage = async ({ params }) => {
                                             Starting Time
                                         </p>
 
-                                        <p className="mt-1 font-bold text-gray-900">
+                                        <p className="mt-1 font-bold text-foreground">
                                             {scheduleTime}
                                         </p>
                                     </div>
                                 </div>
 
-                                <div className="flex items-start gap-4 rounded-xl border border-gray-100 p-5">
+                                <div className="flex items-start gap-4 rounded-xl border border-default p-5">
                                     <Clock
                                         size={22}
                                         className="mt-1 shrink-0 text-purple-700"
@@ -295,7 +295,7 @@ const ClassDetailsPage = async ({ params }) => {
                                             Session Duration
                                         </p>
 
-                                        <p className="mt-1 font-bold text-gray-900">
+                                        <p className="mt-1 font-bold text-foreground">
                                             {duration} minutes
                                         </p>
                                     </div>
@@ -304,22 +304,22 @@ const ClassDetailsPage = async ({ params }) => {
                         </section>
 
                         {/* Trainer */}
-                        <section className="rounded-2xl border border-gray-200 bg-white p-6 sm:p-8">
+                        <section className="rounded-2xl border border-default bg-background p-6 sm:p-8">
                             <p className="text-sm font-semibold text-purple-700">
                                 YOUR INSTRUCTOR
                             </p>
 
-                            <h2 className="mt-2 text-2xl font-bold text-gray-900">
+                            <h2 className="mt-2 text-2xl font-bold text-foreground">
                                 Meet Your Trainer
                             </h2>
 
-                            <div className="mt-6 flex items-center gap-4 rounded-xl bg-gray-50 p-5">
-                                <div className="flex size-14 shrink-0 items-center justify-center rounded-full bg-purple-100 text-purple-700">
+                            <div className="mt-6 flex items-center gap-4 rounded-xl bg-gray-100 dark:bg-gray-800 p-5">
+                                <div className="flex size-14 shrink-0 items-center justify-center rounded-full bg-purple-100 text-purple-700 dark:bg-default dark:text-purple-500">
                                     <Dumbbell size={26} />
                                 </div>
 
                                 <div>
-                                    <p className="font-bold text-gray-900">
+                                    <p className="font-bold  text-foreground">
                                         {trainerName || "Assigned Trainer"}
                                     </p>
 
@@ -333,13 +333,13 @@ const ClassDetailsPage = async ({ params }) => {
 
                     {/* Booking Card */}
                     <aside>
-                        <div className="sticky top-24 rounded-2xl border border-gray-200 bg-white p-6 shadow-sm sm:p-7">
+                        <div className="sticky top-24 rounded-2xl border border-default bg-background p-6 shadow-sm sm:p-7">
                             <p className="text-sm font-semibold uppercase tracking-wider text-purple-700">
                                 ENROLL IN THIS CLASS
                             </p>
 
                             <div className="mt-4 flex items-baseline gap-2">
-                                <span className="text-4xl font-extrabold text-gray-950">
+                                <span className="text-4xl font-extrabold text-gray-950 dark:text-gray-500">
                                     ${price}
                                 </span>
 
@@ -362,7 +362,7 @@ const ClassDetailsPage = async ({ params }) => {
                                         Category
                                     </span>
 
-                                    <span className="font-semibold text-gray-900">
+                                    <span className="font-semibold text-foreground">
                                         {category}
                                     </span>
                                 </div>
@@ -373,7 +373,7 @@ const ClassDetailsPage = async ({ params }) => {
                                         Duration
                                     </span>
 
-                                    <span className="font-semibold text-gray-900">
+                                    <span className="font-semibold text-foreground">
                                         {duration} minutes
                                     </span>
                                 </div>
@@ -384,7 +384,7 @@ const ClassDetailsPage = async ({ params }) => {
                                         Bookings
                                     </span>
 
-                                    <span className="font-semibold text-gray-900">
+                                    <span className="font-semibold text-foreground">
                                         {bookingCount}
                                     </span>
                                 </div>
@@ -395,7 +395,7 @@ const ClassDetailsPage = async ({ params }) => {
                                         Days
                                     </span>
 
-                                    <span className="max-w-[60%] text-right font-semibold text-gray-900">
+                                    <span className="max-w-[60%] text-right font-semibold text-foreground">
                                         {sessionDays?.join(", ") || "Not scheduled"}
                                     </span>
                                 </div>
@@ -406,13 +406,13 @@ const ClassDetailsPage = async ({ params }) => {
                                         Time
                                     </span>
 
-                                    <span className="font-semibold text-gray-900">
+                                    <span className="font-semibold text-foreground">
                                         {scheduleTime}
                                     </span>
                                 </div>
                             </div>
 
-                            <div className="my-6 border-t border-gray-100" />
+                            <div className="my-6 border-t border-default" />
 
                             <div>
                                 <ClassDetailsActions

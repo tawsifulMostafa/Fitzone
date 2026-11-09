@@ -6,9 +6,9 @@ import Image from "next/image";
 import Link from "next/link";
 
 const FeaturedClasses = async () => {
- const classes = await getFeaturedClasses()
+    const classes = await getFeaturedClasses()
     return (
-        <section className="relative overflow-hidden bg-gradient-to-b from-white via-purple-50/50 to-white px-5 py-20 md:px-10 lg:px-16">
+        <section className="relative overflow-hidden bg-linear-to-b from-background via-purple-50/50 to-background px-5 py-20 md:px-10 lg:px-16 dark:via-purple-950/20">
 
             {/* Background Decoration */}
             <div className="pointer-events-none absolute -right-32 top-20 h-72 w-72 rounded-full bg-purple-200/30 blur-3xl" />
@@ -20,12 +20,12 @@ const FeaturedClasses = async () => {
                 <div className="mb-12 flex flex-col justify-between gap-6 md:flex-row md:items-end">
 
                     <div>
-                        <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-purple-200 bg-white px-4 py-2 text-sm font-semibold text-purple-700 shadow-sm">
+                        <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-purple-300 dark:border-purple-600 bg-background px-4 py-2 text-sm font-semibold text-purple-700 shadow-sm">
                             <Dumbbell size={16} />
                             TRAIN YOUR WAY
                         </div>
 
-                        <h2 className="text-3xl font-black tracking-tight text-gray-950 sm:text-4xl lg:text-5xl">
+                        <h2 className="text-3xl font-black tracking-tight text-gray-950 dark:text-gray-300 sm:text-4xl lg:text-5xl">
                             Explore Our{" "}
                             <span className="text-purple-700">
                                 Featured Classes
@@ -42,7 +42,7 @@ const FeaturedClasses = async () => {
                     <Link href="/all-classes" className="shrink-0">
                         <Button
                             variant="bordered"
-                            className="border-purple-300 border  font-bold text-purple-700 transition-all hover:bg-purple-700 hover:text-white"
+                            className="border-purple-300 dark:border-purple-800 border  font-bold text-purple-700 transition-all hover:bg-purple-700 hover:text-white"
                             endContent={<ArrowRight size={18} />}
                         >
                             Explore All Classes
@@ -58,7 +58,7 @@ const FeaturedClasses = async () => {
                         <Card
                             key={cs._id}
                             shadow="none"
-                            className="group overflow-hidden rounded-2xl border border-purple-100 bg-white transition-all duration-300 hover:-translate-y-2 hover:border-purple-300 hover:shadow-xl hover:shadow-purple-900/10"
+                            className="group overflow-hidden rounded-2xl border border-purple-100 dark:border-purple-900/50 bg-background transition-all duration-300 hover:-translate-y-2 hover:border-purple-300 dark:hover:border-purple-700 hover:shadow-xl hover:shadow-purple-900/10"
                         >
 
                             {/* Image */}
@@ -80,7 +80,7 @@ const FeaturedClasses = async () => {
 
                                 <div className="absolute bottom-4 left-4 right-4">
                                     <p className="text-xs font-semibold uppercase tracking-[0.2em] text-purple-200">
-                                     Total Booking : {cs.bookingCount}
+                                        Total Booking : {cs.bookingCount}
                                     </p>
 
                                     <h3 className="mt-1 text-2xl font-extrabold text-white">
@@ -152,7 +152,7 @@ const FeaturedClasses = async () => {
                 </div>
 
                 {/* Bottom CTA */}
-                <div className="mt-12 flex flex-col items-center justify-between gap-5 rounded-2xl border border-purple-100 bg-white p-6 shadow-sm sm:flex-row sm:p-8">
+                <div className="mt-12 flex flex-col items-center justify-between gap-5 rounded-2xl border border-purple-100 bg-background p-6 shadow-sm sm:flex-row sm:p-8">
 
                     <div>
                         <h3 className="text-xl font-extrabold text-gray-950">

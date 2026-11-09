@@ -48,8 +48,8 @@ const CommentForum = ({ forumId }) => {
     };
 
     return (
-        <div className="mt-8 rounded-2xl border border-gray-200 bg-white p-5 shadow-sm sm:p-7">
-            <h2 className="mb-5 text-xl font-semibold text-gray-900">
+        <div className="mt-8 rounded-2xl border border-default bg-background p-5 shadow-sm sm:p-7">
+            <h2 className="mb-5 text-xl font-semibold text-foreground">
                 Join the Discussion
             </h2>
 

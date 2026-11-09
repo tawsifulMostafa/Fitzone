@@ -50,7 +50,7 @@ const Banner = () => {
                             <Button
                                 size="lg"
                                 variant="bordered"
-                                className="w-full border-white/30 bg-white/5 px-8 font-bold text-white backdrop-blur-md hover:bg-white/10 sm:w-auto"
+                                className="w-full border-white/30 bg-background/5 px-8 font-bold text-white backdrop-blur-md hover:bg-background/10 sm:w-auto"
                             >
                                 Community Forum
                             </Button>
@@ -90,7 +90,7 @@ const Banner = () => {
             </div>
 
             {/* Bottom Right Glass Card */}
-            <div className="absolute bottom-8 right-8 hidden w-64 rounded-2xl border border-white/10 bg-white/10 p-5 backdrop-blur-xl lg:block">
+            <div className="absolute bottom-8 right-8 hidden w-64 rounded-2xl border border-white/10 bg-background/10 p-5 backdrop-blur-xl lg:block">
                 <p className="text-xs font-medium uppercase tracking-widest text-purple-300">
                     Your Journey
                 </p>

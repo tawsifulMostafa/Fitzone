@@ -37,7 +37,7 @@ const ApplicationsDetails = async ({ params }) => {
                     Back to Applications
                 </Link>
 
-                <h1 className="text-2xl font-bold text-gray-900">
+                <h1 className="text-2xl font-bold text-foreground">
                     Application Details
                 </h1>
                 <p className="text-sm text-gray-500 mt-1">
@@ -46,7 +46,7 @@ const ApplicationsDetails = async ({ params }) => {
             </div>
 
             {/* Applicant Profile */}
-            <div className="bg-white border border-gray-200 rounded-xl p-6">
+            <div className="bg-background border border-default rounded-xl p-6">
                 <div className="flex flex-col sm:flex-row sm:items-center gap-5">
                     <Image
                         src={application.applicantImage}
@@ -58,7 +58,7 @@ const ApplicationsDetails = async ({ params }) => {
 
                     <div className="flex-1">
                         <div className="flex flex-wrap items-center gap-3">
-                            <h2 className="text-xl font-bold text-gray-900">
+                            <h2 className="text-xl font-bold text-foreground">
                                 {application.applicantName}
                             </h2>
 
@@ -76,9 +76,9 @@ const ApplicationsDetails = async ({ params }) => {
             </div>
 
             {/* Application Information */}
-            <div className="bg-white border border-gray-200 rounded-xl p-6 space-y-5">
+            <div className="bg-background border border-default rounded-xl p-6 space-y-5">
                 <div>
-                    <h2 className="font-bold text-gray-900">
+                    <h2 className="font-bold text-foreground">
                         Application Information
                     </h2>
                     <p className="text-sm text-gray-500 mt-1">
@@ -92,7 +92,7 @@ const ApplicationsDetails = async ({ params }) => {
                             <BriefcaseBusiness size={17} />
                             Experience
                         </div>
-                        <p className="text-lg font-semibold text-gray-900 mt-2">
+                        <p className="text-lg font-semibold text-foreground mt-2">
                             {application.experience} Years
                         </p>
                     </div>
@@ -102,7 +102,7 @@ const ApplicationsDetails = async ({ params }) => {
                             <Dumbbell size={17} />
                             Specialty
                         </div>
-                        <p className="text-lg font-semibold text-gray-900 mt-2">
+                        <p className="text-lg font-semibold text-foreground mt-2">
                             {application.specialty}
                         </p>
                     </div>
@@ -112,7 +112,7 @@ const ApplicationsDetails = async ({ params }) => {
                             <CalendarDays size={17} />
                             Applied Date
                         </div>
-                        <p className="font-semibold text-gray-900 mt-2">
+                        <p className="font-semibold text-foreground mt-2">
                             {new Date(application.createdAt).toLocaleDateString(
                                 "en-US",
                                 {
@@ -129,7 +129,7 @@ const ApplicationsDetails = async ({ params }) => {
                             <Clock size={17} />
                             Applied Time
                         </div>
-                        <p className="font-semibold text-gray-900 mt-2">
+                        <p className="font-semibold text-foreground mt-2">
                             {new Date(application.createdAt).toLocaleTimeString(
                                 "en-US",
                                 {

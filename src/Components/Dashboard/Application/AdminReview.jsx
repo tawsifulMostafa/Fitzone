@@ -26,9 +26,9 @@ const AdminReview = ({ application }) => {
         }
     };
     return (
-        <div className="bg-white border border-gray-200 rounded-xl p-6 space-y-4">
+        <div className="bg-background border border-default rounded-xl p-6 space-y-4">
             <div>
-                <h2 className="font-bold text-gray-900">
+                <h2 className="font-bold text-foreground">
                     Review Application
                 </h2>
                 <p className="text-sm text-gray-500 mt-1">

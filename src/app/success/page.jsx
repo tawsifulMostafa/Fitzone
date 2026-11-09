@@ -10,7 +10,7 @@ const SuccessPage = async () => {
             {/* Background Effects */}
             <div className="pointer-events-none absolute left-1/2 top-1/2 h-96 w-96 -translate-x-1/2 -translate-y-1/2 rounded-full bg-purple-700/15 blur-[120px]" />
 
-            <div className="relative w-full max-w-lg overflow-hidden rounded-3xl border border-white/10 bg-white/[0.04] p-8 text-center shadow-2xl shadow-purple-950/20 backdrop-blur-xl sm:p-12">
+            <div className="relative w-full max-w-lg overflow-hidden rounded-3xl border border-white/10 bg-background/4 p-8 text-center shadow-2xl shadow-purple-950/20 backdrop-blur-xl sm:p-12">
 
                 {/* Success Icon */}
                 <div className="mx-auto mb-7 flex h-24 w-24 items-center justify-center rounded-full border border-emerald-400/20 bg-emerald-400/10">
@@ -38,7 +38,7 @@ const SuccessPage = async () => {
                 </p>
 
                 {/* Confirmation */}
-                <div className="mt-8 flex items-center gap-3 rounded-2xl border border-white/10 bg-white/[0.03] p-4 text-left">
+                <div className="mt-8 flex items-center gap-3 rounded-2xl border border-white/10 bg-background/4/[0.03] p-4 text-left">
                     <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-purple-500/15">
                         <CheckCircle2 className="text-purple-400" size={23} />
                     </div>
@@ -73,7 +73,7 @@ const SuccessPage = async () => {
 
                     <Link
                         href="/"
-                        className="flex items-center justify-center gap-2 rounded-xl border border-white/10 bg-white/[0.04] px-5 py-3.5 text-sm font-semibold text-gray-300 transition hover:border-purple-400/40 hover:bg-purple-500/10 hover:text-white"
+                        className="flex items-center justify-center gap-2 rounded-xl border border-white/10 bg-background/4/[0.04] px-5 py-3.5 text-sm font-semibold text-gray-300 transition hover:border-purple-400/40 hover:bg-purple-500/10 hover:text-white"
                     >
                         <Home size={18} />
                         Back to Home

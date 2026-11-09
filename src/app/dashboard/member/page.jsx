@@ -141,7 +141,7 @@ const UserDashBoard = async () => {
 
                     <Link
                         href="/all-classes"
-                        className="mt-6 inline-flex items-center gap-2 rounded-xl bg-white px-5 py-3 text-sm font-semibold text-purple-800 transition hover:bg-purple-50"
+                        className="mt-6 inline-flex items-center gap-2 rounded-xl bg-background px-5 py-3 text-sm font-semibold text-purple-800 transition hover:bg-purple-50"
                     >
                         Explore Classes
                         <ArrowUpRight size={17} />

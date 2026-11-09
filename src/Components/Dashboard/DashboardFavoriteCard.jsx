@@ -32,7 +32,7 @@ const FavoriteCard = ({ favorite }) => {
     };
 
     return (
-        <div className="group flex overflow-hidden rounded-xl border border-gray-200 bg-white transition hover:shadow-md">
+        <div className="group flex overflow-hidden rounded-xl border border-default bg-background transition hover:shadow-md">
             <div className="relative h-36 w-32 shrink-0 sm:w-40">
                 <Image
                     src={cls.image}
@@ -56,7 +56,7 @@ const FavoriteCard = ({ favorite }) => {
                         />
                     </div>
 
-                    <h2 className="truncate font-bold text-gray-900">
+                    <h2 className="truncate font-bold text-foreground">
                         {cls.className}
                     </h2>
 
@@ -70,7 +70,7 @@ const FavoriteCard = ({ favorite }) => {
                             {cls.duration} min
                         </span>
 
-                        <span className="font-semibold text-gray-900">
+                        <span className="font-semibold text-foreground">
                             ৳{cls.price}
                         </span>
                     </div>

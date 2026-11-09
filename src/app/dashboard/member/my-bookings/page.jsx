@@ -28,7 +28,7 @@ const MyBookingsMember = async () => {
         <section className="space-y-6">
             <div className="flex items-center justify-between">
                 <div>
-                    <h1 className="text-2xl font-bold text-gray-900">
+                    <h1 className="text-2xl font-bold text-foreground">
                         My Bookings
                     </h1>
                     <p className="mt-1 text-sm text-gray-500">
@@ -50,7 +50,7 @@ const MyBookingsMember = async () => {
                     return (
                         <div
                             key={booking._id}
-                            className="overflow-hidden rounded-xl border border-gray-200 bg-white transition hover:shadow-md"
+                            className="overflow-hidden rounded-xl border border-default bg-background transition hover:shadow-md"
                         >
                             <div className="relative h-40">
                                 <Image
@@ -60,14 +60,14 @@ const MyBookingsMember = async () => {
                                     sizes="(max-width: 640px) 100vw, 33vw"
                                     className="object-cover"
                                 />
-                                <span className="absolute left-3 top-3 rounded-full bg-white px-3 py-1 text-xs font-semibold text-purple-700">
+                                <span className="absolute left-3 top-3 rounded-full bg-background px-3 py-1 text-xs font-semibold text-purple-700">
                                     {cls.category}
                                 </span>
                             </div>
 
                             <div className="space-y-3 p-4">
                                 <div>
-                                    <h2 className="font-bold text-gray-900">
+                                    <h2 className="font-bold text-foreground">
                                         {cls.className}
                                     </h2>
                                     <p className="mt-1 text-sm text-gray-500">

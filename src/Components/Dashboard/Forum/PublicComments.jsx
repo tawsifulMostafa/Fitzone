@@ -18,14 +18,14 @@ const PublicComments = async ({ forumId, comments }) => {
     );
 
     return (
-        <div className="mt-8 rounded-2xl border border-gray-200 bg-white p-5 sm:p-7">
-            <div className="mb-6 flex items-center gap-3 border-b border-gray-100 pb-5">
-                <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-purple-100 text-purple-700">
-                    <MessageCircle size={22} />
+        <div className="mt-8 rounded-2xl border border-default bg-background p-5 sm:p-7">
+            <div className="mb-6 flex items-center gap-3 border-b border-default pb-5">
+                <div className="flex h-11 w-11 items-center justify-center rounded-xl dark:bg-default bg-purple-100 text-purple-700">
+                    <MessageCircle size={22}/>
                 </div>
 
                 <div>
-                    <h2 className="text-xl font-bold text-gray-900">
+                    <h2 className="text-xl font-bold text-foreground">
                         Comments
                     </h2>
                     <p className="text-sm text-gray-500">
@@ -33,7 +33,7 @@ const PublicComments = async ({ forumId, comments }) => {
                     </p>
                 </div>
 
-                <span className="ml-auto rounded-full bg-purple-100 px-3 py-1 text-sm font-semibold text-purple-700">
+                <span className="ml-auto rounded-full dark:bg-default bg-purple-100 px-3 py-1 text-sm font-semibold text-purple-700">
                     {mainComments.length}
                 </span>
             </div>
@@ -50,7 +50,7 @@ const PublicComments = async ({ forumId, comments }) => {
                         return (
                             <div
                                 key={comment._id}
-                                className="rounded-xl border border-gray-100 bg-gray-50/70 p-4 transition-colors hover:border-purple-200"
+                                className="rounded-xl border border-default bg-default-50/70 p-4 transition-colors hover:border-purple-200"
                             >
                                 {/* Main Comment */}
                                 <div className="flex items-start gap-3">
@@ -59,15 +59,15 @@ const PublicComments = async ({ forumId, comments }) => {
                                         src={comment.userImage}
                                         width={44}
                                         height={44}
-                                        className="h-11 w-11 rounded-full border border-gray-200 object-cover"
+                                        className="h-11 w-11 rounded-full border border-default object-cover"
                                     />
 
                                     <div className="min-w-0 flex-1">
-                                        <p className="font-semibold text-gray-900">
+                                        <p className="font-semibold text-foreground">
                                             {comment.userName}
                                         </p>
 
-                                        <p className="mt-1 whitespace-pre-wrap wrap-break-word text-sm leading-6 text-gray-600">
+                                        <p className="mt-1 whitespace-pre-wrap wrap-break-word text-sm leading-6 text-gray-600 dark:text-gray-400 sm:text-base">
                                             {comment.Comment}
                                         </p>
 

@@ -35,7 +35,7 @@ const AllClassesClient = ({ allClasses = [], totalPages, currentPage }) => {
     };
 
     return (
-        <section className="min-h-screen bg-gray-50 px-4 py-10 sm:px-6 lg:px-10">
+        <section className="min-h-screen bg-gray-200 dark:bg-gray-950 px-4 py-10 sm:px-6 lg:px-10">
             <div className="mx-auto max-w-7xl">
 
                 {/* Heading */}
@@ -44,7 +44,7 @@ const AllClassesClient = ({ allClasses = [], totalPages, currentPage }) => {
                         Find Your Training
                     </p>
 
-                    <h1 className="mt-2 text-3xl font-extrabold text-gray-950 sm:text-4xl">
+                    <h1 className="mt-2 text-3xl font-extrabold text-gray-950 dark:text-gray-500 sm:text-4xl">
                         Explore All Classes
                     </h1>
 
@@ -55,12 +55,12 @@ const AllClassesClient = ({ allClasses = [], totalPages, currentPage }) => {
                 </div>
 
                 {/* Search and Filter */}
-                <div className="mb-8 flex flex-col gap-4 rounded-2xl border border-purple-100 bg-white p-4 shadow-sm sm:flex-row sm:items-center sm:p-5">
+                <div className="mb-8 flex flex-col gap-4 rounded-2xl border border-purple-100 dark:border-purple-800 bg-background p-4 shadow-sm sm:flex-row sm:items-center sm:p-5">
 
                     <div className="relative flex-1">
                         <Search
                             size={19}
-                            className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"
+                            className="absolute left-4 top-1/2 -translate-y-1/2 text-muted"
                         />
 
                         <input
@@ -68,7 +68,7 @@ const AllClassesClient = ({ allClasses = [], totalPages, currentPage }) => {
                             value={search}
                             onChange={(e) => setSearch(e.target.value)}
                             placeholder="Search by class or trainer name..."
-                            className="h-12 w-full rounded-xl border border-gray-200 bg-gray-50 pl-11 pr-4 text-sm text-gray-900 outline-none transition focus:border-purple-500 focus:bg-white focus:ring-2 focus:ring-purple-100"
+                            className="h-12 w-full rounded-xl border border-default bg-surface px-4 pl-11 text-sm text-foreground outline-none transition placeholder:text-muted focus:border-purple-500 focus:bg-background focus:ring-2 focus:ring-purple-100 dark:focus:ring-purple-900"
                         />
                     </div>
 
@@ -81,7 +81,7 @@ const AllClassesClient = ({ allClasses = [], totalPages, currentPage }) => {
                         <select
                             value={category}
                             onChange={(e) => setCategory(e.target.value)}
-                            className="h-12 w-full appearance-none rounded-xl border border-gray-200 bg-gray-50 pl-10 pr-4 text-sm text-gray-700 outline-none transition focus:border-purple-500 focus:ring-2 focus:ring-purple-100"
+                            className="h-12 w-full appearance-none rounded-xl border border-default bg-default pl-10 pr-4 text-sm text-foreground outline-none transition focus:border-purple-500 focus:ring-2 focus:ring-purple-600"
                         >
                             <option value="all">All Categories</option>
 
@@ -96,13 +96,13 @@ const AllClassesClient = ({ allClasses = [], totalPages, currentPage }) => {
 
                 {/* Results Count */}
                 <div className="mb-5 flex flex-wrap items-center justify-between gap-3">
-                    <p className="text-sm text-gray-500">
+                    <p className="text-sm text-gray-400">
                         Showing{" "}
-                        <span className="font-bold text-gray-900">
+                        <span className="font-bold text-foreground">
                             {filteredClasses.length}
                         </span>{" "}
                         of{" "}
-                        <span className="font-bold text-gray-900">
+                        <span className="font-bold text-foreground">
                             {allClasses.length}
                         </span>{" "}
                         classes
@@ -128,7 +128,7 @@ const AllClassesClient = ({ allClasses = [], totalPages, currentPage }) => {
                             <Card
                                 key={cs._id}
                                 shadow="none"
-                                className="group overflow-hidden rounded-2xl border border-purple-100 bg-white transition-all duration-300 hover:-translate-y-2 hover:border-purple-300 hover:shadow-xl hover:shadow-purple-900/10"
+                                className="group overflow-hidden rounded-2xl border border-purple-100 dark:border-purple-900/50 bg-background transition-all duration-300 hover:-translate-y-2 hover:border-purple-300 dark:hover:border-purple-700 hover:shadow-xl hover:shadow-purple-900/10"
                             >
                                 {/* Image */}
                                 <div className="relative h-60 w-full overflow-hidden bg-purple-100">
@@ -142,7 +142,7 @@ const AllClassesClient = ({ allClasses = [], totalPages, currentPage }) => {
 
                                     <div className="absolute inset-0 bg-linear-to-t from-gray-950/70 via-transparent to-gray-950/10" />
 
-                                    <div className="absolute bottom-4 left-4 right-4">   
+                                    <div className="absolute bottom-4 left-4 right-4">
                                         <h3 className="mt-1 text-2xl font-extrabold text-white">
                                             {cs.name}
                                         </h3>
@@ -159,7 +159,7 @@ const AllClassesClient = ({ allClasses = [], totalPages, currentPage }) => {
 
                                     <div className="flex items-center justify-between gap-3">
                                         <div className="flex items-center gap-2.5">
-                                            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-purple-100 text-purple-700">
+                                            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-purple-100 text-purple-700 dark:bg-default dark:text-purple-500">
                                                 <Clock size={19} />
                                             </div>
 
@@ -168,7 +168,7 @@ const AllClassesClient = ({ allClasses = [], totalPages, currentPage }) => {
                                                     Training rate
                                                 </p>
 
-                                                <p className="text-lg font-extrabold text-gray-950">
+                                                <p className="text-lg font-extrabold text-gray-950 dark:text-gray-500">
                                                     ${cs.price}
                                                     <span className="ml-1 text-xs font-medium text-gray-500">
                                                         / Month
@@ -177,7 +177,7 @@ const AllClassesClient = ({ allClasses = [], totalPages, currentPage }) => {
                                             </div>
                                         </div>
 
-                                        <span className="rounded-lg bg-purple-50 px-3 py-2 text-xs font-bold text-purple-700">
+                                        <span className="rounded-lg bg-purple-50 dark:bg-default px-3 py-2 text-xs font-bold text-purple-700 dark:text-purple-500">
                                             {cs.category || "PRO TRAINING"}
                                         </span>
                                     </div>
@@ -204,13 +204,13 @@ const AllClassesClient = ({ allClasses = [], totalPages, currentPage }) => {
                         ))}
                     </div>
                 ) : (
-                    <div className="rounded-2xl border border-dashed border-purple-200 bg-white px-5 py-16 text-center">
+                    <div className="rounded-2xl border border-dashed border-purple-200 bg-background px-5 py-16 text-center">
                         <Search
                             size={36}
                             className="mx-auto text-purple-300"
                         />
 
-                        <h3 className="mt-4 text-xl font-bold text-gray-900">
+                        <h3 className="mt-4 text-xl font-bold text-foreground">
                             No classes found
                         </h3>
 
