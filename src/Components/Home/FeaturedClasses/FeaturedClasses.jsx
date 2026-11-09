@@ -8,7 +8,7 @@ import Link from "next/link";
 const FeaturedClasses = async () => {
     const classes = await getFeaturedClasses()
     return (
-        <section className="relative overflow-hidden bg-linear-to-b from-background via-purple-50/50 to-background px-5 py-20 md:px-10 lg:px-16 dark:via-purple-950/20">
+        <section className="relative overflow-hidden bg-linear-to-b from-background via-purple-50/50 to-background px-5 py-20 md:px-10 lg:px-16 dark:via-purple-950/20 ">
 
             {/* Background Decoration */}
             <div className="pointer-events-none absolute -right-32 top-20 h-72 w-72 rounded-full bg-purple-200/30 blur-3xl" />
@@ -93,7 +93,7 @@ const FeaturedClasses = async () => {
                             {/* Card Content */}
                             <div className="flex flex-1 flex-col p-5 sm:p-6">
 
-                                <p className="line-clamp-2 min-h-12 text-sm leading-6 text-gray-600">
+                                <p className="line-clamp-2 min-h-12 text-sm leading-6 text-gray-600 dark:text-gray-400">
                                     {cs.description}
                                 </p>
 
@@ -102,7 +102,7 @@ const FeaturedClasses = async () => {
                                 <div className="flex items-center justify-between gap-3">
 
                                     <div className="flex items-center gap-2.5">
-                                        <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-purple-100 text-purple-700">
+                                        <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-purple-100 text-purple-700 dark:bg-default dark:text-purple-200 ">
                                             <Clock size={19} />
                                         </div>
 
@@ -111,7 +111,7 @@ const FeaturedClasses = async () => {
                                                 Training rate
                                             </p>
 
-                                            <p className="text-lg font-extrabold text-gray-950">
+                                            <p className="text-lg font-extrabold text-gray-950 dark:text-gray-400">
                                                 ${cs.price}
                                                 <span className="ml-1 text-xs font-medium text-gray-500">
                                                     / hour
@@ -120,8 +120,8 @@ const FeaturedClasses = async () => {
                                         </div>
                                     </div>
 
-                                    <span className="rounded-lg bg-purple-50 px-3 py-2 text-xs font-bold text-purple-700">
-                                        PRO TRAINING
+                                    <span className="rounded-lg bg-purple-50 dark:bg-default px-3 py-2 text-xs font-bold text-purple-700">
+                                        {cs.category || "pro training"}
                                     </span>
 
                                 </div>
@@ -152,21 +152,21 @@ const FeaturedClasses = async () => {
                 </div>
 
                 {/* Bottom CTA */}
-                <div className="mt-12 flex flex-col items-center justify-between gap-5 rounded-2xl border border-purple-100 bg-background p-6 shadow-sm sm:flex-row sm:p-8">
+                <div className="mt-12 flex flex-col items-center justify-between gap-5 rounded-2xl border dark:border-purple-800 border-purple-100 bg-background p-6 shadow-sm sm:flex-row sm:p-8">
 
                     <div>
-                        <h3 className="text-xl font-extrabold text-gray-950">
+                        <h3 className="text-xl font-extrabold text-gray-950 dark:text-gray-300 sm:text-2xl">
                             Ready to level up?
                         </h3>
 
-                        <p className="mt-2 text-sm leading-6 text-gray-600">
+                        <p className="mt-2 text-sm leading-6 text-gray-600 dark:text-gray-400">
                             Find the right class and start your fitness journey today.
                         </p>
                     </div>
 
                     <Link href="/all-classes" className="shrink-0">
                         <Button
-                            className="h-12 rounded-xl bg-gray-950 px-6 font-bold text-white transition-colors hover:bg-purple-700"
+                            className="h-12 rounded-xl bg-gray-950 dark:bg-default px-6 font-bold text-white transition-colors hover:bg-purple-700"
                             endContent={<ArrowRight size={18} />}
                         >
                             Find Your Class
