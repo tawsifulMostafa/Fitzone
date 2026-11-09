@@ -39,7 +39,7 @@ const NavDetail = ({ user }) => {
             </Link>
             {/* Desktop Navigation */}
 
-            <div className="hidden items-center gap-7 font-medium text-gray-600 lg:flex">
+            <div className="hidden items-center gap-7 font-medium text-gray-600  dark:text-gray-400 lg:flex">
                 <NavLink className="transition hover:text-purple-600" href="/" >
                     Home </NavLink>
                 <NavLink className="transition hover:text-purple-600" href="/all-classes" >
@@ -55,6 +55,7 @@ const NavDetail = ({ user }) => {
             {/* Desktop User */}
             <div className="hidden lg:block">
                 {!user ? (<div className="flex items-center gap-3">
+                    <ThemeToggle />
                     <Link href="/signIn" className="rounded-lg px-4 py-2 font-medium text-purple-600 transition hover:bg-purple-50" >
                         Sign In
                     </Link>
@@ -94,9 +95,9 @@ const NavDetail = ({ user }) => {
         {/* Mobile Menu */}
         {/* rounded border for all navlinks */}
         {
-            isOpen && (<div className="border-t border-purple-100 bg-purple-50 px-5 py-5 lg:hidden">
+            isOpen && (<div className="border-t border-purple-100 bg-default px-5 py-5 lg:hidden">
                 <div >
-                    <div className="grid grid-cols-2 gap-4 font-medium text-gray-700">
+                    <div className="grid grid-cols-2 gap-4 font-medium text-gray-700 dark:text-gray-400">
                         <NavLink href="/" onClick={() => setIsOpen(false)} className="transition hover:text-purple-600 border border-gray-600 border-r" > Home </NavLink>
                         <NavLink href="/all-classes" onClick={() => setIsOpen(false)} className="transition hover:text-purple-600" > All Classes </NavLink>
                         <NavLink href="/community-forum" onClick={() => setIsOpen(false)} className="transition hover:text-purple-600" > Community Forum </NavLink>
@@ -109,8 +110,10 @@ const NavDetail = ({ user }) => {
                     <div className="mt-2 border-t border-purple-200 pt-4">
                         {
                             !user ? (<div className="flex gap-3">
+
                                 <Link href="/signIn" onClick={() => setIsOpen(false)} className="button rounded-lg border border-purple-600 px-4 py-2 font-medium text-purple-600" > Sign In </Link>
                                 <Link href="/signUp" onClick={() => setIsOpen(false)} className="button rounded-lg bg-purple-600 px-5 py-2 text-white" > Sign Up </Link>
+                                <ThemeToggle />
                             </div>) :
                                 (<div className="flex items-center justify-between">
                                     <div className="flex items-center gap-3">

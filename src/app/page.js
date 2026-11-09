@@ -1,15 +1,19 @@
 import Banner from "@/Components/Home/Banner/Banner";
 import FeaturedClasses from "@/Components/Home/FeaturedClasses/FeaturedClasses";
+import FitnessWellness from "@/Components/Home/FitnessWellness/FitnessWellness";
 import LatestForum from "@/Components/Home/LatesForum/LatestForum";
+import WhyFitZone from "@/Components/Home/WhyFitZone/WhyFitZone";
 
 
 
 export default function Home() {
   return (
-    <div className= "dark:bg-gray-950 bg-gray-100">
+    <div>
       <Banner />
       <FeaturedClasses />
       <LatestForum />
+      <WhyFitZone />
+      <FitnessWellness />
     </div>
   );
 }
