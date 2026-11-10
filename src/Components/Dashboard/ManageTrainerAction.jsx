@@ -26,7 +26,7 @@ const ManageTrainerAction = ({ trainer }) => {
 
         } catch (error) {
             toast.error("Something went wrong")
-            console.log(error)
+            console.error(error)
         } finally {
             setLoading(false)
         }

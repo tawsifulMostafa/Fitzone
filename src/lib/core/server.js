@@ -1,15 +1,25 @@
 "use server"
-import { getUserToken } from "./session";
+import { headers } from "next/headers"
+import { auth } from "../auth"
+
+// import { getJWT } from "../api/auth";
 
 
 const baseUrl = process.env.NEXT_PUBLIC_API_URL;
 
+// export const authHeader = async () => {
+//     const token = await getJWT()
+//     const header = token ? {
+//         authorization: `bearer ${token}`
+//     } : {};
+//     return header;
+// }
+
 export const authHeader = async () => {
-    const token = await getUserToken()
-    const header = token ? {
-        authorization: `bearer ${token}`
-    } : {};
-    return header;
+    const { token } = await auth.api.getToken({
+        headers: await headers()
+    })
+    return token;
 }
 
 export const serverMutation = async (path, data, method = "POST") => {
@@ -18,7 +28,7 @@ export const serverMutation = async (path, data, method = "POST") => {
         method,
         headers: {
             "Content-Type": "Application/json",
-            ...await authHeader()
+            Authorization: `Bearer ${await authHeader()}`
         },
         body: JSON.stringify(data)
     })
@@ -34,11 +44,10 @@ export const serverFetch = async (path) => {
 
 export const serverProtectedFetch = async (path) => {
     const res = await fetch(`${baseUrl}${path}`, {
-        headers: await authHeader()
+        headers: {
+            Authorization: `Bearer ${await authHeader()}`
+        }
     });
-
-    console.log(res.status, res.url);
-    console.log(res.headers.get("content-type"));
     return res.json()
 }
 

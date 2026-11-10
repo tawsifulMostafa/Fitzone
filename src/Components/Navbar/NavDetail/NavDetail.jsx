@@ -20,7 +20,7 @@ const NavDetail = ({ user }) => {
             router.refresh()
 
         } catch (err) {
-            console.log(err)
+            console.error(err)
         } finally {
             setLoading(false)
         }

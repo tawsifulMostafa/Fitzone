@@ -23,7 +23,7 @@ const AdminOverView = async () => {
             users(),
             getUser(),
         ]);
-    console.log(currentUser);
+  
 
     const classes = Array.isArray(classesData) ? classesData : [];
     const payments = Array.isArray(paymentsData) ? paymentsData : [];

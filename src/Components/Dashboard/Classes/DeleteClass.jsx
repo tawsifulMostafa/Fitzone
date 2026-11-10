@@ -25,7 +25,7 @@ const DeleteClass = ({ cls }) => {
 
             }
         } catch (error) {
-            console.log(error)
+            console.error(error)
         } finally {
             router.refresh()
         }

@@ -67,8 +67,7 @@ const ClassDetailsPage = async ({ params }) => {
         trainerName,
         bookingCount,
         status,
-    } = classDetail;
-    console.log(sessionDays);
+    } = classDetail; 
     return (
         <main className="min-h-screen bg-gray-50 dark:bg-gray-900">
             {/* Hero Section */}

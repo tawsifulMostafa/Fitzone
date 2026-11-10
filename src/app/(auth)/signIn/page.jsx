@@ -5,13 +5,13 @@ const SignInPage = async ({ searchParams }) => {
     const { callbackURL } = await searchParams;
     return (
 
-        <div className="flex min-h-screen items-center justify-center bg-purple-50 px-4">
+        <div className="flex min-h-screen items-center justify-center bg-gray-200 dark:bg-background-tertiary px-4">
 
-            <div className="w-full max-w-md rounded-2xl border border-purple-100 bg-background p-8 shadow-xl shadow-purple-100">
+            <div className="w-full max-w-md rounded-2xl border border-purple-100 bg-background p-8 shadow-xl shadow-purple-100 dark:border-gray-800 dark:bg-background-dark dark:shadow-purple-900">
 
                 <div className="mb-8 text-center">
 
-                    <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-purple-600 text-white shadow-lg shadow-purple-200">
+                    <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-purple-600  text-default shadow-lg dark:shadow-purple-800">
 
                         <Check size={24} />
 

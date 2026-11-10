@@ -35,7 +35,7 @@ const PublicCommentAction = ({ user, comment }) => {
                 router.refresh();
             }
         } catch (error) {
-            console.log(error);
+            console.error(error);
             toast.error("Failed to delete comment");
         } finally {
             setDeleting(false);
@@ -63,7 +63,7 @@ const PublicCommentAction = ({ user, comment }) => {
                 router.refresh();
             }
         } catch (error) {
-            console.log(error);
+            console.error(error);
             toast.error("Something went wrong");
         } finally {
             setLoading(false);
@@ -98,7 +98,7 @@ const PublicCommentAction = ({ user, comment }) => {
                 router.refresh();
             }
         } catch (error) {
-            console.log(error);
+            console.error(error);
             toast.error("Failed to post reply");
         } finally {
             setReplyLoading(false);
