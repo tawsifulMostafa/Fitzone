@@ -10,7 +10,7 @@ import {
     TrendingUp,
 } from "lucide-react";
 
-import { getAllClasses } from "@/lib/api/classes";
+import { classLength, getAllClasses } from "@/lib/api/classes";
 import { getPaymentHistory } from "@/lib/api/payment";
 import { users } from "@/lib/api/users";
 import { getUser } from "@/lib/core/session";
@@ -23,7 +23,7 @@ const AdminOverView = async () => {
             users(),
             getUser(),
         ]);
-  
+    console.log(currentUser);
 
     const classes = Array.isArray(classesData) ? classesData : [];
     const payments = Array.isArray(paymentsData) ? paymentsData : [];
@@ -34,7 +34,7 @@ const AdminOverView = async () => {
     );
 
     const totalUsers = allUsers.length;
-    const totalClasses = classes.length;
+    const totalClasses = classLength()
     const totalBookings = paidPayments.length;
 
     const activeUsers = allUsers.filter(

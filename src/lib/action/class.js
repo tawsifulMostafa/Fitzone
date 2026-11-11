@@ -1,8 +1,7 @@
 import { serverMutation } from "../core/server"
 
 export const postClass = async (classData) => {
-    const data = await serverMutation("/api/create/class", { classData })
-    return data;
+    return await serverMutation("/api/create/class", { classData })
 }
 export const editClass = async (id, classData) => {
     const updatedData = await serverMutation(

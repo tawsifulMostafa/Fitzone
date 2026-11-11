@@ -106,6 +106,8 @@ const TrainerCreateClasses = () => {
             classData.image = imageUrl;
 
             const data = await postClass(classData);
+            console.log(data, "data");
+            console.log("classData", classData);
 
             if (!data?.insertedId) {
                 throw new Error("Failed to create class");
@@ -387,15 +389,15 @@ const TrainerCreateClasses = () => {
                                                     <label
                                                         key={day}
                                                         className={`flex cursor-pointer items-center justify-between rounded-xl border px-3 py-3 text-sm font-medium transition-all ${isSelected
-                                                                ? "border-purple-500 bg-purple-50 text-purple-700 shadow-sm"
-                                                                : "border-default-200 bg-background text-default-600 hover:border-purple-300 hover:bg-default-50"
+                                                            ? "border-purple-500 bg-purple-50 text-purple-700 shadow-sm"
+                                                            : "border-default-200 bg-background text-default-600 hover:border-purple-300 hover:bg-default-50"
                                                             }`}
                                                     >
                                                         <span>{day}</span>
 
                                                         <span className={`flex size-5 items-center justify-center rounded-md border transition ${isSelected
-                                                                ? "border-purple-600 bg-purple-600 text-white"
-                                                                : "border-default-300 bg-background"
+                                                            ? "border-purple-600 bg-purple-600 text-white"
+                                                            : "border-default-300 bg-background"
                                                             }`}>
                                                             {isSelected && <Check size={13} />}
                                                         </span>

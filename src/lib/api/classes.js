@@ -21,3 +21,6 @@ export const pendingClasses = async () => {
      const classes = await serverProtectedFetch("/api/pending/classes")
      return classes
 }
+export const classLength = async () => {
+     return await serverProtectedFetch("/api/totalClass")
+}
