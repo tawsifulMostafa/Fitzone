@@ -1,6 +1,6 @@
 "use server"
 import { headers } from "next/headers"
-import { auth } from "../auth"
+import { auth } from "../auth";
 
 // import { getJWT } from "../api/auth";
 
