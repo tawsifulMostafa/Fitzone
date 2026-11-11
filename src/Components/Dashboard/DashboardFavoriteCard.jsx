@@ -8,35 +8,33 @@ import { useState } from "react";
 import { toast } from "sonner";
 
 const FavoriteCard = ({ favorite }) => {
-    const [removeLoading , setRemoveLoading] = useState(false)
+    const [removeLoading, setRemoveLoading] = useState(false)
     const router = useRouter()
-    const cls = favorite.classData;
-
-    if (!cls) return null;
-
-    const handleRemoveFavorite = async() => {
-       try{
-        setRemoveLoading(true)
-        const remove = await deleteFavorite(favorite.classId)
-        
-
-       }finally{
-        setRemoveLoading(false)
-        toast.success("favorites removed successfully" , {
-            style: {
-                color: "red"
+    const handleRemoveFavorite = async () => {
+        try {
+            setRemoveLoading(true)
+            const remove = await deleteFavorite(favorite.classId)
+            if (remove.deleteCount === 1) {
+                toast.success("favorites removed successfully", {
+                    style: {
+                        color: "red"
+                    }
+                },
+                    router.refresh())
             }
-        })
-       }
-       router.refresh()
-    };
+        } catch (error) {
+            console.log(error);
+        } finally {
+            setRemoveLoading(false)
+        }
 
+    };
     return (
         <div className="group flex overflow-hidden rounded-xl border border-default bg-background transition hover:shadow-md">
             <div className="relative h-36 w-32 shrink-0 sm:w-40">
                 <Image
-                    src={cls.image}
-                    alt={cls.name}
+                    src={favorite.image}
+                    alt={favorite.name}
                     fill
                     sizes="160px"
                     className="object-cover transition duration-300 group-hover:scale-105"
@@ -47,7 +45,7 @@ const FavoriteCard = ({ favorite }) => {
                 <div>
                     <div className="mb-1 flex items-center justify-between gap-2">
                         <span className="rounded-full bg-purple-50 px-2 py-1 text-xs font-medium text-purple-700">
-                            {cls.category}
+                            {favorite.category}
                         </span>
 
                         <Heart
@@ -57,21 +55,21 @@ const FavoriteCard = ({ favorite }) => {
                     </div>
 
                     <h2 className="truncate font-bold text-foreground">
-                        {cls.className}
+                        {favorite.name}
                     </h2>
 
                     <p className="mt-1 truncate text-sm text-gray-500">
-                        By {cls.trainerName}
+                        By {favorite.trainerName}
                     </p>
 
                     <div className="mt-2 flex flex-wrap items-center gap-3 text-sm text-gray-500">
                         <span className="flex items-center gap-1">
                             <Clock3 size={14} />
-                            {cls.duration} min
+                            {favorite.duration} min
                         </span>
 
                         <span className="font-semibold text-foreground">
-                            ৳{cls.price}
+                            ৳{favorite.price}
                         </span>
                     </div>
                 </div>
@@ -82,11 +80,11 @@ const FavoriteCard = ({ favorite }) => {
                         className="flex items-center gap-1.5 rounded-lg border border-red-200 px-3 py-2 text-xs font-semibold text-red-600 transition hover:bg-red-50"
                     >
                         <Trash2 size={14} />
-                        Remove
+                        {removeLoading ? "Removing..." : "Remove"}
                     </button>
 
                     <Link
-                        href={`/all-classes/${cls._id}`}
+                        href={`/all-classes/${favorite.classId}`}
                         className="flex items-center gap-1.5 rounded-lg bg-purple-600 px-3 py-2 text-xs font-semibold text-white transition hover:bg-purple-700"
                     >
                         View Details

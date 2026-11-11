@@ -5,11 +5,12 @@ import { favoriteCollection } from '@/lib/api/favorite';
 
 const MyFavoritePage = async () => {
     const favorites = await favoriteCollection();
+    console.log(favorites);
     return (
         <div>
             {
                 favorites.map((favorite) => (
-                    <div key={favorite._id}>
+                    <div key={favorite.classId}>
                         <DashboardFavoriteCard favorite={favorite} />
                     </div>
                 ))

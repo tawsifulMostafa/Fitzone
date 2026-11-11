@@ -20,9 +20,8 @@ import { redirect } from "next/navigation";
 
 const ClassDetailsPage = async ({ params }) => {
     const { classId } = await params;
-
+    console.log(classId);
     const user = await getUser();
-
     if (!user) {
         redirect(`/signIn?callbackUrl=/all-classes/${classId}`);
     }
@@ -31,6 +30,7 @@ const ClassDetailsPage = async ({ params }) => {
         getFavorite(classId),
         getUserPaymentStatus(classId),
     ]);
+    console.log(isFavorite);
     if (!classDetail) {
         return (
             <div className="flex min-h-[60vh] flex-col items-center justify-center px-5">
@@ -67,7 +67,7 @@ const ClassDetailsPage = async ({ params }) => {
         trainerName,
         bookingCount,
         status,
-    } = classDetail; 
+    } = classDetail;
     return (
         <main className="min-h-screen bg-gray-50 dark:bg-gray-900">
             {/* Hero Section */}
