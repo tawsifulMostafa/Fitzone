@@ -9,13 +9,16 @@ const AdminClassManagement = async () => {
 
     return (
         <div className="space-y-4">
-            <h2 className="text-xl font-semibold text-gray-800">
-                Pending Classes
-            </h2>
+            <div className='flex justify-between'>
+                <h2 className="text-xl font-semibold text-gray-800 dark:text-gray-300">
+                    All Classes
+                </h2>
+                <p>Total <span className='text-md text-gray-950 dark:text-gray-300'>{classes.length}</span> classes Found</p>
+            </div>
 
             {classes?.length === 0 ? (
-                <p className="text-gray-500 text-center py-10">
-                    No pending classes found.
+                <p className="text-gray-600 dark:text-gray-300 text-center py-10">
+                    No classes found.
                 </p>
             ) : (
                 classes?.map((cls) => (
@@ -38,12 +41,12 @@ const AdminClassManagement = async () => {
                                     {cls.category}
                                 </p>
 
-                                <h3 className="text-lg font-semibold text-gray-800">
-                                    {cls.trainerName}
+                                <h3 className="text-sm font-semibold text-gray-800 dark:text-gray-400">
+                                    Trainer Name : {cls.trainerName}
                                 </h3>
 
-                                <p className="text-sm text-gray-500 mt-2">
-                                    Class Name: {cls.name}
+                                <p className="text-lg text-bold text-gray-500 dark:text-gray-400 mt-2">
+                                    {cls.name}
                                 </p>
 
                                 <p className="text-lg font-bold text-gray-800 mt-2">

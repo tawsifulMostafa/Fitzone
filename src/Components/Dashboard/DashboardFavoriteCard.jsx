@@ -14,20 +14,20 @@ const FavoriteCard = ({ favorite }) => {
         try {
             setRemoveLoading(true)
             const remove = await deleteFavorite(favorite.classId)
-            if (remove.deleteCount === 1) {
+            if (remove.deletedCount === 1) {
                 toast.success("favorites removed successfully", {
                     style: {
                         color: "red"
                     }
                 },
-                    router.refresh())
+                ),
+                    router.refresh()
             }
         } catch (error) {
             console.log(error);
         } finally {
             setRemoveLoading(false)
-        }
-
+        } 
     };
     return (
         <div className="group flex overflow-hidden rounded-xl border border-default bg-background transition hover:shadow-md">

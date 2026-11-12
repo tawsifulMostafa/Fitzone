@@ -159,13 +159,13 @@ const PublicCommentAction = ({ user, comment }) => {
                         onSubmit={handleReply}
                         className="mt-3 overflow-hidden"
                     >
-                        <div className="rounded-xl border border-purple-100 bg-purple-50/50 p-3">
+                        <div className="rounded-xl border border-purple-200 bg-purple-50 p-3 dark:border-purple-500/30 dark:bg-purple-500/10">
                             <textarea
                                 value={replyText}
                                 onChange={(e) => setReplyText(e.target.value)}
                                 placeholder="Write your reply..."
                                 rows={3}
-                                className="w-full resize-none rounded-lg border border-default bg-background p-3 text-sm text-gray-700 outline-none transition focus:border-purple-400 focus:ring-2 focus:ring-purple-100"
+                                className="w-full resize-none rounded-lg border border-purple-200 bg-white p-3 text-sm text-gray-800 placeholder:text-gray-400 outline-none transition focus:border-purple-400 focus:ring-2 focus:ring-purple-200 dark:border-purple-500/30 dark:bg-zinc-900 dark:text-gray-100 dark:placeholder:text-gray-500 dark:focus:border-purple-400 dark:focus:ring-purple-500/30"
                             />
 
                             <div className="mt-2 flex items-center justify-end gap-2">
@@ -208,13 +208,13 @@ const PublicCommentAction = ({ user, comment }) => {
                         onSubmit={handleEdit}
                         className="mt-3 overflow-hidden"
                     >
-                        <div className="rounded-xl border border-purple-100 bg-purple-50/50 p-3">
+                        <div className="rounded-xl border border-purple-200 bg-purple-50 p-3 dark:border-purple-500/30 dark:bg-purple-500/10">
                             <textarea
                                 value={updatedComment}
                                 onChange={(e) => setUpdatedComment(e.target.value)}
                                 placeholder="Edit your comment..."
                                 rows={3}
-                                className="w-full resize-none rounded-lg border border-default bg-background p-3 text-sm text-gray-700 outline-none transition focus:border-purple-400 focus:ring-2 focus:ring-purple-100"
+                                className="w-full resize-none rounded-lg border border-purple-200 bg-white p-3 text-sm text-gray-800 placeholder:text-gray-400 outline-none transition focus:border-purple-400 focus:ring-2 focus:ring-purple-200 dark:border-purple-500/30 dark:bg-zinc-900 dark:text-gray-100 dark:placeholder:text-gray-500 dark:focus:border-purple-400 dark:focus:ring-purple-500/30"
                             />
 
                             <div className="mt-2 flex items-center justify-end gap-2">

@@ -95,7 +95,7 @@ const TrainerOverview = async () => {
       color: "bg-green-100 text-green-600"
     },
     {
-      title: "Pending Classes",
+      title: "pending Classes",
       value: pendingClasses.length,
       description: "Waiting for admin approval",
       icon: Clock3,
