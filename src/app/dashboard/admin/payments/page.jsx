@@ -7,9 +7,9 @@ const PaymentPageByAdmin = async () => {
     const payments = await getPaymentHistory();
 
     return (
-        <div className="space-y-6">
+        <div className="space-y-6 lg:p-4">
             <div>
-                <h1 className="text-2xl font-bold text-foreground dark:text-background">
+                <h1 className="text-2xl font-bold text-default-foreground  ">
                     Payment History
                 </h1>
                 <p className="mt-1 text-sm text-gray-500">
@@ -37,7 +37,7 @@ const PaymentPageByAdmin = async () => {
 
                                         <Table.Cell>
                                             <span className="font-semibold text-purple-600">
-                                                ৳{payment.amount?.toLocaleString()}
+                                                ${payment.amount?.toLocaleString()}
                                             </span>
                                         </Table.Cell>
 

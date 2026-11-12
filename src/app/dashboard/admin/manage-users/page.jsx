@@ -70,10 +70,10 @@ const ManageUsersPage = async () => {
                             <div className="md:col-span-2">
                                 <span className={`inline-block rounded-full px-3 py-1 text-xs font-semibold capitalize
                                     ${user.role === "admin"
-                                        ? "bg-purple-100 text-purple-700"
+                                        ? "bg-background-secondary text-purple-700"
                                         : user.role === "trainer"
-                                            ? "bg-blue-100 text-blue-700"
-                                            : "bg-gray-100 text-yellow-700"
+                                            ? "bg-background-secondary text-blue-700"
+                                            : "bg-background-secondary text-yellow-700"
                                     }`}>
                                     {user.role}
                                 </span>
@@ -82,8 +82,8 @@ const ManageUsersPage = async () => {
                             <div className="md:col-span-1">
                                 <span className={`inline-block rounded-full px-2.5 py-1 text-xs font-medium capitalize
                                     ${user.status === "blocked"
-                                        ? "bg-red-100 text-red-600"
-                                        : "bg-green-100 text-green-700"
+                                        ? "bg-background-secondary text-red-600"
+                                        : "bg-background-secondary text-green-700"
                                     }`}>
                                     {user.status}
                                 </span>

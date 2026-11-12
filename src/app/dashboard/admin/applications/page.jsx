@@ -48,7 +48,7 @@ const ApplicationsReview = async () => {
                         {applications.map((application) => (
                             <div
                                 key={application._id}
-                                className="p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4 hover:bg-gray-50 transition"
+                                className="p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4 transition"
                             >
                                 <div className="flex items-center gap-4">
                                     <Image
@@ -60,7 +60,7 @@ const ApplicationsReview = async () => {
                                     />
 
                                     <div>
-                                        <h3 className="font-semibold text-foreground">
+                                        <h3 className="capitalize font-semibold text-foreground">
                                             {application.applicantName}
                                         </h3>
                                         <p className="text-sm text-gray-500 mt-0.5">

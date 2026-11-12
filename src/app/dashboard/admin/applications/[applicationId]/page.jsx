@@ -87,7 +87,7 @@ const ApplicationsDetails = async ({ params }) => {
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div className="bg-gray-50 rounded-lg p-4">
+                    <div className="bg-gray-50 dark:bg-default rounded-lg p-4">
                         <div className="flex items-center gap-2 text-gray-500 text-sm">
                             <BriefcaseBusiness size={17} />
                             Experience
@@ -97,7 +97,7 @@ const ApplicationsDetails = async ({ params }) => {
                         </p>
                     </div>
 
-                    <div className="bg-gray-50 rounded-lg p-4">
+                    <div className="bg-gray-50 dark:bg-default rounded-lg p-4">
                         <div className="flex items-center gap-2 text-gray-500 text-sm">
                             <Dumbbell size={17} />
                             Specialty
@@ -107,7 +107,7 @@ const ApplicationsDetails = async ({ params }) => {
                         </p>
                     </div>
 
-                    <div className="bg-gray-50 rounded-lg p-4">
+                    <div className="bg-gray-50 dark:bg-default rounded-lg p-4">
                         <div className="flex items-center gap-2 text-gray-500 text-sm">
                             <CalendarDays size={17} />
                             Applied Date
@@ -124,7 +124,7 @@ const ApplicationsDetails = async ({ params }) => {
                         </p>
                     </div>
 
-                    <div className="bg-gray-50 rounded-lg p-4">
+                    <div className="bg-gray-50 dark:bg-default rounded-lg p-4">
                         <div className="flex items-center gap-2 text-gray-500 text-sm">
                             <Clock size={17} />
                             Applied Time
@@ -143,11 +143,11 @@ const ApplicationsDetails = async ({ params }) => {
 
                 {/* Description */}
                 <div>
-                    <h3 className="flex items-center gap-2 font-semibold text-gray-800 mb-3">
+                    <h3 className="flex items-center gap-2 font-semibold dark:text-gray-300 text-gray-800 mb-3">
                         <FileText size={17} />
                         About Applicant
                     </h3>
-                    <p className="text-sm text-gray-600 leading-7 bg-gray-50 rounded-lg p-4">
+                    <p className="text-sm text-gray-600 dark:text-gray-300 leading-7 bg-gray-50 dark:bg-default rounded-lg p-4">
                         {application.description}
                     </p>
                 </div>
