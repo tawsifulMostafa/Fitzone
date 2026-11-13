@@ -1,7 +1,11 @@
 import { Check } from "lucide-react";
 import SignInForm from "./SignInForm";
+export const metadata = {
+  title: "Sign In"
+}
 
 const SignInPage = async ({ searchParams }) => {
+
     const { callbackURL } = await searchParams;
     return (
 

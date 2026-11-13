@@ -3,6 +3,12 @@ import "./globals.css";
 import { Toaster } from "sonner";
 import Footer from "@/Components/Footer/Footer";
 import Providers from "./provider";
+export const metadata = {
+  title: {
+    default: "FitZone",
+    template: "FitZone - %s"
+  }
+}
 
 export default function RootLayout({ children }) {
   return (

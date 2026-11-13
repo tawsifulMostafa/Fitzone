@@ -1,7 +1,9 @@
 import Link from "next/link";
 import { CheckCircle2, ArrowRight, Home, LayoutDashboard } from "lucide-react";
 import { getUser } from "@/lib/core/session";
-
+export const metadata = {
+    title: "Success"
+}
 const SuccessPage = async () => {
     const user = await getUser()
     const role = user?.role

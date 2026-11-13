@@ -1,5 +1,9 @@
 import AllClassesClient from "@/Components/Dashboard/Classes/AllClassesClient";
 import { getAllClasses } from "@/lib/api/classes";
+export const metadata = {
+
+    title: "All Class"
+}
 
 
 const AllClassesPage = async ({ searchParams }) => {

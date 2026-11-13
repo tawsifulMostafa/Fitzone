@@ -1,13 +1,14 @@
-'use client'
 import Link from "next/link";
 import { ShieldAlert, ArrowLeft } from "lucide-react";
 import { Button } from "@heroui/react";
-
+export const metadata = {
+    title: "Unauthorized"
+}
 const UnAuthorizedPage = () => {
     return (
         <div className="flex min-h-[80vh] items-center justify-center px-4">
             <div className="w-full max-w-lg text-center">
-                <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-2xl bg-purple-100 text-purple-600">
+                <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-2xl bg-purple-100 dark:bg-background-secondary text-purple-600">
                     <ShieldAlert size={40} />
                 </div>
 
@@ -26,27 +27,22 @@ const UnAuthorizedPage = () => {
 
                 <div className="mt-8 flex flex-wrap justify-center gap-3">
                     <Link href={"/"}>
-                    <Button
-                         
-                        href="/"
-                        variant="bordered"
-                        startContent={<ArrowLeft size={17} />}
-                    >
-                        Back to Home
-                    </Button>
+                        <Button
+                            variant="bordered"
+                            startContent={<ArrowLeft size={17} />}
+                        >
+                            Back to Home
+                        </Button>
                     </Link>
 
-                   <Link  href="/all-classes">
-                    <Button
-                   
-                       
-                        className="bg-purple-600 font-semibold text-foreground"
-                    >
-                        explore classes
-                    </Button>
-                   </Link>
+                    <Link href="/all-classes">
+                        <Button
+                            className="bg-purple-600 font-semibold text-foreground"
+                        >
+                            explore classes
+                        </Button>
+                    </Link>
                 </div>
-
                 <p className="mt-10 text-xs text-gray-400">
                     FitZone · Your fitness, your journey.
                 </p>
@@ -55,4 +51,4 @@ const UnAuthorizedPage = () => {
     );
 };
 
-export default UnAuthorizedPage;
+export default UnAuthorizedPage; 

@@ -20,8 +20,7 @@ const MyPostAction = ({ forumId }) => {
                 router.refresh()
             } else {
                 toast.error("Failed to delete post")
-            }
-
+            } 
         } catch (error) {
             toast.error(error.message || "Something went wrong")
         } finally {

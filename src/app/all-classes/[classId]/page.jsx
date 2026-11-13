@@ -17,6 +17,9 @@ import { getUserPaymentStatus } from "@/lib/api/payment";
 import { getFavorite } from "@/lib/api/favorite";
 import { getUser } from "@/lib/core/session";
 import { redirect } from "next/navigation";
+export const metadata = {
+    title: "Class Details"
+}
 
 const ClassDetailsPage = async ({ params }) => {
     const { classId } = await params;
@@ -29,7 +32,8 @@ const ClassDetailsPage = async ({ params }) => {
         getFavorite(classId),
         getUserPaymentStatus(classId),
     ]);
-    if (!classDetail) {
+    console.log(classDetail);
+    if (classDetail.message === "Internal Server Error") {
         return (
             <div className="flex min-h-[60vh] flex-col items-center justify-center px-5">
                 <Dumbbell size={48} className="text-purple-300" />

@@ -1,6 +1,10 @@
 import { redirect } from "next/navigation";
 import DashboardLayoutClient from "./DashboardLayoutClient";
 import { sessionCheck } from "@/lib/core/session";
+export const metadata = { 
+    title: "Dashboard"
+}
+
 
 const DashboardLayout = async ({ children }) => {
     const session = await sessionCheck();

@@ -4,8 +4,9 @@ import FitnessWellness from "@/Components/Home/FitnessWellness/FitnessWellness";
 import LatestForum from "@/Components/Home/LatesForum/LatestForum";
 import WhyFitZone from "@/Components/Home/WhyFitZone/WhyFitZone";
 
-
-
+export const metadata = {
+  title : "Home"
+}
 export default function Home() {
   return (
     <div>

@@ -2,7 +2,8 @@ import { forum } from "@/lib/api/forum";
 import { Button, Card } from "@heroui/react";
 import Image from "next/image";
 import Link from "next/link";
-
+export const metadata =
+{title : "Community Forum"}
 const CommunityForum = async () => {
     const forums = await forum();
     return (

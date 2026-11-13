@@ -1,8 +1,8 @@
-"use client";
-
 import Link from "next/link";
 import { Dumbbell, ArrowLeft, SearchX } from "lucide-react";
-
+export const metadata = {
+    title :"Not Found"
+}
 const NotFoundPage = () => {
     return (
         <div className="flex min-h-[75vh] items-center justify-center px-4 py-12">

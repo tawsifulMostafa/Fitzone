@@ -23,6 +23,7 @@ const dashboardMenus = {
         { label: "Overview", href: "/dashboard/admin", icon: LayoutDashboard },
         { label: "Manage Users", href: "/dashboard/admin/manage-users", icon: Users },
         { label: "Manage Classes", href: "/dashboard/admin/classes", icon: Dumbbell },
+        { label: "Manage Forum", href: "/dashboard/admin/manage-forum", icon: Users },
         { label: "Trainer Applications", href: "/dashboard/admin/applications", icon: UserCheck },
         { label: "My post", href: "/dashboard/admin/my-post", icon: CreditCard },
         { label: "Add Forum", href: "/dashboard/admin/add-forum", icon: FileText },

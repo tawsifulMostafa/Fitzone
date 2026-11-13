@@ -5,14 +5,21 @@ import { forumDetails, forumsComment } from "@/lib/api/forum";
 import Image from "next/image";
 import { getUser } from "@/lib/core/session";
 import { redirect } from "next/navigation";
-
+export const metadata = {
+    title: "Forum Details"
+}
 const ForumDetailsPage = async ({ params }) => {
     const { forumId } = await params;
+    console.log(forumId);
     const user = await getUser()
     if (!user) {
         redirect(`signIn/callbackURl=/community-forum/${forumId}`)
     }
     const details = await forumDetails(forumId);
+    console.log(details);
+    if (details.message === "forum post not available") {
+        redirect("/not-found")
+    }
     const poster = details?.poster;
     const comments = await forumsComment(forumId)
     return (
